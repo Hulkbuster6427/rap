@@ -2,8 +2,8 @@ import React from 'react';
 import { Volume2, VolumeX, Radio, Sparkles } from 'lucide-react';
 
 interface NavbarProps {
-  currentTab: 'articles' | 'timeline' | 'sound-matrix';
-  onSelectTab: (tab: 'articles' | 'timeline' | 'sound-matrix') => void;
+  currentTab: 'articles' | 'timeline';
+  onSelectTab: (tab: 'articles' | 'timeline') => void;
   onOpenManifesto: () => void;
   onOpenSubmit: () => void;
   isAudioPlaying: boolean;
@@ -64,17 +64,6 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             Underground Timeline
-          </button>
-
-          <button
-            onClick={() => onSelectTab('sound-matrix')}
-            className={`transition-colors hover:text-zinc-100 pb-0.5 ${
-              currentTab === 'sound-matrix'
-                ? 'text-amber-400 border-b-2 border-amber-400 font-semibold'
-                : ''
-            }`}
-          >
-            Sonic Matrix & DAWs
           </button>
 
           <button
@@ -151,13 +140,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           onClick={() => onSelectTab('timeline')}
           className={`py-1 ${currentTab === 'timeline' ? 'text-amber-400 font-semibold' : ''}`}
         >
-          Timeline
-        </button>
-        <button
-          onClick={() => onSelectTab('sound-matrix')}
-          className={`py-1 ${currentTab === 'sound-matrix' ? 'text-amber-400 font-semibold' : ''}`}
-        >
-          Sound Matrix
+          Detailed Timeline
         </button>
         <button
           onClick={onOpenManifesto}

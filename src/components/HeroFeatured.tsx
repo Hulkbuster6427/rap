@@ -1,6 +1,6 @@
 import React from 'react';
 import { BlogArticle } from '../types/blog';
-import { ArrowRight, Bookmark, Sparkles, Disc, Radio } from 'lucide-react';
+import { ArrowRight, Bookmark, Sparkles, Disc, Radio, Camera } from 'lucide-react';
 
 interface HeroFeaturedProps {
   article: BlogArticle;
@@ -37,12 +37,21 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
         {/* Left column: Editorial Narrative */}
         <div className="lg:col-span-7">
           {/* Zero-pill unboxed text kicker */}
-          <div className="flex items-center gap-2 text-xs font-mono text-zinc-400 mb-3">
+          <div className="flex flex-wrap items-center gap-2 text-xs font-mono text-zinc-400 mb-3">
             <span className="text-amber-400 font-semibold tracking-wider uppercase">Lead Investigation</span>
             <span aria-hidden="true" className="text-zinc-600">·</span>
             <span>{article.category}</span>
             <span aria-hidden="true" className="text-zinc-600">·</span>
             <span>{article.readTime}</span>
+            {article.artistPhotos && article.artistPhotos.length > 0 && (
+              <>
+                <span aria-hidden="true" className="text-zinc-600">·</span>
+                <span className="flex items-center gap-1 text-zinc-300">
+                  <Camera className="w-3.5 h-3.5 text-amber-400" />
+                  <span>{article.artistPhotos.length} Portraits</span>
+                </span>
+              </>
+            )}
           </div>
 
           {/* Headline with text-balance */}

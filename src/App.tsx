@@ -12,7 +12,6 @@ import { HeroFeatured } from './components/HeroFeatured';
 import { ArticleCard } from './components/ArticleCard';
 import { ArticleDetail } from './components/ArticleDetail';
 import { TimelineView } from './components/TimelineView';
-import { SoundMatrixView } from './components/SoundMatrixView';
 import { ManifestoModal } from './components/ManifestoModal';
 import { SubmitTrackModal } from './components/SubmitTrackModal';
 import { Footer } from './components/Footer';
@@ -21,7 +20,7 @@ import { Search, SlidersHorizontal, BookOpen, BookmarkCheck, Flame, Disc } from 
 
 export default function App() {
   const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(null);
-  const [currentTab, setCurrentTab] = useState<'articles' | 'timeline' | 'sound-matrix'>('articles');
+  const [currentTab, setCurrentTab] = useState<'articles' | 'timeline'>('articles');
   
   // Search & Filter state
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -215,22 +214,7 @@ export default function App() {
             {/* VIEW 2: Timeline */}
             {currentTab === 'timeline' && <TimelineView />}
 
-            {/* VIEW 3: Sonic Matrix & DAWs */}
-            {currentTab === 'sound-matrix' && (
-              <SoundMatrixView
-                onPlaySubgenreBeat={(genreName) => {
-                  let target = 'subterranean-plugg';
-                  if (genreName.includes('Rage')) target = 'nightmare-rage-808';
-                  else if (genreName.includes('Plugg')) target = 'subterranean-plugg';
-                  else if (genreName.includes('Michigan')) target = 'motor-city-bounce';
-                  else if (genreName.includes('Soul')) target = 'abstract-drumless-soul';
-                  else if (genreName.includes('Cloud')) target = 'bedroom-3am-cloud';
-                  handleTrackSelect(target);
-                }}
-              />
-            )}
-
-            {/* VIEW 4: Main Articles Collection (Default) */}
+            {/* VIEW 3: Main Articles Collection (Default) */}
             {currentTab === 'articles' && (
               <div>
                 {/* Hero Featured Article (shown when not filtering by search or saved) */}

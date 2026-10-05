@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface FooterProps {
-  onSelectTab: (tab: 'articles' | 'timeline' | 'sound-matrix') => void;
+  onSelectTab: (tab: 'articles' | 'timeline') => void;
   onOpenManifesto: () => void;
   onOpenSubmit: () => void;
 }
@@ -48,14 +48,6 @@ export const Footer: React.FC<FooterProps> = ({
                 className="hover:text-amber-400 transition-colors"
               >
                 Underground Evolution Timeline
-              </button>
-            </div>
-            <div>
-              <button 
-                onClick={() => onSelectTab('sound-matrix')}
-                className="hover:text-amber-400 transition-colors"
-              >
-                Subgenre Sonic Matrix
               </button>
             </div>
             <div>

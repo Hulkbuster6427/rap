@@ -1,6 +1,6 @@
 import React from 'react';
 import { BlogArticle } from '../types/blog';
-import { Bookmark, Clock, ArrowUpRight } from 'lucide-react';
+import { Bookmark, Clock, ArrowUpRight, Camera } from 'lucide-react';
 
 interface ArticleCardProps {
   article: BlogArticle;
@@ -103,6 +103,14 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
             {article.themeTag}
           </div>
 
+          {/* Photo count indicator */}
+          {article.artistPhotos && article.artistPhotos.length > 0 && (
+            <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-2 py-0.5 rounded bg-black/70 border border-zinc-800 text-[10px] font-mono text-zinc-300">
+              <Camera className="w-3 h-3 text-amber-400" />
+              <span>{article.artistPhotos.length} Portraits</span>
+            </div>
+          )}
+
           {/* Bookmark save toggle */}
           <button
             onClick={(e) => onToggleSave(article.id, e)}
@@ -131,9 +139,14 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
         </h3>
 
         {/* Excerpt */}
-        <p className="text-sm text-zinc-400 line-clamp-3 leading-relaxed mb-4">
+        <p className="text-sm text-zinc-400 line-clamp-2 leading-relaxed mb-3">
           {article.excerpt}
         </p>
+
+        {/* Key artists highlighted */}
+        <div className="text-[11px] font-mono text-zinc-500 mb-3 truncate">
+          <span className="text-zinc-400 font-semibold">Featured:</span> {article.keyArtists.slice(0, 4).join(', ')}
+        </div>
       </div>
 
       {/* Footer byline & read affordance */}
