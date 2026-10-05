@@ -1,0 +1,6 @@
+{
+  "name": "Subculture // The Underground Dispatch",
+  "description": "An independent music publication analyzing how modern underground rap carved its own autonomy, broke algorithmic monopolies, and redefined global contemporary music.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
