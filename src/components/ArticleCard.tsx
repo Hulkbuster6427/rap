@@ -104,10 +104,10 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           </div>
 
           {/* Photo count indicator */}
-          {article.artistPhotos && article.artistPhotos.length > 0 && (
+          {article.featuredArtists && article.featuredArtists.length > 0 && (
             <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-2 py-0.5 rounded bg-black/70 border border-zinc-800 text-[10px] font-mono text-zinc-300">
               <Camera className="w-3 h-3 text-amber-400" />
-              <span>{article.artistPhotos.length} Portraits</span>
+              <span>{article.featuredArtists.length} Artist Portraits</span>
             </div>
           )}
 

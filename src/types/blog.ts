@@ -22,15 +22,24 @@ export interface ArticleComment {
   likes: number;
 }
 
-export interface ArtistPhoto {
+export interface ArtistProfile {
   name: string;
   role: string;
   location: string;
   caption: string;
-  visualTag: string; // e.g. "35mm Grain / London Underground"
-  lightingTone: string; // e.g. "from-purple-900/60 via-zinc-900 to-black"
-  accentColor: string;
+  imageUrl: string;
+  fallbackGradient: string;
   signatureSymbol: 'mic' | 'wave' | 'flame' | 'crown' | 'tape' | 'eye' | 'disc';
+}
+
+export interface ArticleContentSection {
+  heading?: string;
+  paragraphs: string[];
+  artistProfile?: ArtistProfile; // Real artist portrait placed directly beside or at the end of this section
+  callout?: {
+    title: string;
+    text: string;
+  };
 }
 
 export interface BlogArticle {
@@ -52,17 +61,10 @@ export interface BlogArticle {
   themeTag: string; // e.g. "Distribution & Rights", "Rage & Synths"
   keyArtists: string[];
   keyProducers: string[];
-  artistPhotos: ArtistPhoto[]; // 2-3 photos of the artists mentioned
+  featuredArtists: ArtistProfile[]; // Verified artist profiles with real portraits
   pullQuote: string;
   pullQuoteAuthor: string;
-  contentSections: {
-    heading?: string;
-    paragraphs: string[];
-    callout?: {
-      title: string;
-      text: string;
-    };
-  }[];
+  contentSections: ArticleContentSection[];
   curatedTracks: TrackRecommendation[];
   statsOrImpact: {
     metric: string;

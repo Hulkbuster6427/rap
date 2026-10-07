@@ -43,12 +43,12 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
             <span>{article.category}</span>
             <span aria-hidden="true" className="text-zinc-600">·</span>
             <span>{article.readTime}</span>
-            {article.artistPhotos && article.artistPhotos.length > 0 && (
+            {article.featuredArtists && article.featuredArtists.length > 0 && (
               <>
                 <span aria-hidden="true" className="text-zinc-600">·</span>
                 <span className="flex items-center gap-1 text-zinc-300">
                   <Camera className="w-3.5 h-3.5 text-amber-400" />
-                  <span>{article.artistPhotos.length} Portraits</span>
+                  <span>{article.featuredArtists.length} Documented Artist Portraits</span>
                 </span>
               </>
             )}

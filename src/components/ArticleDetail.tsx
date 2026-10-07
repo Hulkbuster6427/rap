@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BlogArticle, ArticleComment } from '../types/blog';
-import { ArtistPhotoCard } from './ArtistPhotoCard';
+import { SectionArtistPhoto } from './SectionArtistPhoto';
 import { 
   ArrowLeft, Bookmark, Share2, Volume2, Clock, Calendar, 
   MessageSquare, ThumbsUp, Send, Check, Music2, Disc3, 
@@ -248,9 +248,9 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
               {article.excerpt}
             </p>
 
-            {/* Content Sections */}
+            {/* Content Sections with Artist Photos placed beside / at end of each section */}
             {article.contentSections.map((section, idx) => (
-              <div key={idx} className="mb-10">
+              <div key={idx} className="mb-12">
                 {section.heading && (
                   <h2 className="font-display font-bold text-2xl text-zinc-100 tracking-tight mt-10 mb-4 pb-2 border-b border-zinc-800/60">
                     {section.heading}
@@ -262,6 +262,11 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                     {p}
                   </p>
                 ))}
+
+                {/* Section-Specific Artist Photo & Spotify Profile */}
+                {section.artistProfile && (
+                  <SectionArtistPhoto artist={section.artistProfile} />
+                )}
 
                 {/* Callout block */}
                 {section.callout && (
@@ -287,29 +292,6 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                 — {article.pullQuoteAuthor}
               </figcaption>
             </figure>
-
-            {/* Archival Photographic Dossier: 2-3 Artist Photos */}
-            {article.artistPhotos && article.artistPhotos.length > 0 && (
-              <section className="my-14 pt-8 border-t border-zinc-800">
-                <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
-                  <div className="flex items-center gap-2">
-                    <Camera className="w-5 h-5 text-amber-400" />
-                    <h3 className="font-display font-bold text-xl text-zinc-100 tracking-tight">
-                      Archival Photographic Dossier: Featured Vanguard
-                    </h3>
-                  </div>
-                  <span className="text-xs font-mono text-zinc-500 uppercase tracking-wider">
-                    {article.artistPhotos.length} Documented Portraits
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 not-prose">
-                  {article.artistPhotos.map((photo, pIdx) => (
-                    <ArtistPhotoCard key={pIdx} photo={photo} />
-                  ))}
-                </div>
-              </section>
-            )}
           </div>
 
           {/* Interactive Comments & Community Discourse */}

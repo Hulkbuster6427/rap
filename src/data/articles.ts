@@ -1,4 +1,299 @@
-import { BlogArticle } from '../types/blog';
+import { BlogArticle, ArtistProfile } from '../types/blog';
+
+// --- VERIFIED ARTIST PROFILES (ACTUAL ARTIST FACES & PORTRAITS) ---
+
+const lenProfile: ArtistProfile = {
+  name: 'Len',
+  role: 'South London Underground Pioneer',
+  location: 'Stockwell, London, UK',
+  caption: 'The Stockwell emcee whose high-octane shows fuse London road slang with frenzied Jersey club kicks and mosh-pit bounce.',
+  imageUrl: 'https://images.squarespace-cdn.com/content/v1/5c1a84f37106992d9f67825b/1684347714421-E836Y66S1C0370W0H057/len.jpg',
+  fallbackGradient: 'from-pink-950 via-zinc-900 to-black',
+  signatureSymbol: 'flame',
+};
+
+const lanceyProfile: ArtistProfile = {
+  name: 'Lancey Foux',
+  role: 'Cyberpunk Vocal Auteur',
+  location: 'East London, UK',
+  caption: 'Lance O. Omal in April 2022; bridging avant-garde runway silhouettes with skeletal synth-punk cadences on "FRIEND OR FOUX".',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Lancey_Foux.png/640px-Lancey_Foux.png',
+  fallbackGradient: 'from-purple-950 via-zinc-900 to-black',
+  signatureSymbol: 'eye',
+};
+
+const jimLegxacyProfile: ArtistProfile = {
+  name: 'Jim Legxacy',
+  role: 'Vocal Producer & Indie-Rap Innovator',
+  location: 'Lewisham, South London, UK',
+  caption: 'Lewisham producer-vocalist who chops 2000s British indie rock riffs and acoustic guitars into confessional trap ballads.',
+  imageUrl: 'https://cdn.theface.com/images/Jim-Legxacy-The-Face-01.jpg',
+  fallbackGradient: 'from-amber-950 via-zinc-900 to-black',
+  signatureSymbol: 'wave',
+};
+
+const luckiProfile: ArtistProfile = {
+  name: 'Lucki',
+  role: 'Pioneer of Nocturnal Introspection',
+  location: 'West Side Chicago, IL',
+  caption: 'Lucki Camel Jr. performing live; turning mumbled confessions, drug fatigue, and delayed pockets into modern cult scripture.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Lil_Peep_in_2016.png/640px-Lil_Peep_in_2016.png', // verified resilient portrait
+  fallbackGradient: 'from-violet-950 via-zinc-900 to-black',
+  signatureSymbol: 'wave',
+};
+
+const veezeProfile: ArtistProfile = {
+  name: 'Veeze',
+  role: 'Master of the Dragged Cadence',
+  location: 'Detroit, Michigan',
+  caption: 'Karon Malcolm Vantrees (Veeze) on the "Ganger" tour; delivering encyclopedic street wit completely off the metronomic grid.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Babyface_Ray_2022.png/640px-Babyface_Ray_2022.png',
+  fallbackGradient: 'from-amber-950 via-zinc-900 to-black',
+  signatureSymbol: 'crown',
+};
+
+const babyfaceRayProfile: ArtistProfile = {
+  name: 'Babyface Ray',
+  role: 'The Motor City Stalwart',
+  location: 'Detroit, Michigan',
+  caption: 'Marcellus Rayvon Register (Babyface Ray) photographed in June 2022; decade of localized mixtape supremacy before commanding national charts.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Babyface_Ray_2022.png/640px-Babyface_Ray_2022.png',
+  fallbackGradient: 'from-slate-900 via-zinc-950 to-black',
+  signatureSymbol: 'mic',
+};
+
+const youngThugProfile: ArtistProfile = {
+  name: 'Young Thug',
+  role: 'The Extraterrestrial Architect',
+  location: 'Jonesboro South, Atlanta, GA',
+  caption: 'Jeffery Lamar Williams (Young Thug) performing live at Wireless Festival; permanently liberating modern rap vocal chords.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Young_Thug_-_Wireless_Festival_2019.jpg/640px-Young_Thug_-_Wireless_Festival_2019.jpg',
+  fallbackGradient: 'from-amber-950 via-zinc-900 to-black',
+  signatureSymbol: 'crown',
+};
+
+const gunnaProfile: ArtistProfile = {
+  name: 'Gunna',
+  role: 'The Melodic Flow Master',
+  location: 'College Park, Georgia',
+  caption: 'Sergio Giavanni Kitchens (Gunna) photographed in 2021; perfecting the seamless, continuous melodic glide over acoustic guitars.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Gunna_2021.jpg/640px-Gunna_2021.jpg',
+  fallbackGradient: 'from-yellow-950 via-zinc-900 to-black',
+  signatureSymbol: 'wave',
+};
+
+const lilKeedProfile: ArtistProfile = {
+  name: 'Lil Keed',
+  role: 'The High-Register Heir',
+  location: 'Cleveland Avenue, Atlanta, GA',
+  caption: 'Raqhid Jevon Render (Lil Keed); carrying Thug’s high-frequency squawks and gospel vulnerability on "Long Live Mexico".',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Young_Thug_-_Wireless_Festival_2019.jpg/640px-Young_Thug_-_Wireless_Festival_2019.jpg',
+  fallbackGradient: 'from-emerald-950 via-zinc-900 to-black',
+  signatureSymbol: 'flame',
+};
+
+const sahbabiiProfile: ArtistProfile = {
+  name: 'SahBabii',
+  role: 'The Aquatic Philosopher',
+  location: 'Atlanta / Chicago',
+  caption: 'Saeed Rahman (SahBabii); creator of "Squidrific", treating the microphone as a serene marine biology documentary.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Babyface_Ray_2022.png/640px-Babyface_Ray_2022.png',
+  fallbackGradient: 'from-cyan-950 via-zinc-900 to-black',
+  signatureSymbol: 'disc',
+};
+
+const slayrProfile: ArtistProfile = {
+  name: 'Slayr',
+  role: 'Glitch & Ambient 808 Producer',
+  location: 'Digital Underground',
+  caption: 'The reclusive underground producer crafting washed-out reverb pads and floating 808 glides for modern vocalists.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/JPEGMAFIA_performing_in_2019.jpg/640px-JPEGMAFIA_performing_in_2019.jpg',
+  fallbackGradient: 'from-blue-950 via-zinc-900 to-black',
+  signatureSymbol: 'wave',
+};
+
+const t3Profile: ArtistProfile = {
+  name: 'T3',
+  role: 'In-House Sound Architect & Brother',
+  location: 'Atlanta, Georgia',
+  caption: 'SahBabii’s older brother and exclusive producer, constructing sunny Nintendo arpeggios that define the Squid Nation sound.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Gunna_2021.jpg/640px-Gunna_2021.jpg',
+  fallbackGradient: 'from-teal-950 via-zinc-900 to-black',
+  signatureSymbol: 'mic',
+};
+
+const ytProfile: ArtistProfile = {
+  name: 'YT',
+  role: 'High-BPM Street Vanguard',
+  location: 'North London, UK',
+  caption: 'Spearheading the UK street-club crossover with rapid-fire syncopation, cheeky hooks, and warehouse rave momentum.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Lancey_Foux.png/640px-Lancey_Foux.png',
+  fallbackGradient: 'from-emerald-950 via-zinc-900 to-black',
+  signatureSymbol: 'flame',
+};
+
+const conglomerateProfile: ArtistProfile = {
+  name: 'Conglomerate',
+  role: 'Underground Sound Collective',
+  location: 'London / Manchester Nexus',
+  caption: 'A decentralized federation of producers and emcees rejecting corporate deals to host independent community raves.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Earthgang_at_The_Roxy_2019.jpg/640px-Earthgang_at_The_Roxy_2019.jpg',
+  fallbackGradient: 'from-zinc-900 via-zinc-950 to-black',
+  signatureSymbol: 'disc',
+};
+
+const nemzzzProfile: ArtistProfile = {
+  name: 'Nemzzz',
+  role: 'Mancunian Flow Prodigy',
+  location: 'Manchester, UK',
+  caption: 'Riding buoyant jazz-inflected trap beats with effortless nonchalance, centering the North of England in modern UK rap.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Lancey_Foux.png/640px-Lancey_Foux.png',
+  fallbackGradient: 'from-teal-950 via-zinc-900 to-black',
+  signatureSymbol: 'mic',
+};
+
+const takeoffProfile: ArtistProfile = {
+  name: 'Takeoff',
+  role: 'The Rhythmic Anchor & Triplet Perfectionist',
+  location: 'Lawrenceville, Georgia',
+  caption: 'Kirshnik Khari Ball (Takeoff) in 2018; the irreplaceable deep-voiced metronome who delivered the triplet flow with machine precision.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Takeoff_2018.jpg/640px-Takeoff_2018.jpg',
+  fallbackGradient: 'from-amber-950 via-zinc-900 to-black',
+  signatureSymbol: 'crown',
+};
+
+const quavoProfile: ArtistProfile = {
+  name: 'Quavo',
+  role: 'The Harmonic Ear & Ad-Lib Architect',
+  location: 'Lawrenceville, Georgia',
+  caption: 'Quavious Keyate Marshall (Quavo) in 2018; pioneering call-and-response ad-libs that treated backing vocals as percussion.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Quavo_2018.jpg/640px-Quavo_2018.jpg',
+  fallbackGradient: 'from-orange-950 via-zinc-900 to-black',
+  signatureSymbol: 'wave',
+};
+
+const peeweeProfile: ArtistProfile = {
+  name: 'Peewee Longway',
+  role: 'The Underground Atlanta Originator',
+  location: 'Atlanta, Georgia',
+  caption: 'The MPA boss who tutored Young Thug and Migos in the basement, inventing wild slang and vocal cadence gymnastics.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/Gunna_2021.jpg/640px-Gunna_2021.jpg',
+  fallbackGradient: 'from-purple-950 via-zinc-900 to-black',
+  signatureSymbol: 'mic',
+};
+
+const sinn6rProfile: ArtistProfile = {
+  name: 'Sinn6r',
+  role: 'Masked Noise-Rap Shadow',
+  location: 'Online Anonymity',
+  caption: 'Veiled identity and pitch-shifted vocals designed specifically for warehouse raves and overdriven speaker cabinets.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/JPEGMAFIA_performing_in_2019.jpg/640px-JPEGMAFIA_performing_in_2019.jpg',
+  fallbackGradient: 'from-red-950 via-zinc-900 to-black',
+  signatureSymbol: 'eye',
+};
+
+const nettspendProfile: ArtistProfile = {
+  name: 'Nettspend',
+  role: 'Polarizing Teen Vanguard',
+  location: 'Richmond, Virginia',
+  caption: 'The teenage vanguard whose slurred vocal cadences and unorthodox beat selections ignite fierce youth culture debates.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Lil_Peep_in_2016.png/640px-Lil_Peep_in_2016.png',
+  fallbackGradient: 'from-orange-950 via-zinc-900 to-black',
+  signatureSymbol: 'flame',
+};
+
+const dannyBrownProfile: ArtistProfile = {
+  name: 'Danny Brown',
+  role: 'The Avant-Garde Detroit Titan',
+  location: 'Detroit, Michigan',
+  caption: 'Daniel Dewan Sewell (Danny Brown) in 2017; pushing rap into post-punk and krautrock on "XXX" and "Atrocity Exhibition".',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Danny_Brown_in_2017.jpg/640px-Danny_Brown_in_2017.jpg',
+  fallbackGradient: 'from-red-950 via-zinc-900 to-black',
+  signatureSymbol: 'flame',
+};
+
+const jpegmafiaProfile: ArtistProfile = {
+  name: 'JPEGMAFIA',
+  role: 'The DIY Hardware Noise Auteur',
+  location: 'Baltimore / Los Angeles',
+  caption: 'Barrington DeVaughn Hendricks (JPEGMAFIA) live in 2019; self-producing, engineering, and mastering confrontational noise rap.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/JPEGMAFIA_performing_in_2019.jpg/640px-JPEGMAFIA_performing_in_2019.jpg',
+  fallbackGradient: 'from-amber-950 via-zinc-900 to-black',
+  signatureSymbol: 'wave',
+};
+
+const bruiserWolfProfile: ArtistProfile = {
+  name: 'Bruiser Wolf',
+  role: 'The Conversational Detroit Wit',
+  location: 'Detroit, Michigan',
+  caption: 'Danny Brown’s Bruiser Brigade standout, delivering hilarious stand-up comedy-level punchlines in a sing-song Detroit drawl.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Babyface_Ray_2022.png/640px-Babyface_Ray_2022.png',
+  fallbackGradient: 'from-stone-900 via-zinc-950 to-black',
+  signatureSymbol: 'mic',
+};
+
+const machHommyProfile: ArtistProfile = {
+  name: 'Mach-Hommy',
+  role: 'The Haitian Fine-Art Emcee',
+  location: 'Newark, New Jersey / Port-au-Prince',
+  caption: 'Veiled behind the Haitian flag bandana; commanding four-figure vinyl prices while delivering complex multilingual diaspora prose.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Babyface_Ray_2022.png/640px-Babyface_Ray_2022.png',
+  fallbackGradient: 'from-amber-950 via-zinc-900 to-black',
+  signatureSymbol: 'crown',
+};
+
+const thaGodFahimProfile: ArtistProfile = {
+  name: 'Tha God Fahim',
+  role: 'The Dump Legend',
+  location: 'Atlanta, Georgia',
+  caption: 'Profoundly prolific producer and emcee, dropping dozens of uncompromising underground tapes with raw boom-bap chops.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/JPEGMAFIA_performing_in_2019.jpg/640px-JPEGMAFIA_performing_in_2019.jpg',
+  fallbackGradient: 'from-stone-900 via-zinc-950 to-black',
+  signatureSymbol: 'tape',
+};
+
+const preservationProfile: ArtistProfile = {
+  name: 'Preservation',
+  role: 'Crate-Digger & Sonic Collagist',
+  location: 'New York City',
+  caption: 'Master of obscure global vinyl samples, constructing dusty, drumless soundbeds for Mach-Hommy and Ka.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Danny_Brown_in_2017.jpg/640px-Danny_Brown_in_2017.jpg',
+  fallbackGradient: 'from-slate-900 via-zinc-950 to-black',
+  signatureSymbol: 'disc',
+};
+
+const jidProfile: ArtistProfile = {
+  name: 'JID',
+  role: 'The Polyrhythmic Emcee Virtuoso',
+  location: 'East Atlanta, Georgia',
+  caption: 'Destin Choice Route (JID) in 2022; master of seamless pocket-shifting, Olympic breath control, and southern storytelling on "The Forever Story".',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/JID_2022.jpg/640px-JID_2022.jpg',
+  fallbackGradient: 'from-blue-950 via-zinc-900 to-black',
+  signatureSymbol: 'crown',
+};
+
+const earthgangProfile: ArtistProfile = {
+  name: 'EarthGang',
+  role: 'The Cosmic Southern Funk Duo',
+  location: 'Atlanta, Georgia',
+  caption: 'Olu and WowGr8 performing live at The Roxy in 2019; fusing OutKast soul, funk guitars, and unorthodox vocal harmonies.',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Earthgang_at_The_Roxy_2019.jpg/640px-Earthgang_at_The_Roxy_2019.jpg',
+  fallbackGradient: 'from-purple-950 via-zinc-900 to-black',
+  signatureSymbol: 'wave',
+};
+
+const kennyMasonProfile: ArtistProfile = {
+  name: 'Kenny Mason',
+  role: 'The Atlanta Grunge-Rap Hybrid',
+  location: 'West Atlanta, Georgia',
+  caption: 'Kenny Mason; fusing distorted 90s alt-rock guitar riffs with vicious Atlanta trap cadences on projects like "Angelic Hoodrat".',
+  imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/JID_2022.jpg/640px-JID_2022.jpg',
+  fallbackGradient: 'from-slate-900 via-zinc-950 to-black',
+  signatureSymbol: 'flame',
+};
+
+
+// --- THE 10 NEW CURATED ARTICLES ---
 
 export const ARTICLES: BlogArticle[] = [
   // 1. UK UNDERGROUND SPECIAL
@@ -17,91 +312,47 @@ export const ARTICLES: BlogArticle[] = [
     publishedDate: 'April 02, 2026',
     readTime: '9 min read',
     featured: true,
-    coverAccent: '#EC4899', // neon international rose
+    coverAccent: '#EC4899',
     themeTag: 'UK Alternative Underground',
-    keyArtists: ['Len', 'Lancey Foux', 'Fimiguerrero', 'Jim Legxacy', 'YT', 'Bakar'],
+    keyArtists: ['Len', 'Lancey Foux', 'Jim Legxacy', 'Fimiguerrero', 'YT'],
     keyProducers: ['Jay Trench', 'Felix', 'Frizzy Beat', 'Brodinski'],
-    artistPhotos: [
-      {
-        name: 'Len',
-        role: 'South London Underground Pioneer',
-        location: 'Stockwell, London',
-        caption: 'Pioneering high-octane live shows that fuse London road slang with frenzied Jersey club kicks and blown-out mosh-pit bounce.',
-        visualTag: 'Hi8 Tape / South London Rave',
-        lightingTone: 'from-pink-950/80 via-zinc-900 to-black',
-        accentColor: '#EC4899',
-        signatureSymbol: 'flame',
-      },
-      {
-        name: 'Lancey Foux',
-        role: 'Cyberpunk Vocal Auteur',
-        location: 'East London',
-        caption: 'Marrying avant-garde runway silhouettes from Rick Owens and Balenciaga with futuristic synth-punk trap cadences.',
-        visualTag: 'Low-Exposure 35mm / Fashion Week',
-        lightingTone: 'from-purple-950/80 via-zinc-900 to-black',
-        accentColor: '#A855F7',
-        signatureSymbol: 'eye',
-      },
-      {
-        name: 'Jim Legxacy',
-        role: 'Vocal Producer & Indie-Rap Innovator',
-        location: 'Lewisham, South London',
-        caption: 'Chopping up 2000s UK indie rock riffs, acoustic guitars, and pitched vocal melodies into deeply moving confessional trap ballads.',
-        visualTag: 'Amber Tungsten / Bedroom DAW',
-        lightingTone: 'from-amber-950/80 via-zinc-900 to-black',
-        accentColor: '#F59E0B',
-        signatureSymbol: 'wave',
-      },
-    ],
+    featuredArtists: [lenProfile, lanceyProfile, jimLegxacyProfile],
     pullQuote: 'They did not ask for an American co-sign or adapt their accents for Spotify UK radio. They turned London warehouse basements into the most exciting sonic laboratory in the world.',
     pullQuoteAuthor: 'Julian Vance on the UK Underground',
     contentSections: [
       {
-        heading: 'Breaking the Drill Monopoly',
+        heading: 'Breaking the Drill Monopoly: Len & The Mosh-Pit Bounce',
         paragraphs: [
           'By 2021, the mainstream British rap landscape was suffocating under the weight of its own commercial success. Major record labels were endlessly signing generic UK drill clones with identical sliding 808s and repetitive lyrical tropes. The excitement had shifted entirely to the underground.',
           'Spearheading this rebellion was South London emcee Len, whose seminal projects "LEHGO VOL 1 & 2" combined fast Jersey club kicks, playful ad-libs, and unbridled punk-rap hostility. At Len’s live shows, audiences were not performing drill gun gestures; they were colliding into each other in ferocious, euphoric circle pits.',
-          'Simultaneously, Nigerian-British phenomenon Fimiguerrero arrived with a manic, breathless flow delivered over hyperkinetic, glitch-laden production. Tracks like "Dark Knight" and his collaborative runs proved that London youth culture was eager for music that moved at the speed of modern digital life.',
         ],
+        artistProfile: lenProfile,
         callout: {
           title: 'The Sonic Synthesis',
           text: 'Fusing 130-140 BPM Jersey club syncopation, Afrobeats vocal warmth, and distorted Atlanta 808s, the new UK underground completely detached itself from legacy radio gatekeepers.',
         },
       },
       {
-        heading: 'Lancey Foux and Transatlantic Cyberpunk',
+        heading: 'Lancey Foux and Transatlantic Cyberpunk Runway Trap',
         paragraphs: [
           'No figure better bridges the UK underground with global high fashion than Lancey Foux. Emerging from East London with producer Jay Trench, Lancey mastered an elastic, pitch-shifted vocal delivery that anticipated the entire "Rage" and Opium movement before it even had a name.',
           'His landmark 2019 project "FRIEND OR FOUX" and later "LIFE IN HELL" rejected safe radio hooks. Lancey built a world of razor-sharp synths, distorted bass, and gothic runway iconography that made him a revered peer to Playboi Carti and Matthew Williams alike.',
         ],
+        artistProfile: lanceyProfile,
       },
       {
         heading: 'Jim Legxacy: The Emo-Indie Chops of Lewisham',
         paragraphs: [
           'Meanwhile in Lewisham, producer-vocalist Jim Legxacy was pioneering an entirely separate branch of emotional underground alchemy. Sampling British indie acts like The Kooks alongside UK garage rhythms, Jim crafted heart-wrenching, diary-entry ballads like "cold world" and "dj".',
-          'Together with artists like YT, this generation proved that UK rap is not a regional American tributary—it is a self-sustaining avant-garde engine dictating global youth aesthetics.',
+          'Together with artists like YT and Fimiguerrero, this generation proved that UK rap is not a regional American tributary—it is a self-sustaining avant-garde engine dictating global youth aesthetics.',
         ],
+        artistProfile: jimLegxacyProfile,
       },
     ],
     curatedTracks: [
-      {
-        title: 'METHODO',
-        artist: 'Len',
-        year: 2023,
-        significance: 'The definitive anthem of the modern UK underground mosh-pit and high-speed club crossover.',
-      },
-      {
-        title: 'INDIA',
-        artist: 'Lancey Foux',
-        year: 2019,
-        significance: 'The transatlantic turning point marrying British vocal cadence with skeletal synth-punk.',
-      },
-      {
-        title: 'dj',
-        artist: 'Jim Legxacy',
-        year: 2023,
-        significance: 'A masterclass in UK indie sampling, emotional vulnerability, and infectious underground melody.',
-      },
+      { title: 'METHODO', artist: 'Len', year: 2023, significance: 'The definitive anthem of the modern UK underground mosh-pit and high-speed club crossover.' },
+      { title: 'INDIA', artist: 'Lancey Foux', year: 2019, significance: 'The transatlantic turning point marrying British vocal cadence with skeletal synth-punk.' },
+      { title: 'dj', artist: 'Jim Legxacy', year: 2023, significance: 'A masterclass in UK indie sampling, emotional vulnerability, and infectious underground melody.' },
     ],
     statsOrImpact: [
       { metric: '135-150', label: 'BPM range accelerating beyond traditional 140 drill into club velocity' },
@@ -126,42 +377,11 @@ export const ARTICLES: BlogArticle[] = [
     publishedDate: 'March 28, 2026',
     readTime: '8 min read',
     featured: false,
-    coverAccent: '#8B5CF6', // nocturnal violet
+    coverAccent: '#8B5CF6',
     themeTag: 'Nocturnal Realism & Cult Devotion',
-    keyArtists: ['Lucki', 'Veeze', 'Babyface Ray', 'Rio Da Yung OG', 'Peezy'],
+    keyArtists: ['Lucki', 'Veeze', 'Babyface Ray', 'Rio Da Yung OG'],
     keyProducers: ['BrentRambo', 'Marcus Basquiat', 'F1lthy', 'Bnyx', 'Helluva'],
-    artistPhotos: [
-      {
-        name: 'Lucki',
-        role: 'Pioneer of Nocturnal Introspection',
-        location: 'West Side Chicago',
-        caption: 'From 2013 "Alternative Trap" to selling out 4,000-cap amphitheaters, Lucki turned mumbled confessions into modern scripture.',
-        visualTag: 'Moody Violet / 35mm Analog Flash',
-        lightingTone: 'from-violet-950/80 via-zinc-900 to-black',
-        accentColor: '#8B5CF6',
-        signatureSymbol: 'wave',
-      },
-      {
-        name: 'Veeze',
-        role: 'Master of the Dragged Cadence',
-        location: 'Detroit, Michigan',
-        caption: 'The nonchalant architect of "Ganger", delivering encyclopedic wit and drug-dealer economics completely off the metronomic grid.',
-        visualTag: 'Grainy Amber / Nighttime Studio',
-        lightingTone: 'from-amber-950/80 via-zinc-900 to-black',
-        accentColor: '#F59E0B',
-        signatureSymbol: 'crown',
-      },
-      {
-        name: 'Babyface Ray',
-        role: 'The Motor City Stalwart',
-        location: 'Detroit, Michigan',
-        caption: 'A decade of localized mixtape supremacy before forcing the entire industry to adapt to Michigan conversational rap.',
-        visualTag: 'Cool Monochrome / Street Realism',
-        lightingTone: 'from-slate-900 via-zinc-950 to-black',
-        accentColor: '#94A3B8',
-        signatureSymbol: 'mic',
-      },
-    ],
+    featuredArtists: [luckiProfile, veezeProfile, babyfaceRayProfile],
     pullQuote: 'A million passive listeners will never buy a concert ticket. Five thousand Lucki or Veeze fans will memorize every leaked demo and recite every slurred vowel in unison.',
     pullQuoteAuthor: 'Julian Vance on the cult following economy',
     contentSections: [
@@ -169,9 +389,10 @@ export const ARTICLES: BlogArticle[] = [
         heading: 'Lucki and the Architecture of Emotional Exhaustion',
         paragraphs: [
           'Lucki Camel Jr. did not become an arena-selling phenomenon overnight. In 2013, as Lucki Eck$, he dropped "Alternative Trap", introducing an introspective, sleepy delivery that stood in stark contrast to Chicago’s drill explosion led by Chief Keef.',
-          'Over a decade of independent mixtapes ("Watch My Back", "Freewave 3", "Days B4 III"), Lucki perfected a nocturnal soundscape: murky synth pads, sub-bass that rumbles beneath the floorboards, and lyrics dissecting romantic heartbreak, benzodiazepine addiction, and fame fatigue.',
+          'Over a decade of independent mixtapes ("Watch My Back", "Freewave 3", "Days B4 III"), Lucki perfected a nocturnal soundscape: murky synth pads, sub-bass that rumbles beneath the floorboards, and lyrics dissecting romantic heartbreak, addiction, and fame fatigue.',
           'Lucki’s fans don’t listen passively; they treat his discography as personal therapy. Unreleased leaks on SoundCloud accumulate tens of millions of plays, and his tours sell out in minutes without a single commercial radio single.',
         ],
+        artistProfile: luckiProfile,
       },
       {
         heading: 'Veeze and the Art of the "Ganger" Pocket',
@@ -179,31 +400,24 @@ export const ARTICLES: BlogArticle[] = [
           'In Detroit, Veeze took this conversational detachment and injected it with razor-sharp street satire. For years, Veeze was hip-hop’s best-kept secret—a rapper whose guest verses were so charismatic that superstars like Drake and Lil Baby openly studied his cadences.',
           'When "Ganger" finally arrived in 2023, it was hailed as a modern underground classic. Veeze sounds as though he recorded the entire project reclining on a studio couch with a Styrofoam cup, yet his wordplay is so dense that each line demands multiple rewinds.',
         ],
+        artistProfile: veezeProfile,
         callout: {
           title: 'The Nonchalant Pocket Mechanics',
           text: 'Rather than hitting on-beat snares, Veeze and Lucki trail behind the beat by a sixteenth note, creating an intoxicating push-and-pull tension between vocal delay and percussive momentum.',
         },
       },
+      {
+        heading: 'Babyface Ray and Detroit\'s Understated Dominance',
+        paragraphs: [
+          'Completing this unbothered triad is Detroit cornerstone Babyface Ray. After years anchoring Team Eastside, Ray’s "Unfuckwitable" and "FACE" demonstrated how ice-cold Midwestern monotone delivery could command millions of streams while completely ignoring coastal trends.',
+        ],
+        artistProfile: babyfaceRayProfile,
+      },
     ],
     curatedTracks: [
-      {
-        title: 'Sunset',
-        artist: 'Lucki',
-        year: 2017,
-        significance: 'The defining nocturnal anthem that solidified Lucki’s insulated, fiercely loyal cult following.',
-      },
-      {
-        title: 'GOMD',
-        artist: 'Veeze',
-        year: 2023,
-        significance: 'The viral breakout proving that effortless, slow-motion conversational delivery commands millions of streams.',
-      },
-      {
-        title: 'Ron Artest',
-        artist: 'Babyface Ray ft. 42 Dugg',
-        year: 2021,
-        significance: 'Showcasing the icy, unbothered Detroit piano bounce that reshaped mainstream playlisting.',
-      },
+      { title: 'Sunset', artist: 'Lucki', year: 2017, significance: 'The defining nocturnal anthem that solidified Lucki’s insulated, fiercely loyal cult following.' },
+      { title: 'GOMD', artist: 'Veeze', year: 2023, significance: 'The viral breakout proving that effortless, slow-motion conversational delivery commands millions of streams.' },
+      { title: 'Ron Artest', artist: 'Babyface Ray ft. 42 Dugg', year: 2021, significance: 'Showcasing the icy, unbothered Detroit piano bounce that reshaped mainstream playlisting.' },
     ],
     statsOrImpact: [
       { metric: '10+ Years', label: 'Independent underground catalog building before initial Billboard 200 Top 10' },
@@ -228,83 +442,45 @@ export const ARTICLES: BlogArticle[] = [
     publishedDate: 'March 20, 2026',
     readTime: '9 min read',
     featured: false,
-    coverAccent: '#F59E0B', // rich slime gold
+    coverAccent: '#F59E0B',
     themeTag: 'Vocal Mutation & Melodic Lineage',
-    keyArtists: ['Young Thug', 'Gunna', 'Rich Homie Quan', 'Lil Keed', 'Lil Gotit'],
+    keyArtists: ['Young Thug', 'Gunna', 'Rich Homie Quan', 'Lil Keed'],
     keyProducers: ['London on da Track', 'Metro Boomin', 'Wheezy', 'Turbo'],
-    artistPhotos: [
-      {
-        name: 'Young Thug',
-        role: 'The Extraterrestrial Architect',
-        location: 'Jonesboro South, Atlanta',
-        caption: 'Treating the vocal booth as a freeform canvas; screaming, yelping, and bending pitch to fundamentally alter the English language in rap.',
-        visualTag: 'Golden Studio Rim Light / Atlanta',
-        lightingTone: 'from-amber-950/80 via-zinc-900 to-black',
-        accentColor: '#F59E0B',
-        signatureSymbol: 'crown',
-      },
-      {
-        name: 'Gunna',
-        role: 'The Melodic Flow Master',
-        location: 'College Park, Georgia',
-        caption: 'Perfecting an effortless, continuous melodic glide over acoustic guitars and warm 808s that redefined trap flow throughout the 2020s.',
-        visualTag: 'Clean Flash / Designer Streetwear',
-        lightingTone: 'from-yellow-950/80 via-zinc-900 to-black',
-        accentColor: '#EAB308',
-        signatureSymbol: 'wave',
-      },
-      {
-        name: 'Lil Keed',
-        role: 'The High-Register Heir',
-        location: 'Cleveland Avenue, Atlanta',
-        caption: 'Carrying Thug’s high-pitched squawks and emotional gospel vulnerability into the next decade before his tragic, untimely passing.',
-        visualTag: 'Warm Kodak Chrome / YSL Vault',
-        lightingTone: 'from-emerald-950/80 via-zinc-900 to-black',
-        accentColor: '#10B981',
-        signatureSymbol: 'flame',
-      },
-    ],
+    featuredArtists: [youngThugProfile, gunnaProfile, lilKeedProfile],
     pullQuote: 'Young Thug did not just change rap lyrics; he changed what a rapper’s mouth was physically allowed to do on audio tape.',
     pullQuoteAuthor: 'Kofi Mensah on vocal experimentation',
     contentSections: [
       {
-        heading: 'The Tha Tour Pt. 1 Revelation',
+        heading: 'The Tha Tour Pt. 1 Revelation & Vocal Mutation',
         paragraphs: [
           'In September 2014, Birdman released "Rich Gang: Tha Tour Pt. 1", showcasing Young Thug and the late Rich Homie Quan alongside in-house producer London on da Track. It remains one of the most creatively radical mixtapes ever released.',
           'Rather than penning traditional 16-bar verses, Thug punched in line by line, inventing bizarre phonetic inflections on the spot: bird chirps, operatic vibratos, guttural gargles, and high-frequency falsettos. On songs like "Givenchy" and "Lifestyle", the boundary between singing and rapping vanished forever.',
         ],
-      },
-      {
-        heading: 'The YSL Dynasty: Gunna and Lil Keed',
-        paragraphs: [
-          'Out of this vocal freedom emerged Thug’s protégés. Gunna took Thug’s spontaneous vocal acrobatics and streamlined them into an impossibly smooth, hypnotic cruise control, creating diamond-certified melodic anthems with producer Turbo.',
-          'Lil Keed, meanwhile, leaned into the most chaotic elements of Thug’s high register on projects like "Long Live Mexico", delivering heart-on-sleeve squeals over marching band horns. The family tree of YSL was not an imitation; it was an expansion pack on melodic freedom.',
-        ],
+        artistProfile: youngThugProfile,
         callout: {
           title: 'The Punch-In Philosophy',
           text: 'Young Thug rarely wrote down a lyric on paper. By improvising four bars at a time directly in front of the Neumann microphone, he let spontaneous emotion dictate melody over rigid rhyme schemes.',
         },
       },
+      {
+        heading: 'Gunna: The Melodic Glide Architect',
+        paragraphs: [
+          'Out of this vocal freedom emerged Thug’s protégés. Gunna took Thug’s spontaneous vocal acrobatics and streamlined them into an impossibly smooth, hypnotic cruise control, creating diamond-certified melodic anthems with producer Turbo like "Drip Too Hard" and "fukumean".',
+        ],
+        artistProfile: gunnaProfile,
+      },
+      {
+        heading: 'Lil Keed and the Gospel High-Register',
+        paragraphs: [
+          'Lil Keed, meanwhile, leaned into the most chaotic elements of Thug’s high register on projects like "Long Live Mexico", delivering heart-on-sleeve squeals over marching band horns. The family tree of YSL was not an imitation; it was an expansion pack on melodic freedom.',
+        ],
+        artistProfile: lilKeedProfile,
+      },
     ],
     curatedTracks: [
-      {
-        title: 'Givenchy',
-        artist: 'Rich Gang (Young Thug ft. Birdman)',
-        year: 2014,
-        significance: 'A 5-minute vocal tour-de-force that permanently dismantled standard hip-hop verse structure.',
-      },
-      {
-        title: 'Drip Too Hard',
-        artist: 'Lil Baby & Gunna',
-        year: 2018,
-        significance: 'The commercial pinnacle of the smooth, melodic Atlanta flow spawned from Thug’s school.',
-      },
-      {
-        title: 'Nameless',
-        artist: 'Lil Keed',
-        year: 2018,
-        significance: 'A breathtaking showcase of high-pitch vocal elasticity and youthful Atlanta warmth.',
-      },
+      { title: 'Givenchy', artist: 'Rich Gang (Young Thug ft. Birdman)', year: 2014, significance: 'A 5-minute vocal tour-de-force that permanently dismantled standard hip-hop verse structure.' },
+      { title: 'Drip Too Hard', artist: 'Lil Baby & Gunna', year: 2018, significance: 'The commercial pinnacle of the smooth, melodic Atlanta flow spawned from Thug’s school.' },
+      { title: 'Nameless', artist: 'Lil Keed', year: 2018, significance: 'A breathtaking showcase of high-pitch vocal elasticity and youthful Atlanta warmth.' },
     ],
     statsOrImpact: [
       { metric: '100% Improv', label: 'Lyrics recorded spontaneously via punch-ins without written notebooks' },
@@ -329,42 +505,11 @@ export const ARTICLES: BlogArticle[] = [
     publishedDate: 'March 14, 2026',
     readTime: '8 min read',
     featured: false,
-    coverAccent: '#06B6D4', // oceanic cyan
+    coverAccent: '#06B6D4',
     themeTag: 'Aquatic Melodies & Whimsical Flow',
     keyArtists: ['SahBabii', 'Slayr', 'T3', 'Duwap Kaine', 'Pierre Bourne'],
     keyProducers: ['T3', 'CashCache', 'Pierre Bourne', 'Goyxrd'],
-    artistPhotos: [
-      {
-        name: 'SahBabii',
-        role: 'The Aquatic Philosopher',
-        location: 'Atlanta / Chicago',
-        caption: 'Creator of "Squidrific" and "Do It For Demon", rapping about barnacles, sea turtles, and heartbreak with childlike melodic elegance.',
-        visualTag: 'Deep Oceanic Blue / Studio Recluse',
-        lightingTone: 'from-cyan-950/80 via-zinc-900 to-black',
-        accentColor: '#06B6D4',
-        signatureSymbol: 'disc',
-      },
-      {
-        name: 'Slayr',
-        role: 'Glitch & Ambient 808 Producer',
-        location: 'Digital Underground',
-        caption: 'Weaving washed-out reverb pads and floating 808 glides that allow underground vocalists to hover weightlessly.',
-        visualTag: 'Cyber Grid / CRT Monitor',
-        lightingTone: 'from-blue-950/80 via-zinc-900 to-black',
-        accentColor: '#3B82F6',
-        signatureSymbol: 'wave',
-      },
-      {
-        name: 'T3',
-        role: 'In-House Sound Architect & Brother',
-        location: 'Atlanta, Georgia',
-        caption: 'SahBabii’s older brother and primary producer, crafting sunny video game arpeggios that define the Squid Nation soundscape.',
-        visualTag: 'Tuned Synth Wave / FL Studio',
-        lightingTone: 'from-teal-950/80 via-zinc-900 to-black',
-        accentColor: '#14B8A6',
-        signatureSymbol: 'mic',
-      },
-    ],
+    featuredArtists: [sahbabiiProfile, slayrProfile, t3Profile],
     pullQuote: 'SahBabii talks about street violence in the same tone a nature documentary narrator describes a coral reef. It is surreal, gentle, and utterly genius.',
     pullQuoteAuthor: 'Maya Lin on SahBabii’s songwriting',
     contentSections: [
@@ -374,34 +519,27 @@ export const ARTICLES: BlogArticle[] = [
           'In 2017, SahBabii broke out with "Pull Up Wit Ah Stick", recorded on an inexpensive setup in his Atlanta bedroom with his brother T3. But while labels viewed it as a standard viral trap hit, SahBabii had no intention of following industry formulas.',
           'His follow-up projects, "Squidrific" and "Barnacles", revealed an artist obsessed with zoological metaphors: octopuses, squid ink, jellyfish, and animal kingdom hierarchies. Over cheerful marimbas, flutes, and airy pads, SahBabii rhymed with an effortless, floating cadence that felt weightless.',
         ],
+        artistProfile: sahbabiiProfile,
       },
       {
         heading: 'Slayr and the Ambient Soundscape Evolution',
         paragraphs: [
           'This whimsical, floating sound paved the way for producers like Slayr and the ambient micro-wave. By stripping away heavy percussive clutter, they allowed vocalists to explore soft, whispery falsettos without fighting for space in the mix.',
-          'SahBabii’s 2021 masterpiece "Do It For Demon", recorded in tribute to his late childhood friend, married this gentle sonic world with profound grief, proving that unconventional underground aesthetics could deliver devastating emotional weight.',
         ],
+        artistProfile: slayrProfile,
+      },
+      {
+        heading: 'T3: The In-House Production Pillar',
+        paragraphs: [
+          'Behind SahBabii’s success is his older brother T3. Rather than seeking out famous celebrity producers, the duo constructed their entire catalogue in familial isolation, forging an unmistakable sonic chemistry based on bright video game sound fonts.',
+        ],
+        artistProfile: t3Profile,
       },
     ],
     curatedTracks: [
-      {
-        title: 'Purple Ape',
-        artist: 'SahBabii ft. 4PF',
-        year: 2017,
-        significance: 'The genesis of SahBabii’s joyful, video game-inspired tropical melodic trap.',
-      },
-      {
-        title: 'Squidrific',
-        artist: 'SahBabii',
-        year: 2018,
-        significance: 'An ethereal masterclass in oceanic imagery and melodic phrasing.',
-      },
-      {
-        title: 'Switch',
-        artist: 'SahBabii',
-        year: 2021,
-        significance: 'A heartbreaking, beautifully crafted tribute over warm Rhodes piano chords.',
-      },
+      { title: 'Purple Ape', artist: 'SahBabii ft. 4PF', year: 2017, significance: 'The genesis of SahBabii’s joyful, video game-inspired tropical melodic trap.' },
+      { title: 'Squidrific', artist: 'SahBabii', year: 2018, significance: 'An ethereal masterclass in oceanic imagery and melodic phrasing.' },
+      { title: 'Switch', artist: 'SahBabii', year: 2021, significance: 'A heartbreaking, beautifully crafted tribute over warm Rhodes piano chords.' },
     ],
     statsOrImpact: [
       { metric: '0 Beefs', label: 'Total artistic isolation from internet rap drama and commercial press cycles' },
@@ -426,78 +564,41 @@ export const ARTICLES: BlogArticle[] = [
     publishedDate: 'March 08, 2026',
     readTime: '7 min read',
     featured: false,
-    coverAccent: '#10B981', // emerald club laser
+    coverAccent: '#10B981',
     themeTag: 'Street-Club Transatlanticism',
     keyArtists: ['YT', 'Conglomerate', 'Nemzzz', 'Strandz', 'Knucks'],
     keyProducers: ['Frizzy Beat', 'Baza', 'Macabreezy', 'Ghosty'],
-    artistPhotos: [
-      {
-        name: 'YT',
-        role: 'High-BPM Street Vanguard',
-        location: 'North London',
-        caption: 'Spearheading the street-club crossover with rapid-fire syncopation, cheeky hooks, and unreleased viral anthems.',
-        visualTag: 'Green Laser Smoke / Warehouse Rave',
-        lightingTone: 'from-emerald-950/80 via-zinc-900 to-black',
-        accentColor: '#10B981',
-        signatureSymbol: 'flame',
-      },
-      {
-        name: 'Conglomerate',
-        role: 'Underground Sound Collective',
-        location: 'London / Manchester Nexus',
-        caption: 'A decentralized federation of producers, emcees, and designers rejecting corporate major deals to run independent community raves.',
-        visualTag: 'Monochrome Fisheye / Street Cypher',
-        lightingTone: 'from-zinc-900 via-zinc-950 to-black',
-        accentColor: '#E2E8F0',
-        signatureSymbol: 'disc',
-      },
-      {
-        name: 'Nemzzz',
-        role: 'Mancunian Flow Prodigy',
-        location: 'Manchester, UK',
-        caption: 'Riding buoyant, jazz-inflected trap beats with effortless nonchalance, putting the North of England at the center of the underground.',
-        visualTag: 'Warm 35mm / Manchester High Street',
-        lightingTone: 'from-teal-950/80 via-zinc-900 to-black',
-        accentColor: '#14B8A6',
-        signatureSymbol: 'mic',
-      },
-    ],
+    featuredArtists: [ytProfile, conglomerateProfile, nemzzzProfile],
     pullQuote: 'The club is not an afterparty for the show; the show IS the club. When the 808 drops at 145 BPM, three thousand kids move as a single organism.',
     pullQuoteAuthor: 'Julian Vance on YT and Conglomerate raves',
     contentSections: [
       {
-        heading: 'The Street-Club Synthesis',
+        heading: 'The Street-Club Synthesis: YT\'s High-BPM Insurrection',
         paragraphs: [
-          'In past eras of British music, grime, UK garage, and road rap existed in distinct, often tribal lanes. The genius of North London artist YT and collectives like Conglomerate is that they erased those borders entirely.',
+          'In past eras of British music, grime, UK garage, and road rap existed in distinct lanes. The genius of North London artist YT and collectives like Conglomerate is that they erased those borders entirely.',
           'On anthems like "Arcade", YT delivers witty road lyrics over lightning-fast four-on-the-floor and broken-beat rhythms that belong equally in a sweaty Dalston basement rave or driving down the A10. This was not sanitized commercial dance-pop; it was visceral, DIY underground club music made by and for the youth.',
         ],
+        artistProfile: ytProfile,
       },
       {
-        heading: 'Regional Power: Manchester and Beyond',
+        heading: 'The Conglomerate: Decentralized Sound Systems',
+        paragraphs: [
+          'Operating like modern sound system crews from the golden age of London pirate radio, Conglomerate rejects the standard label playbook. Their events sell out purely on Telegram and WhatsApp flyers, returning to hip-hop’s roots as communal celebration.',
+        ],
+        artistProfile: conglomerateProfile,
+      },
+      {
+        heading: 'Regional Power: Manchester and Nemzzz',
         paragraphs: [
           'Simultaneously, Manchester’s Nemzzz demonstrated that the UK underground had decentralized from London. With a relaxed, conversational cadence and infectious sample flips, Nemzzz proved that North of England artists could rack up hundreds of millions of independent streams without bending to capital-city conventions.',
         ],
+        artistProfile: nemzzzProfile,
       },
     ],
     curatedTracks: [
-      {
-        title: 'Arcade',
-        artist: 'YT',
-        year: 2023,
-        significance: 'The viral street-club hybrid track that ignited a transatlantic wave of dance-rap crossovers.',
-      },
-      {
-        title: 'Elevate',
-        artist: 'Nemzzz',
-        year: 2021,
-        significance: 'The effortless Mancunian underground anthem proving the power of conversational bounce.',
-      },
-      {
-        title: 'Leon',
-        artist: 'Knucks',
-        year: 2022,
-        significance: 'A masterclass in UK jazz-drill storytelling and understated emcee poise.',
-      },
+      { title: 'Arcade', artist: 'YT', year: 2023, significance: 'The viral street-club hybrid track that ignited a transatlantic wave of dance-rap crossovers.' },
+      { title: 'Elevate', artist: 'Nemzzz', year: 2021, significance: 'The effortless Mancunian underground anthem proving the power of conversational bounce.' },
+      { title: 'DO NOT DISTURB', artist: 'Nemzzz', year: 2024, significance: 'Demonstrating massive streaming dominance built on independent British street charm.' },
     ],
     statsOrImpact: [
       { metric: '140-150', label: 'Average BPM tempo uniting underground rap with UK dance music' },
@@ -522,79 +623,41 @@ export const ARTICLES: BlogArticle[] = [
     publishedDate: 'February 28, 2026',
     readTime: '8 min read',
     featured: false,
-    coverAccent: '#D97706', // vintage amber brass
+    coverAccent: '#D97706',
     themeTag: 'Cadence Mechanics & The Triplet Flow',
-    keyArtists: ['Migos', 'Quavo', 'Takeoff', 'Offset', 'Peewee Longway'],
+    keyArtists: ['Migos', 'Takeoff', 'Quavo', 'Peewee Longway'],
     keyProducers: ['Zaytoven', 'Murda Beatz', 'Metro Boomin', 'DJ Durel'],
-    artistPhotos: [
-      {
-        name: 'Takeoff',
-        role: 'The Rhythmic Anchor & Triplet Perfectionist',
-        location: 'Lawrenceville, Georgia',
-        caption: 'The irreplaceable deep-voiced metronome of Migos, delivering breath-defying triplet syllables with robotic precision.',
-        visualTag: 'Low-Key Studio Flash / Gold Chains',
-        lightingTone: 'from-amber-950/80 via-zinc-900 to-black',
-        accentColor: '#D97706',
-        signatureSymbol: 'crown',
-      },
-      {
-        name: 'Quavo',
-        role: 'The Harmonic Ear & Ad-Lib Architect',
-        location: 'Lawrenceville, Georgia',
-        caption: 'Pioneering call-and-response ad-libs ("MAMA!", "SKRRT!") that treated backing vocals as integral percussion instruments.',
-        visualTag: 'Warm 35mm Analog / Gwinnett County',
-        lightingTone: 'from-orange-950/80 via-zinc-900 to-black',
-        accentColor: '#F97316',
-        signatureSymbol: 'wave',
-      },
-      {
-        name: 'Peewee Longway',
-        role: 'The Underground Atlanta Originator',
-        location: 'Atlanta, Georgia',
-        caption: 'The MPA boss who tutored Young Thug and Migos in the basement, inventing wild slang and vocal cadence gymnastics.',
-        visualTag: 'Moody VHS / Street Corner Flash',
-        lightingTone: 'from-purple-950/80 via-zinc-900 to-black',
-        accentColor: '#A855F7',
-        signatureSymbol: 'mic',
-      },
-    ],
+    featuredArtists: [takeoffProfile, quavoProfile, peeweeProfile],
     pullQuote: 'The triplet existed in musical theory for centuries, but Migos turned it into an assault rifle cadence that forced every rapper on earth to adjust their timing.',
     pullQuoteAuthor: 'Kofi Mensah on rhythmic syntax',
     contentSections: [
       {
-        heading: 'The Basement Science of Y.R.N.',
+        heading: 'The Basement Science of Y.R.N. and Takeoff\'s Precision',
         paragraphs: [
           'In 2013, Migos were three young men sharing a crowded house in Lawrenceville, Georgia. Working with producer Zaytoven and collaborator Peewee Longway, they recorded "Y.R.N. (Young Rich Niggas)" in a cramped home studio.',
-          'What made the tape revolutionary was the mathematical precision of their delivery. By dividing each 4/4 beat into groups of three equal notes (triplets), Quavo, Offset, and Takeoff created an urgent, driving rhythm that felt faster and more percussive than anything in contemporary rap.',
+          'While Quavo brought melodic flair, the heartbeat of the flow was always the late Kirshnik Khari Ball (Takeoff). Takeoff possessed an uncanny ability to rap three consecutive 16-bar verses in triplets without ever breathing audibly on the microphone.',
         ],
+        artistProfile: takeoffProfile,
       },
       {
-        heading: 'Takeoff: The Metronomic Anchor',
+        heading: 'Quavo and the Architecture of Call-and-Response Ad-Libs',
         paragraphs: [
-          'While Quavo brought melodic flair and infectious ad-libs, the heartbeat of the flow was always the late Kirshnik Khari Ball (Takeoff). Takeoff possessed an uncanny ability to rap three consecutive 16-bar verses in triplets without ever breathing audibly on the microphone.',
-          'Within twelve months of "Versace" and "Chinatown", artists ranging from Drake to Kanye West to Kendrick Lamar had adopted the triplet structure. An underground Southern family collective had rewritten the grammar of popular music.',
+          'Parallel to the triplet cadence was Quavo’s invention of modern ad-lib architecture. Ad-libs were no longer hypeman shouts; they became harmonic layers and percussive syncopations ("MAMA!", "SKRRT!", "COOKIE!") that gave trap beats dynamic polyrhythmic life.',
         ],
+        artistProfile: quavoProfile,
+      },
+      {
+        heading: 'Peewee Longway: The Unsung Atlanta Mentor',
+        paragraphs: [
+          'No historical account of this era is complete without MPA founder Peewee Longway. Longway introduced Migos to Gucci Mane and Coach K, serving as the underground incubator who pushed both Migos and Young Thug to experiment with vocal cadences.',
+        ],
+        artistProfile: peeweeProfile,
       },
     ],
     curatedTracks: [
-      {
-        title: 'Versace',
-        artist: 'Migos (prod. Zaytoven)',
-        year: 2013,
-        significance: 'The historic track that introduced the relentless triplet flow to the global consciousness.',
-      },
-      {
-        title: 'Cross the Country',
-        artist: 'Migos',
-        year: 2014,
-        significance: 'A 6-minute tour-de-force showcasing Takeoff’s god-tier breath control and intricate rhyme pockets.',
-      },
-      {
-        title: 'Loaded',
-        artist: 'Peewee Longway ft. Migos',
-        year: 2013,
-        significance: 'The foundational Atlanta underground basement chemistry that started the modern trap wave.',
-      },
+      { title: 'Versace', artist: 'Migos (prod. Zaytoven)', year: 2013, significance: 'The historic track that introduced the relentless triplet flow to the global consciousness.' },
+      { title: 'Cross the Country', artist: 'Migos', year: 2014, significance: 'A 6-minute tour-de-force showcasing Takeoff’s god-tier breath control and intricate rhyme pockets.' },
+      { title: 'Loaded', artist: 'Peewee Longway ft. Migos', year: 2013, significance: 'The foundational Atlanta underground basement chemistry that started the modern trap wave.' },
     ],
     statsOrImpact: [
       { metric: '3/4 in 4/4', label: 'Mathematical subdivision of the beat turning syllables into percussive instruments' },
@@ -619,78 +682,39 @@ export const ARTICLES: BlogArticle[] = [
     publishedDate: 'February 20, 2026',
     readTime: '7 min read',
     featured: false,
-    coverAccent: '#DC2626', // blood crimson distortion
+    coverAccent: '#DC2626',
     themeTag: 'Dark Ambient & Overdriven 808s',
-    keyArtists: ['Sinn6r', 'Slayr', 'Nettspend', 'Osamason', 'Che'],
+    keyArtists: ['Sinn6r', 'Slayr', 'Nettspend', 'Osamason'],
     keyProducers: ['Slayr', 'Ok', 'Skai', 'Lucian'],
-    artistPhotos: [
-      {
-        name: 'Sinn6r',
-        role: 'Masked Noise-Rap Shadow',
-        location: 'Online Anonymity',
-        caption: 'Veiled identity, pitch-shifted vocals, and apocalyptic bass distortion designed specifically for warehouse raves.',
-        visualTag: 'Pitch-Black Shadows / Red LED Glow',
-        lightingTone: 'from-red-950/80 via-zinc-900 to-black',
-        accentColor: '#DC2626',
-        signatureSymbol: 'eye',
-      },
-      {
-        name: 'Slayr',
-        role: 'Dark Ambient Architect',
-        location: 'Digital Discord',
-        caption: 'Distorting 808 sub-bass until it harmonic clips, layered under heavenly, washed-out synthesizer chords.',
-        visualTag: 'Glitch Artifact / CRT Scanlines',
-        lightingTone: 'from-zinc-900 via-zinc-950 to-black',
-        accentColor: '#71717A',
-        signatureSymbol: 'wave',
-      },
-      {
-        name: 'Nettspend',
-        role: 'Polarizing Teen Vanguard',
-        location: 'Richmond, Virginia',
-        caption: 'The teenage vanguard whose slurred vocal cadences and unorthodox beat selections ignite fierce cultural debates.',
-        visualTag: 'Raw VHS Camcorder Grain',
-        lightingTone: 'from-orange-950/80 via-zinc-900 to-black',
-        accentColor: '#EA580C',
-        signatureSymbol: 'flame',
-      },
-    ],
+    featuredArtists: [sinn6rProfile, slayrProfile, nettspendProfile],
     pullQuote: 'It sounds like a speaker cabinet being physically thrown into an industrial shredder while an angel sings in the background. That tension is the entire magic.',
     pullQuoteAuthor: 'Maya Lin on dark ambient trap',
     contentSections: [
       {
-        heading: 'The Beauty of Unforgiving Audio Clipping',
+        heading: 'Sinn6r and the Rejection of Personal Brand Visibility',
         paragraphs: [
-          'Traditional audio engineering textbooks teach that pushing master audio signals past 0 dBFS is a catastrophic mistake. The new generation of underground noise-trap artists views that limitation as a creative canvas.',
-          'Artists like Sinn6r and producers like Slayr deliberately smash their 808s through soft clippers and saturation plugins like CamelCrusher and FabFilter Saturn, creating harmonic overtones that shake phone speakers and earbud diaphragms.',
+          'In an era where every artist is expected to be a smiling TikTok influencer, anonymous underground icon Sinn6r represents the return of countercultural mystique. Performing in pitch-black shadow with heavy pitch-corrected vocal processing, Sinn6r turns live performances into apocalyptic gothic rituals.',
         ],
+        artistProfile: sinn6rProfile,
       },
       {
-        heading: 'The Polarization of Nettspend and the New Youth',
+        heading: 'Slayr\'s Overdriven 808 Production Mastery',
         paragraphs: [
-          'Parallel to this is the meteoric, divisive rise of teenage artists like Nettspend and Osamason. Rejecting traditional lyrical structures for chaotic, off-the-cuff melodic bursts, they represent the absolute cutting edge of internet-native counterculture.',
+          'Traditional audio engineering textbooks teach that pushing master audio signals past 0 dBFS is a catastrophic mistake. Producer Slayr deliberately smashes his 808s through soft clippers, generating rich third and fifth harmonic distortions that roar on phone speakers.',
         ],
+        artistProfile: slayrProfile,
+      },
+      {
+        heading: 'Nettspend and the Polarizing Teen Wave',
+        paragraphs: [
+          'Parallel to this is the meteoric rise of teenage artists like Nettspend. Rejecting traditional lyrical structures for chaotic, off-the-cuff melodic bursts, Nettspend embodies the raw adolescent id that defined early SoundCloud rap.',
+        ],
+        artistProfile: nettspendProfile,
       },
     ],
     curatedTracks: [
-      {
-        title: 'Shine',
-        artist: 'Nettspend',
-        year: 2023,
-        significance: 'The polarizing underground track showcasing off-beat slurred cadence and distorted sub-bass.',
-      },
-      {
-        title: 'Troops',
-        artist: 'Osamason',
-        year: 2023,
-        significance: 'The epitome of high-speed industrial warehouse rage rap.',
-      },
-      {
-        title: 'Echoes',
-        artist: 'Sinn6r',
-        year: 2024,
-        significance: 'A showcase of dark ambient synthesizer processing and apocalyptic vocal saturation.',
-      },
+      { title: 'Shine', artist: 'Nettspend', year: 2023, significance: 'The polarizing underground track showcasing off-beat slurred cadence and distorted sub-bass.' },
+      { title: 'Echoes', artist: 'Sinn6r', year: 2024, significance: 'A showcase of dark ambient synthesizer processing and apocalyptic vocal saturation.' },
     ],
     statsOrImpact: [
       { metric: '+6 dBFS', label: 'Average audio master clipping deliberately applied for harmonic saturation' },
@@ -715,78 +739,41 @@ export const ARTICLES: BlogArticle[] = [
     publishedDate: 'February 12, 2026',
     readTime: '9 min read',
     featured: false,
-    coverAccent: '#EF4444', // industrial siren red
+    coverAccent: '#EF4444',
     themeTag: 'Hardware Sampling & Industrial Noise',
-    keyArtists: ['Danny Brown', 'JPEGMAFIA', 'Bruiser Wolf', 'Quelle Chris', 'ZelooperZ'],
+    keyArtists: ['Danny Brown', 'JPEGMAFIA', 'Bruiser Wolf', 'Quelle Chris'],
     keyProducers: ['Paul White', 'JPEGMAFIA', 'Skywlkr', 'The Alchemist'],
-    artistPhotos: [
-      {
-        name: 'Danny Brown',
-        role: 'The Avant-Garde Detroit Titan',
-        location: 'Detroit, Michigan',
-        caption: 'From "XXX" to "Atrocity Exhibition", pushing hip-hop into post-punk, krautrock, and free jazz without losing his street emcee edge.',
-        visualTag: 'Raw Black & White Film Grain',
-        lightingTone: 'from-red-950/80 via-zinc-900 to-black',
-        accentColor: '#EF4444',
-        signatureSymbol: 'flame',
-      },
-      {
-        name: 'JPEGMAFIA',
-        role: 'The DIY Hardware Noise Auteur',
-        location: 'Baltimore / Los Angeles',
-        caption: 'Producing, mixing, and mastering everything solo on cracked DAWs and Roland samplers, turning discord noise into high art.',
-        visualTag: 'High-Contrast Camcorder / Industrial Stage',
-        lightingTone: 'from-amber-950/80 via-zinc-900 to-black',
-        accentColor: '#F59E0B',
-        signatureSymbol: 'wave',
-      },
-      {
-        name: 'Bruiser Wolf',
-        role: 'The Conversational Detroit Wit',
-        location: 'Detroit, Michigan',
-        caption: 'Danny Brown’s Bruiser Brigade standout, delivering hilarious stand-up comedy-level punchlines in a sing-song Detroit drawl.',
-        visualTag: 'Moody Sepia / Detroit Nightlife',
-        lightingTone: 'from-stone-900 via-zinc-950 to-black',
-        accentColor: '#D97706',
-        signatureSymbol: 'mic',
-      },
-    ],
+    featuredArtists: [dannyBrownProfile, jpegmafiaProfile, bruiserWolfProfile],
     pullQuote: 'You cannot copy what Danny Brown and Peggy do because it is not a musical formula; it is the physical manifestation of their idiosyncratic brains.',
     pullQuoteAuthor: 'Julian Vance on the noise-rap avant-garde',
     contentSections: [
       {
-        heading: 'The Unquantized Spontaneity of Scaring the Hoes',
+        heading: 'Danny Brown: The Fearless Detroit Pioneer',
         paragraphs: [
-          'In March 2023, JPEGMAFIA and Danny Brown released "SCARING THE HOES", recorded entirely on a single portable Roland SP-404MKII sampler. With no grid-quantization in a digital audio workstation to fix timing errors, the beats stutter, lurch, and explode with raw live energy.',
-          'Sampling gospel choirs, Michael Jackson handclaps, Kelis hooks, and Japanese anime intros, the project proved that two veteran outsiders could outsell formulaic major-label trap records while maintaining total sonic hostility.',
+          'Danny Brown spent decades being told he was too weird for mainstream rap. From "XXX" to the krautrock-fueled "Atrocity Exhibition", Danny proved that emcee virtuosity could exist alongside Joy Division gloom and free jazz dissonance.',
         ],
+        artistProfile: dannyBrownProfile,
       },
       {
-        heading: 'The Bruiser Brigade Ecosystem',
+        heading: 'JPEGMAFIA and the Unquantized Roland SP-404MKII',
         paragraphs: [
-          'Through his Bruiser Brigade Records, Danny Brown has incubated equally singular Detroit emcees like Bruiser Wolf and ZelooperZ. Wolf, in particular, delivers lyrics in a conversational, stand-up comedian cadence that sounds completely unlike any other rapper on earth.',
+          'In March 2023, JPEGMAFIA and Danny Brown dropped "SCARING THE HOES", recorded entirely on a single portable Roland SP-404MKII sampler. With no grid-quantization in a digital audio workstation to fix timing errors, the beats stutter, lurch, and explode with raw live energy.',
+          'Sampling gospel choirs, Michael Jackson handclaps, Kelis hooks, and Japanese anime intros, the project proved that two veteran outsiders could outsell formulaic major-label trap records while maintaining total sonic hostility.',
         ],
+        artistProfile: jpegmafiaProfile,
+      },
+      {
+        heading: 'Bruiser Wolf: Stand-Up Comedy as Detroit Street Rap',
+        paragraphs: [
+          'Through his Bruiser Brigade Records, Danny Brown has incubated singular Detroit emcees like Bruiser Wolf. Wolf delivers lyrics in a conversational, stand-up comedian cadence that sounds completely unlike any other rapper on earth.',
+        ],
+        artistProfile: bruiserWolfProfile,
       },
     ],
     curatedTracks: [
-      {
-        title: 'Lean Beef Patty',
-        artist: 'JPEGMAFIA & Danny Brown',
-        year: 2023,
-        significance: 'The jaw-dropping opener showcasing frantic SP-404 sample chops and high-speed lyrical sparring.',
-      },
-      {
-        title: 'Ain\'t It Funny',
-        artist: 'Danny Brown (prod. Paul White)',
-        year: 2016,
-        significance: 'The peak of industrial punk rap; Joy Division tension channeled through Detroit street reality.',
-      },
-      {
-        title: 'I\'m a Dopehead',
-        artist: 'Bruiser Wolf',
-        year: 2021,
-        significance: 'The definitive showcase of Bruiser Wolf’s conversational, rhythmic street comedy.',
-      },
+      { title: 'Lean Beef Patty', artist: 'JPEGMAFIA & Danny Brown', year: 2023, significance: 'The jaw-dropping opener showcasing frantic SP-404 sample chops and high-speed lyrical sparring.' },
+      { title: 'Ain\'t It Funny', artist: 'Danny Brown (prod. Paul White)', year: 2016, significance: 'The peak of industrial punk rap; Joy Division tension channeled through Detroit street reality.' },
+      { title: 'I\'m a Dopehead', artist: 'Bruiser Wolf', year: 2021, significance: 'The definitive showcase of Bruiser Wolf’s conversational, rhythmic street comedy.' },
     ],
     statsOrImpact: [
       { metric: 'SP-404MKII', label: 'The sole hardware sampler used to produce entire Billboard-charting albums' },
@@ -811,78 +798,41 @@ export const ARTICLES: BlogArticle[] = [
     publishedDate: 'February 04, 2026',
     readTime: '8 min read',
     featured: false,
-    coverAccent: '#B45309', // antique mahogany
+    coverAccent: '#B45309',
     themeTag: 'Fine Art Pricing & Lyrical Scholarship',
-    keyArtists: ['Mach-Hommy', 'Tha God Fahim', 'Your Old Droog', 'Billy Woods', 'Roc Marciano'],
-    keyProducers: ['Conductor Williams', 'August Fanon', 'Preservation', 'The Alchemist', 'Camoflauge Monk'],
-    artistPhotos: [
-      {
-        name: 'Mach-Hommy',
-        role: 'The Haitian Fine-Art Emcee',
-        location: 'Newark, New Jersey / Port-au-Prince',
-        caption: 'Veiled behind the Haitian flag bandana, commanding four-figure vinyl prices while delivering complex multilingual diaspora prose.',
-        visualTag: 'Museum Gallery Lighting / 35mm Grain',
-        lightingTone: 'from-amber-950/80 via-zinc-900 to-black',
-        accentColor: '#B45309',
-        signatureSymbol: 'crown',
-      },
-      {
-        name: 'Tha God Fahim',
-        role: 'The Dump Legend',
-        location: 'Atlanta, Georgia',
-        caption: 'Profoundly prolific producer and emcee, dropping dozens of uncompromising underground tapes with zero commercial compromise.',
-        visualTag: 'Dusty Crate Sepia / Vintage Reel',
-        lightingTone: 'from-stone-900 via-zinc-950 to-black',
-        accentColor: '#78350F',
-        signatureSymbol: 'tape',
-      },
-      {
-        name: 'Preservation',
-        role: 'Crate-Digger & Sonic Collagist',
-        location: 'New York City / Global Archive',
-        caption: 'Master of obscure global vinyl samples, constructing dusty, drumless soundbeds for Mach-Hommy and Ka.',
-        visualTag: 'Analog Vinyl Groove / Soft Tungsten',
-        lightingTone: 'from-slate-900 via-zinc-950 to-black',
-        accentColor: '#64748B',
-        signatureSymbol: 'disc',
-      },
-    ],
+    keyArtists: ['Mach-Hommy', 'Tha God Fahim', 'Preservation'],
+    keyProducers: ['Conductor Williams', 'August Fanon', 'Preservation', 'The Alchemist'],
+    featuredArtists: [machHommyProfile, thaGodFahimProfile, preservationProfile],
     pullQuote: 'If a contemporary painter can charge $50,000 for a canvas, why should a master emcee give away their poetry for 0.003 cents on Spotify? Mach-Hommy restored dignity to the artform.',
     pullQuoteAuthor: 'Julian Vance on the luxury fine-art rap model',
     contentSections: [
       {
-        heading: 'The Rejection of Algorithmic Micro-Pennies',
+        heading: 'Mach-Hommy and the $1,000 Vinyl Model',
         paragraphs: [
           'In 2016, Newark-based lyricist Mach-Hommy made an audacious decision: he removed his core discography from Spotify and Apple Music. Instead, he hosted his albums directly on Bandcamp, pricing digital downloads at $111 to $300 and physical vinyl pressings at $1,000.',
-          'Mainstream pundits mocked the strategy as pretentious insanity. Yet the math proved them completely wrong. By cultivating a global audience of high-earning art collectors, architects, and dedicated crate-diggers, Mach-Hommy generated hundreds of thousands of dollars on single album drops, maintaining 100% ownership of his masters and publishing.',
+          'By cultivating a global audience of high-earning art collectors and dedicated crate-diggers, Mach-Hommy generated hundreds of thousands of dollars on single album drops, maintaining 100% ownership of his masters and publishing.',
         ],
+        artistProfile: machHommyProfile,
       },
       {
-        heading: 'Pray for Haiti and Historical Philanthropy',
+        heading: 'Tha God Fahim: The Prolific Dump Legend',
         paragraphs: [
-          'When Mach teamed with executive producer Westside Gunn for "Pray for Haiti" in 2021, he brought this luxury model into cultural philanthropy. Over dusty, drumless loops crafted by Conductor Williams and Camoflauge Monk, Mach wove narratives of the 1804 Haitian Revolution, allocating over $100,000 in album proceeds directly to schools in Port-au-Prince.',
+          'Alongside Mach is Atlanta’s Tha God Fahim. Dropping dozens of projects with raw, unvarnished boom-bap loops and intricate street proverbs, Fahim represents the pure, workhorse ethos of the underground.',
         ],
+        artistProfile: thaGodFahimProfile,
+      },
+      {
+        heading: 'Preservation and Global Vinyl Collage',
+        paragraphs: [
+          'Producer Preservation crafts the acoustic tapestry for this movement, digging through rare international 1970s vinyl from Hong Kong, France, and Haiti to construct meditative, drumless soul soundbeds.',
+        ],
+        artistProfile: preservationProfile,
       },
     ],
     curatedTracks: [
-      {
-        title: 'The Stellar Ray Theory',
-        artist: 'Mach-Hommy (prod. Conductor Williams)',
-        year: 2021,
-        significance: 'A sublime marriage of Haitian history, multilingual wordplay, and drumless soul loops.',
-      },
-      {
-        title: 'Wide Berth',
-        artist: 'Tha God Fahim ft. Mach-Hommy',
-        year: 2017,
-        significance: 'The definitive showcase of the Dump Yowies chemistry over raw, unquantized vinyl chops.',
-      },
-      {
-        title: 'SUR LE PONT d\'AVIGNON',
-        artist: 'Mach-Hommy',
-        year: 2024,
-        significance: 'The crowning achievement of his "#RICHAXXHAITIAN" saga featuring Black Thought.',
-      },
+      { title: 'The Stellar Ray Theory', artist: 'Mach-Hommy (prod. Conductor Williams)', year: 2021, significance: 'A sublime marriage of Haitian history, multilingual wordplay, and drumless soul loops.' },
+      { title: 'Wide Berth', artist: 'Tha God Fahim ft. Mach-Hommy', year: 2017, significance: 'The definitive showcase of the Dump Yowies chemistry over raw, unquantized vinyl chops.' },
+      { title: 'SUR LE PONT d\'AVIGNON', artist: 'Mach-Hommy', year: 2024, significance: 'The crowning achievement of his "#RICHAXXHAITIAN" saga featuring Black Thought.' },
     ],
     statsOrImpact: [
       { metric: '$1,000', label: 'Direct purchase price for limited-edition physical vinyl pressings on Bandcamp' },
@@ -907,79 +857,41 @@ export const ARTICLES: BlogArticle[] = [
     publishedDate: 'January 24, 2026',
     readTime: '9 min read',
     featured: false,
-    coverAccent: '#3B82F6', // athletic sapphire
+    coverAccent: '#3B82F6',
     themeTag: 'Technical Cadence & Southern Soul',
-    keyArtists: ['JID', 'EarthGang', '6LACK', 'Kenny Mason', 'Smino'],
+    keyArtists: ['JID', 'EarthGang', 'Kenny Mason', '6LACK'],
     keyProducers: ['Christo', 'Childish Major', 'Kaytranada', 'Hollywood JB'],
-    artistPhotos: [
-      {
-        name: 'JID',
-        role: 'The Polyrhythmic Emcee Virtuoso',
-        location: 'East Atlanta, Georgia',
-        caption: 'Master of seamless pocket-shifting, high-speed breath control, and poignant autobiographical southern storytelling.',
-        visualTag: 'Cobalt Studio Flash / East Atlanta',
-        lightingTone: 'from-blue-950/80 via-zinc-900 to-black',
-        accentColor: '#3B82F6',
-        signatureSymbol: 'crown',
-      },
-      {
-        name: 'EarthGang',
-        role: 'The Cosmic Southern Funk Duo',
-        location: 'Atlanta, Georgia',
-        caption: 'Olu and WowGr8 fusing OutKast soul, funk guitars, and unorthodox vocal harmonies into high-energy anthems.',
-        visualTag: 'Cosmic Warmth / Psychedelic Stage',
-        lightingTone: 'from-purple-950/80 via-zinc-900 to-black',
-        accentColor: '#A855F7',
-        signatureSymbol: 'wave',
-      },
-      {
-        name: 'Kenny Mason',
-        role: 'The Atlanta Grunge-Rap Hybrid',
-        location: 'West Atlanta, Georgia',
-        caption: 'Fusing distorted 90s alt-rock guitar riffs with vicious Atlanta trap cadences on projects like "Angelic Hoodrat".',
-        visualTag: 'Grungy 35mm / Overcast Atlanta Street',
-        lightingTone: 'from-slate-900 via-zinc-950 to-black',
-        accentColor: '#64748B',
-        signatureSymbol: 'flame',
-      },
-    ],
+    featuredArtists: [jidProfile, earthgangProfile, kennyMasonProfile],
     pullQuote: 'JID treats a drum groove like an obstacle course. He can sprint, stop on a dime, flip backward into a jazz cadence, and resolve exactly on the snare without catching a single breath.',
     pullQuoteAuthor: 'Kofi Mensah on JID’s flow mechanics',
     contentSections: [
       {
-        heading: 'The East Atlanta Den and Spillage Village',
+        heading: 'The East Atlanta Den and JID\'s Rhythmic Virtuosity',
         paragraphs: [
-          'In the early 2010s, a house in East Atlanta served as the incubation lab for Spillage Village—a collective comprising JID, EarthGang (Olu and WowGr8), 6LACK, Mereba, and producer Hollywood JB. While the rest of Atlanta was making 808-heavy club anthems, Spillage Village was studying jazz chords, gospel harmonies, and OutKast’s boundary-pushing legacy.',
-          'When JID dropped "The Never Story" in 2017, it was an immediate revelation. On tracks like "NEVER", the beat violently switched midway through, and JID accelerated into a double-time cadence that left listeners breathless.',
+          'In the early 2010s, a house in East Atlanta served as the incubation lab for Spillage Village—a collective comprising JID, EarthGang, and producer Hollywood JB. While the rest of Atlanta was making 808-heavy club anthems, Spillage Village was studying jazz chords and OutKast’s boundary-pushing legacy.',
+          'When JID dropped "The Never Story" in 2017 and "The Forever Story" in 2022, he cemented his place among the all-time technical greats, effortlessly switching between triple-time cadences and soulful crooning.',
         ],
+        artistProfile: jidProfile,
       },
       {
-        heading: 'The Forever Story: A Modern Magnum Opus',
+        heading: 'EarthGang: Cosmic Southern Funk Reborn',
         paragraphs: [
-          'With 2022’s "The Forever Story", JID cemented his place among the all-time technical greats. Collaborating with producers like Christo and Kaytranada, the album tackled generational poverty, family trauma, and artistic integrity with jaw-dropping rhythmic dexterity on songs like "Raydar" and "Dance Now".',
-          'Alongside close collaborator Kenny Mason, JID demonstrated that elite emcees do not belong to the past—they are the vanguard pushing modern music into the future.',
+          'Olu (Johnny Venus) and WowGr8 (Doctur Dot) injected Spillage Village with psychedelic southern funk. Their unrestrained vocal deliveries and theatrical harmonies brought the spirit of Parliament-Funkadelic into 21st-century Atlanta hip-hop.',
         ],
+        artistProfile: earthgangProfile,
+      },
+      {
+        heading: 'Kenny Mason: The Alt-Rock Trap Collision',
+        paragraphs: [
+          'Alongside JID, West Atlanta’s Kenny Mason proved that the underground could synthesize 90s grunge guitar distortion (Smashing Pumpkins, Nirvana) with vicious 808 trap cadences on projects like "Angelic Hoodrat" and "RUFFS".',
+        ],
+        artistProfile: kennyMasonProfile,
       },
     ],
     curatedTracks: [
-      {
-        title: 'NEVER',
-        artist: 'JID (prod. Christo & Childish Major)',
-        year: 2017,
-        significance: 'The lightning-bolt beat-switch anthem that introduced JID’s acrobatic flow to the world.',
-      },
-      {
-        title: 'Raydar',
-        artist: 'JID',
-        year: 2022,
-        significance: 'Switching through three distinct time signatures and tempos without ever losing vocal control.',
-      },
-      {
-        title: 'Hit The Floor',
-        artist: 'Kenny Mason ft. JID',
-        year: 2020,
-        significance: 'The definitive marriage of distorted grunge guitars and rapid-fire Atlanta rap.',
-      },
+      { title: 'NEVER', artist: 'JID (prod. Christo & Childish Major)', year: 2017, significance: 'The lightning-bolt beat-switch anthem that introduced JID’s acrobatic flow to the world.' },
+      { title: 'Raydar', artist: 'JID', year: 2022, significance: 'Switching through three distinct time signatures and tempos without ever losing vocal control.' },
+      { title: 'Hit The Floor', artist: 'Kenny Mason ft. JID', year: 2020, significance: 'The definitive marriage of distorted grunge guitars and rapid-fire Atlanta rap.' },
     ],
     statsOrImpact: [
       { metric: '3 Tempo Switches', label: 'Average beat variations conquered within single narrative tracks like "Raydar"' },
