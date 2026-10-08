@@ -17,99 +17,69 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
   onToggleSave,
   index,
 }) => {
+  const leadArtist = article.featuredArtists?.[0];
+  const otherArtists = article.featuredArtists?.slice(1) || [];
+
   return (
     <article 
       onClick={() => onSelect(article)}
       className="group cursor-pointer flex flex-col justify-between p-6 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700/80 hover:bg-zinc-900/90 transition-all duration-200"
     >
       <div>
-        {/* Stylized Visual Card Art (SVG Graphic Texture) */}
-        <div className="relative w-full h-44 mb-5 rounded-lg overflow-hidden bg-zinc-950 border border-zinc-800/80 flex items-center justify-center">
-          {/* Ambient colored lighting gradient */}
-          <div 
-            className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity"
-            style={{
-              background: `radial-gradient(circle at 75% 20%, ${article.coverAccent}, transparent 65%)`
-            }}
-          />
+        {/* Actual Artist Photography Card Header */}
+        <div className="relative w-full h-48 mb-5 rounded-lg overflow-hidden bg-zinc-950 border border-zinc-800/80 flex items-center justify-center">
+          {leadArtist?.imageUrl ? (
+            <img
+              src={leadArtist.imageUrl}
+              alt={leadArtist.name}
+              className="w-full h-full object-cover object-top sm:object-center group-hover:scale-105 transition-transform duration-500"
+            />
+          ) : (
+            <div 
+              className="w-full h-full flex items-center justify-center"
+              style={{
+                background: `radial-gradient(circle at 75% 20%, ${article.coverAccent}, transparent 65%)`
+              }}
+            />
+          )}
 
-          {/* Bespoke Geometric Motif per Article */}
-          <svg className="w-full h-full p-4 text-zinc-700/40 group-hover:text-zinc-600/60 transition-colors" viewBox="0 0 300 150" fill="none">
-            {index % 4 === 0 && (
-              // Audio Waveform & 808 Grid
-              <>
-                <line x1="20" y1="75" x2="280" y2="75" stroke="currentColor" strokeWidth="1" strokeDasharray="3 3" />
-                <path d="M 30 75 Q 60 15, 90 75 T 150 75 T 210 75 T 270 75" stroke={article.coverAccent} strokeWidth="1.5" strokeOpacity="0.7" />
-                <rect x="50" y="40" width="8" height="70" rx="2" fill="currentColor" opacity="0.3" />
-                <rect x="70" y="25" width="8" height="100" rx="2" fill={article.coverAccent} opacity="0.5" />
-                <rect x="90" y="55" width="8" height="40" rx="2" fill="currentColor" opacity="0.3" />
-                <rect x="110" y="30" width="8" height="90" rx="2" fill="currentColor" opacity="0.4" />
-                <rect x="130" y="15" width="8" height="120" rx="2" fill={article.coverAccent} opacity="0.6" />
-                <rect x="150" y="45" width="8" height="60" rx="2" fill="currentColor" opacity="0.3" />
-                <rect x="170" y="35" width="8" height="80" rx="2" fill="currentColor" opacity="0.4" />
-                <rect x="190" y="60" width="8" height="30" rx="2" fill="currentColor" opacity="0.3" />
-                <rect x="210" y="20" width="8" height="110" rx="2" fill={article.coverAccent} opacity="0.5" />
-                <rect x="230" y="50" width="8" height="50" rx="2" fill="currentColor" opacity="0.3" />
-                <circle cx="260" cy="30" r="16" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" />
-              </>
-            )}
-
-            {index % 4 === 1 && (
-              // Modular Synthesizer Patch Cord Geometry
-              <>
-                <circle cx="50" cy="50" r="12" stroke={article.coverAccent} strokeWidth="2" opacity="0.8" />
-                <circle cx="50" cy="50" r="4" fill={article.coverAccent} />
-                <circle cx="150" cy="110" r="12" stroke="currentColor" strokeWidth="2" opacity="0.5" />
-                <circle cx="150" cy="110" r="4" fill="currentColor" />
-                <circle cx="250" cy="40" r="12" stroke={article.coverAccent} strokeWidth="2" opacity="0.8" />
-                <circle cx="250" cy="40" r="4" fill={article.coverAccent} />
-                <path d="M 50 50 C 70 140, 130 140, 150 110" stroke="currentColor" strokeWidth="2" strokeDasharray="4 2" />
-                <path d="M 150 110 C 180 30, 220 20, 250 40" stroke={article.coverAccent} strokeWidth="2.5" />
-                <line x1="20" y1="130" x2="280" y2="130" stroke="currentColor" strokeWidth="0.8" opacity="0.4" />
-              </>
-            )}
-
-            {index % 4 === 2 && (
-              // Vinyl Record & Cassette Reel Geometry
-              <>
-                <circle cx="150" cy="75" r="60" stroke="currentColor" strokeWidth="1" />
-                <circle cx="150" cy="75" r="48" stroke="currentColor" strokeWidth="0.8" strokeDasharray="4 4" />
-                <circle cx="150" cy="75" r="36" stroke="currentColor" strokeWidth="0.8" />
-                <circle cx="150" cy="75" r="24" stroke={article.coverAccent} strokeWidth="1.5" opacity="0.8" />
-                <circle cx="150" cy="75" r="8" fill={article.coverAccent} opacity="0.9" />
-                <line x1="30" y1="20" x2="110" y2="20" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-                <line x1="30" y1="28" x2="80" y2="28" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-                <line x1="190" y1="130" x2="270" y2="130" stroke="currentColor" strokeWidth="1" opacity="0.5" />
-              </>
-            )}
-
-            {index % 4 === 3 && (
-              // Syncopated Metronome Grid & Step Sequencer
-              <>
-                <rect x="30" y="30" width="240" height="90" rx="4" stroke="currentColor" strokeWidth="1" opacity="0.4" />
-                <line x1="90" y1="30" x2="90" y2="120" stroke="currentColor" strokeWidth="1" opacity="0.3" />
-                <line x1="150" y1="30" x2="150" y2="120" stroke="currentColor" strokeWidth="1" opacity="0.3" />
-                <line x1="210" y1="30" x2="210" y2="120" stroke="currentColor" strokeWidth="1" opacity="0.3" />
-                <circle cx="60" cy="60" r="10" fill={article.coverAccent} opacity="0.7" />
-                <circle cx="120" cy="90" r="10" fill="currentColor" opacity="0.5" />
-                <circle cx="180" cy="60" r="10" fill={article.coverAccent} opacity="0.8" />
-                <circle cx="240" cy="75" r="10" fill="currentColor" opacity="0.5" />
-              </>
-            )}
-          </svg>
+          {/* Vignette Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/30 pointer-events-none" />
 
           {/* Corner theme watermark */}
-          <div className="absolute top-3 left-3 text-[10px] font-mono tracking-widest uppercase text-zinc-400">
+          <div className="absolute top-3 left-3 text-[10px] font-mono tracking-widest uppercase text-zinc-300 bg-black/60 px-2 py-0.5 rounded border border-zinc-800/60">
             {article.themeTag}
           </div>
 
-          {/* Photo count indicator */}
-          {article.featuredArtists && article.featuredArtists.length > 0 && (
-            <div className="absolute bottom-3 left-3 flex items-center gap-1.5 px-2 py-0.5 rounded bg-black/70 border border-zinc-800 text-[10px] font-mono text-zinc-300">
-              <Camera className="w-3 h-3 text-amber-400" />
-              <span>{article.featuredArtists.length} Artist Portraits</span>
+          {/* Featured Artists Badge & Lead Artist Name */}
+          <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-2">
+            <div>
+              <div className="flex items-center gap-1.5 px-2 py-0.5 rounded bg-black/80 border border-zinc-800 text-[10px] font-mono text-zinc-300 mb-1 w-fit">
+                <Camera className="w-3 h-3 text-amber-400" />
+                <span>{article.featuredArtists.length} Artist Portraits</span>
+              </div>
+              {leadArtist && (
+                <div className="text-xs font-display font-bold text-zinc-100 drop-shadow">
+                  {leadArtist.name}
+                </div>
+              )}
             </div>
-          )}
+
+            {/* Other Artist Avatars */}
+            {otherArtists.length > 0 && (
+              <div className="flex items-center -space-x-2 shrink-0">
+                {otherArtists.map((oa, oIdx) => (
+                  <img
+                    key={oIdx}
+                    src={oa.imageUrl}
+                    alt={oa.name}
+                    title={oa.name}
+                    className="w-7 h-7 rounded-full object-cover border-2 border-zinc-950 shadow-md"
+                  />
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* Bookmark save toggle */}
           <button

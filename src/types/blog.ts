@@ -28,6 +28,7 @@ export interface ArtistProfile {
   location: string;
   caption: string;
   imageUrl: string;
+  backupImageUrl?: string;
   fallbackGradient: string;
   signatureSymbol: 'mic' | 'wave' | 'flame' | 'crown' | 'tape' | 'eye' | 'disc';
 }

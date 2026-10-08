@@ -115,34 +115,42 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
           </div>
         </div>
 
-        {/* Right column: Graphic Artwork & Stats Showcase */}
+        {/* Right column: Archival Artist Photographic Dossier */}
         <div className="lg:col-span-5 flex flex-col gap-4">
-          {/* Visual Showcase Graphic */}
-          <div className="relative rounded-xl border border-zinc-800 bg-zinc-950 p-6 overflow-hidden flex flex-col justify-between h-72">
-            <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
+          {/* Photographic Triptych of Featured Artists */}
+          <div className="relative rounded-xl border border-zinc-800 bg-zinc-950 p-5 overflow-hidden flex flex-col justify-between">
+            <div className="flex items-center justify-between text-xs font-mono text-zinc-400 mb-3">
               <span className="flex items-center gap-1.5 text-amber-400">
-                <Disc className="w-3.5 h-3.5 animate-spin" style={{ animationDuration: '6s' }} />
-                <span>ARCHIVAL ISSUE #01</span>
+                <Camera className="w-3.5 h-3.5" />
+                <span>ARCHIVAL DOSSIER · FEATURED ARTISTS</span>
               </span>
-              <span>INDEPENDENCE RATIO</span>
+              <span className="text-[11px] font-mono text-zinc-500">3 VERIFIED PORTRAITS</span>
             </div>
 
-            {/* Stylized vinyl and soundwave vector */}
-            <div className="my-auto flex items-center justify-center py-4">
-              <svg className="w-48 h-32" viewBox="0 0 200 120" fill="none">
-                <circle cx="100" cy="60" r="54" stroke="#3f3f46" strokeWidth="1" strokeDasharray="3 3" />
-                <circle cx="100" cy="60" r="42" stroke="#f59e0b" strokeWidth="1.5" opacity="0.6" />
-                <circle cx="100" cy="60" r="28" stroke="#3f3f46" strokeWidth="1" />
-                <circle cx="100" cy="60" r="14" fill="#f59e0b" opacity="0.8" />
-                
-                {/* Dynamic radial needle track */}
-                <line x1="100" y1="60" x2="150" y2="25" stroke="#f59e0b" strokeWidth="2" />
-                <circle cx="150" cy="25" r="3" fill="#ffffff" />
-              </svg>
+            {/* 3-Artist Photography Grid */}
+            <div className="grid grid-cols-3 gap-2.5 my-2">
+              {article.featuredArtists?.map((fa, faIdx) => (
+                <div key={faIdx} className="group/art relative rounded-lg overflow-hidden border border-zinc-800 bg-zinc-900 aspect-[4/5] flex flex-col justify-end">
+                  <img
+                    src={fa.imageUrl}
+                    alt={fa.name}
+                    className="absolute inset-0 w-full h-full object-cover object-top sm:object-center group-hover/art:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent pointer-events-none" />
+                  <div className="relative p-2 z-10">
+                    <div className="text-[11px] font-display font-black text-zinc-100 truncate">
+                      {fa.name}
+                    </div>
+                    <div className="text-[9px] font-mono text-amber-400/90 truncate">
+                      {fa.location}
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
 
             {/* Pull quote snapshot */}
-            <blockquote className="text-xs text-zinc-300 italic border-l-2 border-amber-400/80 pl-3">
+            <blockquote className="text-xs text-zinc-300 italic border-l-2 border-amber-400/80 pl-3 mt-3">
               "{article.pullQuote}"
             </blockquote>
           </div>
