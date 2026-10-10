@@ -21,9 +21,15 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
   const otherArtists = article.featuredArtists?.slice(1) || [];
 
   return (
-    <article 
-      onClick={() => onSelect(article)}
-      className="group cursor-pointer flex flex-col justify-between p-6 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700/80 hover:bg-zinc-900/90 transition-all duration-200"
+    <a 
+      href={`/${article.slug}`}
+      onClick={(e) => {
+        if (!e.metaKey && !e.ctrlKey) {
+          e.preventDefault();
+          onSelect(article);
+        }
+      }}
+      className="group block cursor-pointer flex flex-col justify-between p-6 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700/80 hover:bg-zinc-900/90 transition-all duration-200"
     >
       <div>
         {/* Actual Artist Photography Card Header */}
@@ -133,6 +139,6 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           <ArrowUpRight className="w-3.5 h-3.5" />
         </span>
       </div>
-    </article>
+    </a>
   );
 };

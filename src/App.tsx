@@ -18,8 +18,29 @@ import { Footer } from './components/Footer';
 import { audioSynthEngine, AMBIENT_BEATS } from './utils/audioSynth';
 import { Search, SlidersHorizontal, BookOpen, BookmarkCheck, Flame, Disc } from 'lucide-react';
 
+function findArticleByPath(pathname: string): BlogArticle | null {
+  let clean = pathname.replace(/^[\/#]+|[\/#]+$/g, '').trim().toLowerCase();
+  if (!clean) return null;
+  if (clean.startsWith('blog/')) {
+    clean = clean.replace('blog/', '');
+  }
+  return (
+    ARTICLES.find(
+      (a) =>
+        a.slug.toLowerCase() === clean ||
+        a.id.toLowerCase() === clean ||
+        a.aliases?.some((alias) => alias.toLowerCase() === clean)
+    ) || null
+  );
+}
+
 export default function App() {
-  const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(null);
+  const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(() => {
+    if (typeof window !== 'undefined') {
+      return findArticleByPath(window.location.pathname);
+    }
+    return null;
+  });
   const [currentTab, setCurrentTab] = useState<'articles' | 'timeline'>('articles');
   
   // Search & Filter state
@@ -44,6 +65,51 @@ export default function App() {
   // Modals state
   const [isManifestoOpen, setIsManifestoOpen] = useState<boolean>(false);
   const [isSubmitOpen, setIsSubmitOpen] = useState<boolean>(false);
+
+  // Navigation handlers with clean URL synchronization
+  const handleSelectArticle = (article: BlogArticle) => {
+    setSelectedArticle(article);
+    const targetUrl = `/${article.slug}`;
+    if (window.location.pathname !== targetUrl) {
+      window.history.pushState({ slug: article.slug }, '', targetUrl);
+    }
+    document.title = `${article.title} | Subculture Dispatch`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToArchive = () => {
+    setSelectedArticle(null);
+    if (window.location.pathname !== '/' && !window.location.pathname.startsWith('/#')) {
+      window.history.pushState({}, '', '/');
+    }
+    document.title = 'Subculture Dispatch | The Underground Music Archive';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Handle browser Back / Forward buttons (popstate) & direct URL normalization
+  useEffect(() => {
+    const handleLocationChange = () => {
+      const article = findArticleByPath(window.location.pathname);
+      if (article) {
+        setSelectedArticle(article);
+        document.title = `${article.title} | Subculture Dispatch`;
+        const canonicalPath = `/${article.slug}`;
+        if (window.location.pathname !== canonicalPath) {
+          window.history.replaceState({ slug: article.slug }, '', canonicalPath);
+        }
+      } else {
+        setSelectedArticle(null);
+        document.title = 'Subculture Dispatch | The Underground Music Archive';
+        if (window.location.pathname !== '/' && !window.location.pathname.startsWith('/#')) {
+          window.history.replaceState({}, '', '/');
+        }
+      }
+    };
+
+    // Listen to browser navigation
+    window.addEventListener('popstate', handleLocationChange);
+    return () => window.removeEventListener('popstate', handleLocationChange);
+  }, []);
 
   // Sync audio engine state changes
   useEffect(() => {
@@ -162,10 +228,9 @@ export default function App() {
       <Navbar
         currentTab={currentTab}
         onSelectTab={(tab) => {
-          setSelectedArticle(null);
+          handleBackToArchive();
           setCurrentTab(tab);
           setShowSavedOnly(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
         }}
         onOpenManifesto={() => setIsManifestoOpen(true)}
         onOpenSubmit={() => setIsSubmitOpen(true)}
@@ -175,7 +240,7 @@ export default function App() {
         savedCount={savedArticleIds.length}
         showingSavedOnly={showSavedOnly}
         onToggleSavedOnly={() => {
-          setSelectedArticle(null);
+          handleBackToArchive();
           setCurrentTab('articles');
           setShowSavedOnly(!showSavedOnly);
         }}
@@ -196,18 +261,12 @@ export default function App() {
         {selectedArticle ? (
           <ArticleDetail
             article={selectedArticle}
-            onBack={() => {
-              setSelectedArticle(null);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+            onBack={handleBackToArchive}
             isSaved={savedArticleIds.includes(selectedArticle.id)}
             onToggleSave={(id) => handleToggleSave(id)}
             onPlayCompanion={handlePlayCompanionForArticle}
             allArticles={ARTICLES}
-            onSelectArticle={(art) => {
-              setSelectedArticle(art);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+            onSelectArticle={handleSelectArticle}
           />
         ) : (
           <>
@@ -221,10 +280,7 @@ export default function App() {
                 {!searchQuery && selectedCategory === 'All' && !showSavedOnly && (
                   <HeroFeatured
                     article={leadFeaturedArticle}
-                    onSelect={(article) => {
-                      setSelectedArticle(article);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
+                    onSelect={handleSelectArticle}
                     isSaved={savedArticleIds.includes(leadFeaturedArticle.id)}
                     onToggleSave={(id, e) => handleToggleSave(id, e)}
                   />
@@ -317,10 +373,7 @@ export default function App() {
                         key={article.id}
                         article={article}
                         index={index}
-                        onSelect={(art) => {
-                          setSelectedArticle(art);
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }}
+                        onSelect={handleSelectArticle}
                         isSaved={savedArticleIds.includes(article.id)}
                         onToggleSave={(id, e) => handleToggleSave(id, e)}
                       />
