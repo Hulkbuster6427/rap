@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { BlogArticle } from '../types/blog';
 import { ArrowRight, Bookmark, Sparkles, Disc, Radio, Camera } from 'lucide-react';
 
 interface HeroFeaturedProps {
   article: BlogArticle;
-  onSelect: (article: BlogArticle) => void;
+  onSelect?: (article: BlogArticle) => void;
   isSaved: boolean;
   onToggleSave: (id: string, e: React.MouseEvent) => void;
 }
@@ -56,18 +57,13 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
 
           {/* Headline with text-balance */}
           <h1 className="leading-[1.15] mb-4 text-balance">
-            <a 
-              href={`/${article.slug}`}
-              onClick={(e) => {
-                if (!e.metaKey && !e.ctrlKey) {
-                  e.preventDefault();
-                  onSelect(article);
-                }
-              }}
+            <Link 
+              to={`/${article.slug}`}
+              onClick={() => onSelect?.(article)}
               className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-zinc-100 hover:text-amber-400 transition-colors"
             >
               {article.title}
-            </a>
+            </Link>
           </h1>
 
           <p className="text-base sm:text-lg text-zinc-300 font-normal leading-relaxed mb-6">
@@ -95,19 +91,14 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
 
           {/* Actions & Byline */}
           <div className="flex flex-wrap items-center gap-4">
-            <a
-              href={`/${article.slug}`}
-              onClick={(e) => {
-                if (!e.metaKey && !e.ctrlKey) {
-                  e.preventDefault();
-                  onSelect(article);
-                }
-              }}
+            <Link
+              to={`/${article.slug}`}
+              onClick={() => onSelect?.(article)}
               className="px-5 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-zinc-950 font-display font-bold text-sm tracking-wider uppercase flex items-center gap-2 transition-all shadow-lg hover:shadow-amber-400/20"
             >
               <span>Read Full Essay</span>
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
 
             <button
               onClick={(e) => onToggleSave(article.id, e)}

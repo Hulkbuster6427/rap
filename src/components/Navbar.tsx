@@ -1,9 +1,8 @@
 import React from 'react';
-import { Volume2, VolumeX, Radio, Sparkles } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Volume2, VolumeX } from 'lucide-react';
 
 interface NavbarProps {
-  currentTab: 'articles' | 'timeline';
-  onSelectTab: (tab: 'articles' | 'timeline') => void;
   onOpenManifesto: () => void;
   onOpenSubmit: () => void;
   isAudioPlaying: boolean;
@@ -15,8 +14,6 @@ interface NavbarProps {
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
-  currentTab,
-  onSelectTab,
   onOpenManifesto,
   onOpenSubmit,
   isAudioPlaying,
@@ -26,45 +23,49 @@ export const Navbar: React.FC<NavbarProps> = ({
   onToggleSavedOnly,
   showingSavedOnly,
 }) => {
+  const location = useLocation();
+  const isTimeline = location.pathname === '/timeline';
+  const isHome = location.pathname === '/' || location.pathname === '/articles';
+
   return (
     <header className="sticky top-0 z-40 bg-[#0b0c10]/90 backdrop-blur-md border-b border-zinc-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         
         {/* Zone 1: Single text element wordmark */}
         <div className="flex items-center gap-3">
-          <button 
-            onClick={() => onSelectTab('articles')}
+          <Link 
+            to="/"
             className="text-left group focus-visible:outline-none"
           >
             <span className="font-display font-extrabold text-xl tracking-wider text-zinc-100 group-hover:text-amber-400 transition-colors uppercase">
               SUBCULTURE // REC
             </span>
-          </button>
+          </Link>
         </div>
 
         {/* Zone 2: Clean text navigation links */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-          <button
-            onClick={() => onSelectTab('articles')}
+          <Link
+            to="/"
             className={`transition-colors hover:text-zinc-100 pb-0.5 ${
-              currentTab === 'articles' && !showingSavedOnly
+              isHome && !showingSavedOnly
                 ? 'text-amber-400 border-b-2 border-amber-400 font-semibold'
                 : ''
             }`}
           >
             Essays & Dispatches
-          </button>
+          </Link>
 
-          <button
-            onClick={() => onSelectTab('timeline')}
+          <Link
+            to="/timeline"
             className={`transition-colors hover:text-zinc-100 pb-0.5 ${
-              currentTab === 'timeline'
+              isTimeline
                 ? 'text-amber-400 border-b-2 border-amber-400 font-semibold'
                 : ''
             }`}
           >
             Underground Timeline
-          </button>
+          </Link>
 
           <button
             onClick={onOpenManifesto}
@@ -130,18 +131,18 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile nav bar row */}
       <div className="md:hidden flex items-center justify-around px-4 py-2 border-t border-zinc-800/60 bg-[#0b0c10] text-xs font-medium text-zinc-400">
-        <button
-          onClick={() => onSelectTab('articles')}
-          className={`py-1 ${currentTab === 'articles' && !showingSavedOnly ? 'text-amber-400 font-semibold' : ''}`}
+        <Link
+          to="/"
+          className={`py-1 ${isHome && !showingSavedOnly ? 'text-amber-400 font-semibold' : ''}`}
         >
           Articles (10)
-        </button>
-        <button
-          onClick={() => onSelectTab('timeline')}
-          className={`py-1 ${currentTab === 'timeline' ? 'text-amber-400 font-semibold' : ''}`}
+        </Link>
+        <Link
+          to="/timeline"
+          className={`py-1 ${isTimeline ? 'text-amber-400 font-semibold' : ''}`}
         >
           Detailed Timeline
-        </button>
+        </Link>
         <button
           onClick={onOpenManifesto}
           className="py-1 hover:text-zinc-200"

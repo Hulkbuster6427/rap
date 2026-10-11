@@ -939,3 +939,20 @@ export const ARTICLES: BlogArticle[] = [
     ],
   },
 ];
+
+export function getArticleBySlug(rawSlug?: string): BlogArticle | null {
+  if (!rawSlug) return null;
+  let clean = rawSlug.replace(/^[\/#]+|[\/#]+$/g, '').trim().toLowerCase();
+  if (!clean) return null;
+  if (clean.startsWith('blog/')) {
+    clean = clean.slice(5);
+  }
+  return (
+    ARTICLES.find(
+      (a) =>
+        a.slug.toLowerCase() === clean ||
+        a.id.toLowerCase() === clean ||
+        a.aliases?.some((alias) => alias.toLowerCase() === clean)
+    ) || null
+  );
+}

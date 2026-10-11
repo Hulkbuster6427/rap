@@ -1,13 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 interface FooterProps {
-  onSelectTab: (tab: 'articles' | 'timeline') => void;
   onOpenManifesto: () => void;
   onOpenSubmit: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
-  onSelectTab,
   onOpenManifesto,
   onOpenSubmit,
 }) => {
@@ -35,20 +34,20 @@ export const Footer: React.FC<FooterProps> = ({
               Curatorial Index
             </div>
             <div>
-              <button 
-                onClick={() => onSelectTab('articles')}
+              <Link 
+                to="/"
                 className="hover:text-amber-400 transition-colors"
               >
                 All 10 Research Dispatches
-              </button>
+              </Link>
             </div>
             <div>
-              <button 
-                onClick={() => onSelectTab('timeline')}
+              <Link 
+                to="/timeline"
                 className="hover:text-amber-400 transition-colors"
               >
                 Underground Evolution Timeline
-              </button>
+              </Link>
             </div>
             <div>
               <button 

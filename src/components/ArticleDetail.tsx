@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { BlogArticle, ArticleComment } from '../types/blog';
 import { SectionArtistPhoto } from './SectionArtistPhoto';
 import { 
@@ -9,12 +10,12 @@ import {
 
 interface ArticleDetailProps {
   article: BlogArticle;
-  onBack: () => void;
+  onBack?: () => void;
   isSaved: boolean;
   onToggleSave: (id: string) => void;
   onPlayCompanion: (beatId?: string) => void;
   allArticles: BlogArticle[];
-  onSelectArticle: (article: BlogArticle) => void;
+  onSelectArticle?: (article: BlogArticle) => void;
 }
 
 export const ArticleDetail: React.FC<ArticleDetailProps> = ({
@@ -134,13 +135,17 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
 
       {/* Top Utility & Return Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 py-6 border-b border-zinc-800/80 mb-8">
-        <button
-          onClick={onBack}
+        <Link
+          to="/"
+          onClick={() => {
+            onBack?.();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
           className="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-amber-400 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Return to All Dispatches</span>
-        </button>
+        </Link>
 
         <div className="flex items-center gap-3">
           {/* Audio companion trigger tailored to article */}
@@ -392,20 +397,17 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
               </div>
             </div>
 
-            <a
-              href={`/${nextArticle.slug}`}
-              onClick={(e) => {
-                if (!e.metaKey && !e.ctrlKey) {
-                  e.preventDefault();
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                  onSelectArticle(nextArticle);
-                }
+            <Link
+              to={`/${nextArticle.slug}`}
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                onSelectArticle?.(nextArticle);
               }}
               className="px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-display uppercase tracking-wider font-bold flex items-center gap-2 transition-colors shrink-0"
             >
               <span>Read Next</span>
               <ChevronRight className="w-4 h-4" />
-            </a>
+            </Link>
           </div>
         </main>
 
