@@ -46,7 +46,6 @@ export interface ArticleContentSection {
 export interface BlogArticle {
   id: string;
   slug: string;
-  aliases?: string[];
   title: string;
   subtitle: string;
   excerpt: string;

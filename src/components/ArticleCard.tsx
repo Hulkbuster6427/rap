@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { BlogArticle } from '../types/blog';
-import { Bookmark, Clock, ArrowUpRight, Camera, ExternalLink } from 'lucide-react';
+import { Bookmark, Clock, ArrowUpRight, Camera } from 'lucide-react';
 
 interface ArticleCardProps {
   article: BlogArticle;
-  onSelect?: (article: BlogArticle) => void;
+  onSelect: (article: BlogArticle) => void;
   isSaved: boolean;
   onToggleSave: (id: string, e: React.MouseEvent) => void;
   index: number;
@@ -18,26 +17,12 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
   onToggleSave,
   index,
 }) => {
-  const navigate = useNavigate();
   const leadArtist = article.featuredArtists?.[0];
   const otherArtists = article.featuredArtists?.slice(1) || [];
 
-  const handleCardClick = (e: React.MouseEvent) => {
-    // If click was on a button or link, let it handle its own action
-    const target = e.target as HTMLElement;
-    if (target.closest('button') || target.closest('a')) {
-      return;
-    }
-    if (onSelect) {
-      onSelect(article);
-    } else {
-      navigate(`/article/${article.id}`);
-    }
-  };
-
   return (
     <article 
-      onClick={handleCardClick}
+      onClick={() => onSelect(article)}
       className="group cursor-pointer flex flex-col justify-between p-6 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700/80 hover:bg-zinc-900/90 transition-all duration-200"
     >
       <div>
@@ -96,30 +81,17 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
             )}
           </div>
 
-          {/* Top-right actions: Open in new tab + Bookmark save toggle */}
-          <div className="absolute top-3 right-3 flex items-center gap-1.5">
-            <a
-              href={`/article/${article.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              title="Open dispatch in new browser page / tab"
-              className="p-1.5 rounded-md bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-amber-400 transition-colors border border-zinc-800/80 flex items-center justify-center"
-            >
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-
-            <button
-              onClick={(e) => onToggleSave(article.id, e)}
-              title={isSaved ? 'Remove from saved' : 'Save article'}
-              className="p-1.5 rounded-md bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-amber-400 transition-colors border border-zinc-800/80"
-            >
-              <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-amber-400 text-amber-400' : ''}`} />
-            </button>
-          </div>
+          {/* Bookmark save toggle */}
+          <button
+            onClick={(e) => onToggleSave(article.id, e)}
+            title={isSaved ? 'Remove from saved' : 'Save article'}
+            className="absolute top-3 right-3 p-1.5 rounded-md bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-amber-400 transition-colors border border-zinc-800/80"
+          >
+            <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-amber-400 text-amber-400' : ''}`} />
+          </button>
         </div>
 
-        {/* Zero-Pill Compliant Metadata */}
+        {/* Zero-Pill Compliant Metadata: clean unboxed text with typographic separators */}
         <div className="flex items-center gap-2 text-xs text-zinc-400 mb-2 font-mono">
           <span className="text-amber-400/90 font-medium">{article.category}</span>
           <span aria-hidden="true" className="text-zinc-600">·</span>
@@ -133,9 +105,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
 
         {/* Article Title */}
         <h3 className="font-display font-bold text-lg text-zinc-100 group-hover:text-amber-400 transition-colors leading-snug mb-2 text-balance">
-          <Link to={`/article/${article.id}`} className="hover:underline">
-            {article.title}
-          </Link>
+          {article.title}
         </h3>
 
         {/* Excerpt */}
@@ -149,7 +119,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
         </div>
       </div>
 
-      {/* Footer byline & read affordances */}
+      {/* Footer byline & read affordance */}
       <div className="pt-4 border-t border-zinc-800/60 flex items-center justify-between text-xs">
         <div className="flex items-center gap-2">
           <div className="w-6 h-6 rounded-full bg-zinc-800 border border-zinc-700/60 flex items-center justify-center font-mono text-[10px] text-zinc-300 font-semibold">
@@ -158,27 +128,10 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           <span className="text-zinc-300 font-medium">{article.author.name}</span>
         </div>
 
-        <div className="flex items-center gap-3">
-          <Link
-            to={`/article/${article.id}`}
-            className="inline-flex items-center gap-1 text-zinc-400 group-hover:text-amber-400 font-medium transition-colors"
-          >
-            <span>Read Dispatch</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </Link>
-
-          <a
-            href={`/article/${article.id}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            title="Open dispatch in new page"
-            className="hidden sm:inline-flex items-center gap-1 text-[11px] font-mono text-zinc-500 hover:text-amber-400 transition-colors"
-          >
-            <span>New Page</span>
-            <ExternalLink className="w-3 h-3" />
-          </a>
-        </div>
+        <span className="inline-flex items-center gap-1 text-zinc-400 group-hover:text-amber-400 font-medium transition-colors">
+          <span>Read Dispatch</span>
+          <ArrowUpRight className="w-3.5 h-3.5" />
+        </span>
       </div>
     </article>
   );

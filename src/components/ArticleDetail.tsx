@@ -4,7 +4,7 @@ import { SectionArtistPhoto } from './SectionArtistPhoto';
 import { 
   ArrowLeft, Bookmark, Share2, Volume2, Clock, Calendar, 
   MessageSquare, ThumbsUp, Send, Check, Music2, Disc3, 
-  ChevronRight, Sparkles, Camera, ExternalLink 
+  ChevronRight, Sparkles, Camera 
 } from 'lucide-react';
 
 interface ArticleDetailProps {
@@ -182,33 +182,11 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
           {/* Share */}
           <button
             onClick={handleShare}
-            title="Copy link to dispatch"
-            className="p-2 rounded-lg border border-zinc-800 hover:border-zinc-700 bg-zinc-900 text-zinc-400 hover:text-zinc-200 transition-colors flex items-center gap-1.5 text-xs font-mono"
+            title="Copy link"
+            className="p-2 rounded-lg border border-zinc-800 hover:border-zinc-700 bg-zinc-900 text-zinc-400 hover:text-zinc-200 transition-colors flex items-center gap-1.5 text-xs"
           >
-            {copiedShare ? (
-              <>
-                <Check className="w-4 h-4 text-emerald-400" />
-                <span className="text-[11px] text-emerald-400">Copied</span>
-              </>
-            ) : (
-              <>
-                <Share2 className="w-4 h-4" />
-                <span className="hidden sm:inline text-[11px]">Share</span>
-              </>
-            )}
+            {copiedShare ? <Check className="w-4 h-4 text-emerald-400" /> : <Share2 className="w-4 h-4" />}
           </button>
-
-          {/* Open in new tab / window */}
-          <a
-            href={`/article/${article.id}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Open in new browser page / tab"
-            className="p-2 rounded-lg border border-zinc-800 hover:border-zinc-700 bg-zinc-900 text-zinc-400 hover:text-amber-400 transition-colors flex items-center gap-1.5 text-xs font-mono"
-          >
-            <ExternalLink className="w-4 h-4" />
-            <span className="hidden sm:inline text-[11px]">New Tab</span>
-          </a>
         </div>
       </div>
 
