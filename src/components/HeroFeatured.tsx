@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { BlogArticle } from '../types/blog';
-import { ArrowRight, Bookmark, Sparkles, Disc, Radio, Camera } from 'lucide-react';
+import { ArrowRight, Bookmark, Camera } from 'lucide-react';
 
 interface HeroFeaturedProps {
   article: BlogArticle;
@@ -16,6 +16,16 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
   isSaved,
   onToggleSave,
 }) => {
+  const navigate = useNavigate();
+
+  const handleOpen = () => {
+    if (onSelect) {
+      onSelect(article);
+    } else {
+      navigate(`/article/${article.id}`);
+    }
+  };
+
   return (
     <section className="relative rounded-2xl border border-zinc-800/80 bg-gradient-to-br from-zinc-900/90 via-zinc-950 to-[#0b0c10] p-6 sm:p-8 lg:p-10 mb-12 overflow-hidden shadow-2xl">
       {/* Background ambient lighting */}
@@ -56,14 +66,11 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
           </div>
 
           {/* Headline with text-balance */}
-          <h1 className="leading-[1.15] mb-4 text-balance">
-            <Link 
-              to={`/${article.slug}`}
-              onClick={() => onSelect?.(article)}
-              className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-zinc-100 hover:text-amber-400 transition-colors"
-            >
-              {article.title}
-            </Link>
+          <h1 
+            onClick={handleOpen}
+            className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-zinc-100 hover:text-amber-400 cursor-pointer transition-colors leading-[1.15] mb-4 text-balance"
+          >
+            {article.title}
           </h1>
 
           <p className="text-base sm:text-lg text-zinc-300 font-normal leading-relaxed mb-6">
@@ -91,14 +98,13 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
 
           {/* Actions & Byline */}
           <div className="flex flex-wrap items-center gap-4">
-            <Link
-              to={`/${article.slug}`}
-              onClick={() => onSelect?.(article)}
+            <button
+              onClick={handleOpen}
               className="px-5 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-zinc-950 font-display font-bold text-sm tracking-wider uppercase flex items-center gap-2 transition-all shadow-lg hover:shadow-amber-400/20"
             >
               <span>Read Full Essay</span>
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </button>
 
             <button
               onClick={(e) => onToggleSave(article.id, e)}

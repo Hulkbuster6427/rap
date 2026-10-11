@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { BlogArticle } from '../types/blog';
 import { Bookmark, Clock, ArrowUpRight, Camera } from 'lucide-react';
 
@@ -18,14 +18,22 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
   onToggleSave,
   index,
 }) => {
+  const navigate = useNavigate();
   const leadArtist = article.featuredArtists?.[0];
   const otherArtists = article.featuredArtists?.slice(1) || [];
 
+  const handleCardClick = () => {
+    if (onSelect) {
+      onSelect(article);
+    } else {
+      navigate(`/article/${article.id}`);
+    }
+  };
+
   return (
-    <Link 
-      to={`/${article.slug}`}
-      onClick={() => onSelect?.(article)}
-      className="group flex flex-col justify-between p-6 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700/80 hover:bg-zinc-900/90 transition-all duration-200"
+    <article 
+      onClick={handleCardClick}
+      className="group cursor-pointer flex flex-col justify-between p-6 rounded-xl bg-zinc-900/60 border border-zinc-800/80 hover:border-zinc-700/80 hover:bg-zinc-900/90 transition-all duration-200"
     >
       <div>
         {/* Actual Artist Photography Card Header */}
@@ -85,14 +93,9 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
 
           {/* Bookmark save toggle */}
           <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onToggleSave(article.id, e);
-            }}
+            onClick={(e) => onToggleSave(article.id, e)}
             title={isSaved ? 'Remove from saved' : 'Save article'}
-            className="absolute top-3 right-3 p-1.5 rounded-md bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-amber-400 transition-colors border border-zinc-800/80 z-10"
+            className="absolute top-3 right-3 p-1.5 rounded-md bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-amber-400 transition-colors border border-zinc-800/80"
           >
             <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-amber-400 text-amber-400' : ''}`} />
           </button>
@@ -140,6 +143,6 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           <ArrowUpRight className="w-3.5 h-3.5" />
         </span>
       </div>
-    </Link>
+    </article>
   );
 };

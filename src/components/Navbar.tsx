@@ -1,31 +1,59 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Volume2, VolumeX } from 'lucide-react';
+import { useApp } from '../context/AppContext';
 
 interface NavbarProps {
-  onOpenManifesto: () => void;
-  onOpenSubmit: () => void;
-  isAudioPlaying: boolean;
-  onToggleAudio: () => void;
+  currentTab?: 'articles' | 'timeline';
+  onSelectTab?: (tab: 'articles' | 'timeline') => void;
+  onOpenManifesto?: () => void;
+  onOpenSubmit?: () => void;
+  isAudioPlaying?: boolean;
+  onToggleAudio?: () => void;
   activeBeatName?: string;
-  savedCount: number;
+  savedCount?: number;
   onToggleSavedOnly?: () => void;
   showingSavedOnly?: boolean;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({
-  onOpenManifesto,
-  onOpenSubmit,
-  isAudioPlaying,
-  onToggleAudio,
-  activeBeatName,
-  savedCount,
-  onToggleSavedOnly,
-  showingSavedOnly,
-}) => {
+export const Navbar: React.FC<NavbarProps> = (props) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const app = useApp();
+
+  const isAudioPlaying = props.isAudioPlaying ?? app.isAudioPlaying;
+  const toggleAudio = props.onToggleAudio ?? app.toggleAudio;
+  const activeBeatName = props.activeBeatName ?? app.activeBeatName;
+  const savedCount = props.savedCount ?? app.savedArticleIds.length;
+  const showingSavedOnly = props.showingSavedOnly ?? app.showSavedOnly;
+  const openManifesto = props.onOpenManifesto ?? (() => app.setIsManifestoOpen(true));
+  const openSubmit = props.onOpenSubmit ?? (() => app.setIsSubmitOpen(true));
+
   const isTimeline = location.pathname === '/timeline';
-  const isHome = location.pathname === '/' || location.pathname === '/articles';
+  const isArticles = location.pathname === '/' || location.pathname.startsWith('/article');
+
+  const handleNavigateHome = () => {
+    app.setShowSavedOnly(false);
+    if (props.onSelectTab) props.onSelectTab('articles');
+    navigate('/');
+  };
+
+  const handleNavigateTimeline = () => {
+    app.setShowSavedOnly(false);
+    if (props.onSelectTab) props.onSelectTab('timeline');
+    navigate('/timeline');
+  };
+
+  const handleToggleSaved = () => {
+    if (props.onToggleSavedOnly) {
+      props.onToggleSavedOnly();
+    } else {
+      app.setShowSavedOnly(!app.showSavedOnly);
+      if (location.pathname !== '/') {
+        navigate('/');
+      }
+    }
+  };
 
   return (
     <header className="sticky top-0 z-40 bg-[#0b0c10]/90 backdrop-blur-md border-b border-zinc-800/80">
@@ -35,6 +63,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <div className="flex items-center gap-3">
           <Link 
             to="/"
+            onClick={() => app.setShowSavedOnly(false)}
             className="text-left group focus-visible:outline-none"
           >
             <span className="font-display font-extrabold text-xl tracking-wider text-zinc-100 group-hover:text-amber-400 transition-colors uppercase">
@@ -45,19 +74,19 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Zone 2: Clean text navigation links */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-          <Link
-            to="/"
+          <button
+            onClick={handleNavigateHome}
             className={`transition-colors hover:text-zinc-100 pb-0.5 ${
-              isHome && !showingSavedOnly
+              isArticles && !showingSavedOnly
                 ? 'text-amber-400 border-b-2 border-amber-400 font-semibold'
                 : ''
             }`}
           >
             Essays & Dispatches
-          </Link>
+          </button>
 
-          <Link
-            to="/timeline"
+          <button
+            onClick={handleNavigateTimeline}
             className={`transition-colors hover:text-zinc-100 pb-0.5 ${
               isTimeline
                 ? 'text-amber-400 border-b-2 border-amber-400 font-semibold'
@@ -65,37 +94,35 @@ export const Navbar: React.FC<NavbarProps> = ({
             }`}
           >
             Underground Timeline
-          </Link>
+          </button>
 
           <button
-            onClick={onOpenManifesto}
+            onClick={openManifesto}
             className="transition-colors hover:text-zinc-100"
           >
             Manifesto
           </button>
 
-          {onToggleSavedOnly && (
-            <button
-              onClick={onToggleSavedOnly}
-              className={`transition-colors hover:text-zinc-100 flex items-center gap-1.5 ${
-                showingSavedOnly ? 'text-amber-400 font-semibold' : ''
-              }`}
-            >
-              <span>Saved Archive</span>
-              {savedCount > 0 && (
-                <span className="font-mono text-xs text-zinc-400 tabular-nums">
-                  ({savedCount})
-                </span>
-              )}
-            </button>
-          )}
+          <button
+            onClick={handleToggleSaved}
+            className={`transition-colors hover:text-zinc-100 flex items-center gap-1.5 ${
+              showingSavedOnly && location.pathname === '/' ? 'text-amber-400 font-semibold' : ''
+            }`}
+          >
+            <span>Saved Archive</span>
+            {savedCount > 0 && (
+              <span className="font-mono text-xs text-zinc-400 tabular-nums">
+                ({savedCount})
+              </span>
+            )}
+          </button>
         </nav>
 
         {/* Zone 3: 1-2 primary actions */}
         <div className="flex items-center gap-3">
           {/* Audio companion pill button */}
           <button
-            onClick={onToggleAudio}
+            onClick={toggleAudio}
             title={isAudioPlaying ? 'Mute ambient underground synthesizer' : 'Play ambient underground beats while reading'}
             className={`px-3 py-1.5 rounded-lg text-xs font-mono flex items-center gap-2 border transition-all ${
               isAudioPlaying
@@ -120,7 +147,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
           {/* Submit dispatch button */}
           <button
-            onClick={onOpenSubmit}
+            onClick={openSubmit}
             className="px-3.5 py-1.5 rounded-lg text-xs font-medium text-zinc-950 bg-amber-400 hover:bg-amber-300 transition-colors whitespace-nowrap font-display uppercase tracking-wider"
           >
             Submit Tip
@@ -131,20 +158,20 @@ export const Navbar: React.FC<NavbarProps> = ({
 
       {/* Mobile nav bar row */}
       <div className="md:hidden flex items-center justify-around px-4 py-2 border-t border-zinc-800/60 bg-[#0b0c10] text-xs font-medium text-zinc-400">
-        <Link
-          to="/"
-          className={`py-1 ${isHome && !showingSavedOnly ? 'text-amber-400 font-semibold' : ''}`}
+        <button
+          onClick={handleNavigateHome}
+          className={`py-1 ${isArticles && !showingSavedOnly ? 'text-amber-400 font-semibold' : ''}`}
         >
           Articles (10)
-        </Link>
-        <Link
-          to="/timeline"
+        </button>
+        <button
+          onClick={handleNavigateTimeline}
           className={`py-1 ${isTimeline ? 'text-amber-400 font-semibold' : ''}`}
         >
           Detailed Timeline
-        </Link>
+        </button>
         <button
-          onClick={onOpenManifesto}
+          onClick={openManifesto}
           className="py-1 hover:text-zinc-200"
         >
           Manifesto

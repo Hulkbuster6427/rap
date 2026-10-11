@@ -1,15 +1,45 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useApp } from '../context/AppContext';
 
 interface FooterProps {
-  onOpenManifesto: () => void;
-  onOpenSubmit: () => void;
+  onSelectTab?: (tab: 'articles' | 'timeline') => void;
+  onOpenManifesto?: () => void;
+  onOpenSubmit?: () => void;
 }
 
 export const Footer: React.FC<FooterProps> = ({
+  onSelectTab,
   onOpenManifesto,
   onOpenSubmit,
 }) => {
+  const navigate = useNavigate();
+  const app = useApp();
+
+  const handleGoArticles = () => {
+    app.setShowSavedOnly(false);
+    if (onSelectTab) onSelectTab('articles');
+    navigate('/');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleGoTimeline = () => {
+    app.setShowSavedOnly(false);
+    if (onSelectTab) onSelectTab('timeline');
+    navigate('/timeline');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleOpenManifesto = () => {
+    if (onOpenManifesto) onOpenManifesto();
+    else app.setIsManifestoOpen(true);
+  };
+
+  const handleOpenSubmit = () => {
+    if (onOpenSubmit) onOpenSubmit();
+    else app.setIsSubmitOpen(true);
+  };
+
   return (
     <footer className="border-t border-zinc-800/80 bg-zinc-950 py-12 text-zinc-400">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,9 +47,12 @@ export const Footer: React.FC<FooterProps> = ({
           
           {/* Brand & Editorial Column */}
           <div className="md:col-span-6 space-y-3">
-            <span className="font-display font-extrabold text-lg tracking-wider text-zinc-100 uppercase">
+            <button
+              onClick={handleGoArticles}
+              className="font-display font-extrabold text-lg tracking-wider text-zinc-100 hover:text-amber-400 transition-colors uppercase text-left"
+            >
               SUBCULTURE // REC
-            </span>
+            </button>
             <p className="text-xs text-zinc-400 max-w-sm leading-relaxed">
               An independent archive and music publication documenting the artistic autonomy, sonic inventions, and cultural hegemony of modern underground rap.
             </p>
@@ -34,25 +67,25 @@ export const Footer: React.FC<FooterProps> = ({
               Curatorial Index
             </div>
             <div>
-              <Link 
-                to="/"
-                className="hover:text-amber-400 transition-colors"
+              <button 
+                onClick={handleGoArticles}
+                className="hover:text-amber-400 transition-colors text-left"
               >
                 All 10 Research Dispatches
-              </Link>
-            </div>
-            <div>
-              <Link 
-                to="/timeline"
-                className="hover:text-amber-400 transition-colors"
-              >
-                Underground Evolution Timeline
-              </Link>
+              </button>
             </div>
             <div>
               <button 
-                onClick={onOpenManifesto}
-                className="hover:text-amber-400 transition-colors"
+                onClick={handleGoTimeline}
+                className="hover:text-amber-400 transition-colors text-left"
+              >
+                Underground Evolution Timeline
+              </button>
+            </div>
+            <div>
+              <button 
+                onClick={handleOpenManifesto}
+                className="hover:text-amber-400 transition-colors text-left"
               >
                 Editorial Manifesto
               </button>
@@ -68,7 +101,7 @@ export const Footer: React.FC<FooterProps> = ({
               Submissions audited continuously by independent music journalists.
             </p>
             <button
-              onClick={onOpenSubmit}
+              onClick={handleOpenSubmit}
               className="mt-2 inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 font-mono transition-colors font-medium"
             >
               <span>Send Field Dispatch Tip →</span>
