@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { BlogArticle, ArticleComment } from '../types/blog';
 import { SectionArtistPhoto } from './SectionArtistPhoto';
 import { 
   ArrowLeft, Bookmark, Share2, Volume2, Clock, Calendar, 
   MessageSquare, ThumbsUp, Send, Check, Music2, Disc3, 
-  ChevronRight, Sparkles, Camera 
+  ChevronRight, Sparkles, Camera, ExternalLink 
 } from 'lucide-react';
 
 interface ArticleDetailProps {
   article: BlogArticle;
-  onBack?: () => void;
+  onBack: () => void;
   isSaved: boolean;
   onToggleSave: (id: string) => void;
   onPlayCompanion: (beatId?: string) => void;
   allArticles: BlogArticle[];
-  onSelectArticle?: (article: BlogArticle) => void;
+  onSelectArticle: (article: BlogArticle) => void;
 }
 
 export const ArticleDetail: React.FC<ArticleDetailProps> = ({
@@ -135,17 +134,13 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
 
       {/* Top Utility & Return Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 py-6 border-b border-zinc-800/80 mb-8">
-        <Link
-          to="/"
-          onClick={() => {
-            onBack?.();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
+        <button
+          onClick={onBack}
           className="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-amber-400 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Return to All Dispatches</span>
-        </Link>
+        </button>
 
         <div className="flex items-center gap-3">
           {/* Audio companion trigger tailored to article */}
@@ -184,26 +179,36 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
             <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-amber-400 text-amber-400' : ''}`} />
           </button>
 
-          {/* Share & Permalink */}
-          <div className="flex items-center gap-1.5">
-            <span className="hidden md:inline font-mono text-[11px] text-zinc-400 bg-zinc-900/90 px-2 py-1 rounded border border-zinc-800/80 select-all">
-              /{article.slug}
-            </span>
-            <button
-              onClick={handleShare}
-              title={`Copy link to /${article.slug}`}
-              className="p-2 rounded-lg border border-zinc-800 hover:border-zinc-700 bg-zinc-900 text-zinc-400 hover:text-amber-400 transition-colors flex items-center gap-1.5 text-xs"
-            >
-              {copiedShare ? (
-                <>
-                  <Check className="w-4 h-4 text-emerald-400" />
-                  <span className="text-[11px] font-mono text-emerald-400">Copied!</span>
-                </>
-              ) : (
+          {/* Share */}
+          <button
+            onClick={handleShare}
+            title="Copy link to dispatch"
+            className="p-2 rounded-lg border border-zinc-800 hover:border-zinc-700 bg-zinc-900 text-zinc-400 hover:text-zinc-200 transition-colors flex items-center gap-1.5 text-xs font-mono"
+          >
+            {copiedShare ? (
+              <>
+                <Check className="w-4 h-4 text-emerald-400" />
+                <span className="text-[11px] text-emerald-400">Copied</span>
+              </>
+            ) : (
+              <>
                 <Share2 className="w-4 h-4" />
-              )}
-            </button>
-          </div>
+                <span className="hidden sm:inline text-[11px]">Share</span>
+              </>
+            )}
+          </button>
+
+          {/* Open in new tab / window */}
+          <a
+            href={`/article/${article.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Open in new browser page / tab"
+            className="p-2 rounded-lg border border-zinc-800 hover:border-zinc-700 bg-zinc-900 text-zinc-400 hover:text-amber-400 transition-colors flex items-center gap-1.5 text-xs font-mono"
+          >
+            <ExternalLink className="w-4 h-4" />
+            <span className="hidden sm:inline text-[11px]">New Tab</span>
+          </a>
         </div>
       </div>
 
@@ -397,17 +402,16 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
               </div>
             </div>
 
-            <Link
-              to={`/${nextArticle.slug}`}
+            <button
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-                onSelectArticle?.(nextArticle);
+                onSelectArticle(nextArticle);
               }}
               className="px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-display uppercase tracking-wider font-bold flex items-center gap-2 transition-colors shrink-0"
             >
               <span>Read Next</span>
               <ChevronRight className="w-4 h-4" />
-            </Link>
+            </button>
           </div>
         </main>
 

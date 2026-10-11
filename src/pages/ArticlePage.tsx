@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ARTICLES } from '../data/articles';
 import { ArticleDetail } from '../components/ArticleDetail';
@@ -10,7 +10,38 @@ export const ArticlePage: React.FC = () => {
   const navigate = useNavigate();
   const { savedArticleIds, toggleSaveArticle, playCompanionForArticle } = useApp();
 
-  const article = ARTICLES.find((a) => a.id === id || a.slug === id);
+  const article = useMemo(() => {
+    if (!id) return null;
+
+    // 1. Direct ID or slug match
+    const direct = ARTICLES.find((a) => a.id === id || a.slug === id);
+    if (direct) return direct;
+
+    // 2. Case-insensitive match
+    const lower = id.toLowerCase();
+    const caseMatch = ARTICLES.find((a) => a.id.toLowerCase() === lower || a.slug?.toLowerCase() === lower);
+    if (caseMatch) return caseMatch;
+
+    // 3. Numeric index match (e.g., /article/1 or /article/0)
+    const num = parseInt(id, 10);
+    if (!isNaN(num)) {
+      if (num >= 1 && num <= ARTICLES.length) return ARTICLES[num - 1];
+      if (num >= 0 && num < ARTICLES.length) return ARTICLES[num];
+    }
+
+    // 4. art-XX format (e.g. /article/art-01)
+    const artMatch = id.match(/art-(\d+)/i);
+    if (artMatch) {
+      const idx = parseInt(artMatch[1], 10) - 1;
+      if (idx >= 0 && idx < ARTICLES.length) return ARTICLES[idx];
+    }
+
+    // 5. Partial slug match
+    const partial = ARTICLES.find((a) => a.id.includes(lower) || (a.slug && a.slug.includes(lower)));
+    if (partial) return partial;
+
+    return null;
+  }, [id]);
 
   useEffect(() => {
     if (article) {
@@ -51,6 +82,7 @@ export const ArticlePage: React.FC = () => {
 
   return (
     <ArticleDetail
+      key={article.id}
       article={article}
       onBack={() => {
         navigate('/');

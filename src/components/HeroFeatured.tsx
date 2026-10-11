@@ -1,7 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BlogArticle } from '../types/blog';
-import { ArrowRight, Bookmark, Camera } from 'lucide-react';
+import { ArrowRight, Bookmark, Camera, ExternalLink } from 'lucide-react';
 
 interface HeroFeaturedProps {
   article: BlogArticle;
@@ -65,12 +65,11 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
             )}
           </div>
 
-          {/* Headline with text-balance */}
-          <h1 
-            onClick={handleOpen}
-            className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-zinc-100 hover:text-amber-400 cursor-pointer transition-colors leading-[1.15] mb-4 text-balance"
-          >
-            {article.title}
+          {/* Headline with link */}
+          <h1 className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-zinc-100 hover:text-amber-400 cursor-pointer transition-colors leading-[1.15] mb-4 text-balance">
+            <Link to={`/article/${article.id}`}>
+              {article.title}
+            </Link>
           </h1>
 
           <p className="text-base sm:text-lg text-zinc-300 font-normal leading-relaxed mb-6">
@@ -97,21 +96,31 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
           </div>
 
           {/* Actions & Byline */}
-          <div className="flex flex-wrap items-center gap-4">
-            <button
-              onClick={handleOpen}
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              to={`/article/${article.id}`}
               className="px-5 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-zinc-950 font-display font-bold text-sm tracking-wider uppercase flex items-center gap-2 transition-all shadow-lg hover:shadow-amber-400/20"
             >
               <span>Read Full Essay</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
+
+            <a
+              href={`/article/${article.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3.5 py-2.5 rounded-lg border border-zinc-800 hover:border-zinc-700 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-300 text-xs font-mono flex items-center gap-2 transition-colors"
+            >
+              <ExternalLink className="w-3.5 h-3.5 text-amber-400" />
+              <span>Open New Page</span>
+            </a>
 
             <button
               onClick={(e) => onToggleSave(article.id, e)}
               className="px-3.5 py-2.5 rounded-lg border border-zinc-800 hover:border-zinc-700 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-300 text-xs font-mono flex items-center gap-2 transition-colors"
             >
               <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-amber-400 text-amber-400' : ''}`} />
-              <span>{isSaved ? 'Saved in Archive' : 'Save for Later'}</span>
+              <span>{isSaved ? 'Saved in Archive' : 'Save'}</span>
             </button>
 
             <div className="hidden sm:flex items-center gap-2.5 ml-auto text-xs text-zinc-400">
@@ -128,7 +137,6 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
 
         {/* Right column: Archival Artist Photographic Dossier */}
         <div className="lg:col-span-5 flex flex-col gap-4">
-          {/* Photographic Triptych of Featured Artists */}
           <div className="relative rounded-xl border border-zinc-800 bg-zinc-950 p-5 overflow-hidden flex flex-col justify-between">
             <div className="flex items-center justify-between text-xs font-mono text-zinc-400 mb-3">
               <span className="flex items-center gap-1.5 text-amber-400">
