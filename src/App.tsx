@@ -16,6 +16,7 @@ import { ManifestoModal } from './components/ManifestoModal';
 import { SubmitTrackModal } from './components/SubmitTrackModal';
 import { Footer } from './components/Footer';
 import { audioSynthEngine, AMBIENT_BEATS } from './utils/audioSynth';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { 
   parseCurrentRoute, 
   navigateToArticle, 
@@ -26,6 +27,9 @@ import {
 import { Search, SlidersHorizontal, BookOpen, BookmarkCheck, Flame, Disc, ArrowLeft } from 'lucide-react';
 
 export default function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   // Parse initial route directly from URL (supports /blog/:slug, ?blog=:slug, #/blog/:slug)
   const [initialRoute] = useState(() => parseCurrentRoute(ARTICLES));
   const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(() => initialRoute.selectedArticle);
@@ -66,23 +70,18 @@ export default function App() {
     };
   }, []);
 
-  // Listen to browser Back/Forward (popstate)
+  // Sync with React Router location changes (direct link, browser Back/Forward, in-app navigation)
   useEffect(() => {
-    const handlePopState = () => {
-      try {
-        const route = parseCurrentRoute(ARTICLES);
-        setSelectedArticle(route.selectedArticle);
-        setCurrentTab(route.tab);
-        setNotFoundSlug(route.notFoundSlug);
-        updatePageMeta(route.selectedArticle);
-      } catch (err) {
-        console.warn('popstate handling error:', err);
-      }
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+    try {
+      const route = parseCurrentRoute(ARTICLES);
+      setSelectedArticle(route.selectedArticle);
+      setCurrentTab(route.tab);
+      setNotFoundSlug(route.notFoundSlug);
+      updatePageMeta(route.selectedArticle);
+    } catch (err) {
+      console.warn('location sync error:', err);
+    }
+  }, [location.pathname, location.search, location.hash]);
 
   // Sync document title & OpenGraph metadata with currently viewed article
   useEffect(() => {
@@ -93,14 +92,24 @@ export default function App() {
   const handleSelectArticle = (article: BlogArticle) => {
     setSelectedArticle(article);
     setNotFoundSlug(null);
-    navigateToArticle(article);
+    try {
+      navigate(`/blog/${article.slug}`);
+    } catch {
+      navigateToArticle(article);
+    }
+    updatePageMeta(article);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleBackToArchive = () => {
     setSelectedArticle(null);
     setNotFoundSlug(null);
-    navigateToHome();
+    try {
+      navigate('/');
+    } catch {
+      navigateToHome();
+    }
+    updatePageMeta(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -109,10 +118,18 @@ export default function App() {
     setNotFoundSlug(null);
     setCurrentTab(tab);
     setShowSavedOnly(false);
-    if (tab === 'timeline') {
-      navigateToTimeline();
-    } else {
-      navigateToHome();
+    try {
+      if (tab === 'timeline') {
+        navigate('/timeline');
+      } else {
+        navigate('/');
+      }
+    } catch {
+      if (tab === 'timeline') {
+        navigateToTimeline();
+      } else {
+        navigateToHome();
+      }
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
