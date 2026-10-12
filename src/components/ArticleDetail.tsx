@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BlogArticle, ArticleComment } from '../types/blog';
 import { SectionArtistPhoto } from './SectionArtistPhoto';
-import { getArticleUrl, copyArticleLink, shareArticle } from '../utils/router';
 import { 
   ArrowLeft, Bookmark, Share2, Volume2, Clock, Calendar, 
   MessageSquare, ThumbsUp, Send, Check, Music2, Disc3, 
@@ -111,21 +110,35 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
     }
   };
 
-  const articleUrl = getArticleUrl(article);
+  const articleUrl = typeof window !== 'undefined' 
+    ? `${window.location.origin}${window.location.pathname}?blog=${article.slug}` 
+    : `?blog=${article.slug}`;
 
   const handleCopyLink = async () => {
-    const success = await copyArticleLink(article);
-    if (success) {
-      setCopiedShare(true);
-      setTimeout(() => setCopiedShare(false), 2500);
+    try {
+      if (navigator.clipboard) {
+        await navigator.clipboard.writeText(articleUrl);
+        setCopiedShare(true);
+        setTimeout(() => setCopiedShare(false), 2500);
+      }
+    } catch {
+      // ignore
     }
   };
 
   const handleShareNative = async () => {
-    const res = await shareArticle(article);
-    if (res.copied) {
-      setCopiedShare(true);
-      setTimeout(() => setCopiedShare(false), 2500);
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: article.title,
+          text: article.subtitle || article.excerpt,
+          url: articleUrl,
+        });
+      } else {
+        await handleCopyLink();
+      }
+    } catch {
+      // ignore
     }
   };
 

@@ -16,25 +16,37 @@ import { ManifestoModal } from './components/ManifestoModal';
 import { SubmitTrackModal } from './components/SubmitTrackModal';
 import { Footer } from './components/Footer';
 import { audioSynthEngine, AMBIENT_BEATS } from './utils/audioSynth';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { 
-  parseCurrentRoute, 
-  navigateToArticle, 
-  navigateToHome, 
-  navigateToTimeline, 
-  updatePageMeta 
-} from './utils/router';
-import { Search, SlidersHorizontal, BookOpen, BookmarkCheck, Flame, Disc, ArrowLeft } from 'lucide-react';
+import { Search, SlidersHorizontal, BookOpen, BookmarkCheck, Flame, Disc } from 'lucide-react';
 
 export default function App() {
-  const navigate = useNavigate();
-  const location = useLocation();
+  // Check URL query parameters on initial load (?blog=slug or ?article=slug)
+  const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search);
+        const slug = params.get('blog') || params.get('article');
+        if (slug) {
+          const norm = slug.trim().toLowerCase();
+          return ARTICLES.find((a) => a.slug.toLowerCase() === norm || a.id.toLowerCase() === norm) || null;
+        }
+      }
+    } catch {
+      // ignore
+    }
+    return null;
+  });
 
-  // Parse initial route directly from URL (supports /blog/:slug, ?blog=:slug, #/blog/:slug)
-  const [initialRoute] = useState(() => parseCurrentRoute(ARTICLES));
-  const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(() => initialRoute.selectedArticle);
-  const [currentTab, setCurrentTab] = useState<'articles' | 'timeline'>(() => initialRoute.tab);
-  const [notFoundSlug, setNotFoundSlug] = useState<string | null>(() => initialRoute.notFoundSlug);
+  const [currentTab, setCurrentTab] = useState<'articles' | 'timeline'>(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('tab') === 'timeline') return 'timeline';
+      }
+    } catch {
+      // ignore
+    }
+    return 'articles';
+  });
   
   // Search & Filter state
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -70,66 +82,93 @@ export default function App() {
     };
   }, []);
 
-  // Sync with React Router location changes (direct link, browser Back/Forward, in-app navigation)
+  // Listen to browser Back/Forward (popstate)
+  useEffect(() => {
+    const handlePopState = () => {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const slug = params.get('blog') || params.get('article');
+        if (slug) {
+          const norm = slug.trim().toLowerCase();
+          const match = ARTICLES.find((a) => a.slug.toLowerCase() === norm || a.id.toLowerCase() === norm);
+          setSelectedArticle(match || null);
+        } else {
+          setSelectedArticle(null);
+        }
+        if (params.get('tab') === 'timeline') {
+          setCurrentTab('timeline');
+        } else if (!slug) {
+          setCurrentTab('articles');
+        }
+      } catch {
+        // ignore
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Dynamic document title
   useEffect(() => {
     try {
-      const route = parseCurrentRoute(ARTICLES);
-      setSelectedArticle(route.selectedArticle);
-      setCurrentTab(route.tab);
-      setNotFoundSlug(route.notFoundSlug);
-      updatePageMeta(route.selectedArticle);
-    } catch (err) {
-      console.warn('location sync error:', err);
+      if (selectedArticle) {
+        document.title = `${selectedArticle.title} // Subculture`;
+      } else {
+        document.title = 'Subculture // The Underground Dispatch';
+      }
+    } catch {
+      // ignore
     }
-  }, [location.pathname, location.search, location.hash]);
-
-  // Sync document title & OpenGraph metadata with currently viewed article
-  useEffect(() => {
-    updatePageMeta(selectedArticle);
   }, [selectedArticle]);
 
-  // URL-synchronized navigation handlers
+  // Select article & update browser URL
   const handleSelectArticle = (article: BlogArticle) => {
     setSelectedArticle(article);
-    setNotFoundSlug(null);
     try {
-      navigate(`/blog/${article.slug}`);
+      const url = new URL(window.location.href);
+      url.searchParams.set('blog', article.slug);
+      url.searchParams.delete('tab');
+      window.history.pushState({}, '', url.toString());
     } catch {
-      navigateToArticle(article);
+      // ignore
     }
-    updatePageMeta(article);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Return to archive & clear blog parameter from URL
   const handleBackToArchive = () => {
     setSelectedArticle(null);
-    setNotFoundSlug(null);
     try {
-      navigate('/');
+      const url = new URL(window.location.href);
+      url.searchParams.delete('blog');
+      url.searchParams.delete('article');
+      const cleanUrl = url.pathname + (url.search ? url.search : '');
+      window.history.pushState({}, '', cleanUrl);
     } catch {
-      navigateToHome();
+      // ignore
     }
-    updatePageMeta(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Select tab (Articles vs Timeline)
   const handleSelectTab = (tab: 'articles' | 'timeline') => {
     setSelectedArticle(null);
-    setNotFoundSlug(null);
     setCurrentTab(tab);
     setShowSavedOnly(false);
     try {
+      const url = new URL(window.location.href);
+      url.searchParams.delete('blog');
+      url.searchParams.delete('article');
       if (tab === 'timeline') {
-        navigate('/timeline');
+        url.searchParams.set('tab', 'timeline');
       } else {
-        navigate('/');
+        url.searchParams.delete('tab');
       }
+      const cleanUrl = url.pathname + (url.search ? url.search : '');
+      window.history.pushState({}, '', cleanUrl);
     } catch {
-      if (tab === 'timeline') {
-        navigateToTimeline();
-      } else {
-        navigateToHome();
-      }
+      // ignore
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -250,9 +289,7 @@ export default function App() {
         selectedArticleTitle={selectedArticle?.title}
         onToggleSavedOnly={() => {
           setSelectedArticle(null);
-          setNotFoundSlug(null);
           setCurrentTab('articles');
-          navigateToHome();
           setShowSavedOnly(!showSavedOnly);
         }}
       />
@@ -268,33 +305,8 @@ export default function App() {
       {/* Main View Area */}
       <div className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
-        {/* VIEW 0: 404 Not Found for direct invalid URL */}
-        {notFoundSlug ? (
-          <div className="py-16 px-6 text-center rounded-2xl border border-zinc-800 bg-zinc-950/80 max-w-2xl mx-auto my-8 shadow-xl">
-            <Disc className="w-12 h-12 text-amber-400 mx-auto mb-4 opacity-70" />
-            <div className="text-xs font-mono text-amber-400 uppercase tracking-widest mb-1">
-              Curatorial Archive Lookup
-            </div>
-            <h3 className="font-display font-black text-2xl sm:text-3xl text-zinc-100 mb-2">
-              Dispatch Not Found
-            </h3>
-            <p className="text-sm text-zinc-400 max-w-md mx-auto mb-6 leading-relaxed">
-              We couldn't locate a blog dispatch matching{' '}
-              <code className="text-amber-400 bg-zinc-900 px-2 py-0.5 rounded border border-zinc-800 font-mono text-xs">
-                "{notFoundSlug}"
-              </code>
-              . It may have been relocated, or the link may have a typo.
-            </p>
-            <button
-              onClick={handleBackToArchive}
-              className="px-5 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-zinc-950 font-display font-bold text-xs tracking-wider uppercase transition-colors inline-flex items-center gap-2 shadow-lg hover:shadow-amber-400/20"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              <span>Return to Full Journal Archive</span>
-            </button>
-          </div>
-        ) : selectedArticle ? (
-          /* VIEW 1: Long-Form Individual Article Reader */
+        {/* VIEW 1: Long-Form Individual Article Reader */}
+        {selectedArticle ? (
           <ArticleDetail
             article={selectedArticle}
             onBack={handleBackToArchive}

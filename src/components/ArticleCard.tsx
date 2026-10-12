@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { BlogArticle } from '../types/blog';
 import { Bookmark, Clock, ArrowUpRight, Camera, Link, Check } from 'lucide-react';
-import { copyArticleLink } from '../utils/router';
 
 interface ArticleCardProps {
   article: BlogArticle;
@@ -24,10 +23,13 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
 
   const handleCopyLink = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    const success = await copyArticleLink(article);
-    if (success) {
+    try {
+      const url = `${window.location.origin}${window.location.pathname}?blog=${article.slug}`;
+      await navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // ignore
     }
   };
 
