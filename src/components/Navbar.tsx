@@ -12,6 +12,7 @@ interface NavbarProps {
   savedCount: number;
   onToggleSavedOnly?: () => void;
   showingSavedOnly?: boolean;
+  selectedArticleTitle?: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -25,6 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   savedCount,
   onToggleSavedOnly,
   showingSavedOnly,
+  selectedArticleTitle,
 }) => {
   return (
     <header className="sticky top-0 z-40 bg-[#0b0c10]/90 backdrop-blur-md border-b border-zinc-800/80">
@@ -35,11 +37,19 @@ export const Navbar: React.FC<NavbarProps> = ({
           <button 
             onClick={() => onSelectTab('articles')}
             className="text-left group focus-visible:outline-none"
+            title="Return to home journal archive"
           >
             <span className="font-display font-extrabold text-xl tracking-wider text-zinc-100 group-hover:text-amber-400 transition-colors uppercase">
               SUBCULTURE // REC
             </span>
           </button>
+
+          {selectedArticleTitle && (
+            <div className="hidden lg:flex items-center gap-2 text-xs font-mono text-zinc-500 pl-3 border-l border-zinc-800">
+              <span className="text-amber-400 font-semibold tracking-wider">DISPATCH:</span>
+              <span className="text-zinc-400 max-w-xs truncate">{selectedArticleTitle}</span>
+            </div>
+          )}
         </div>
 
         {/* Zone 2: Clean text navigation links */}

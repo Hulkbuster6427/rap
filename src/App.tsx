@@ -16,11 +16,21 @@ import { ManifestoModal } from './components/ManifestoModal';
 import { SubmitTrackModal } from './components/SubmitTrackModal';
 import { Footer } from './components/Footer';
 import { audioSynthEngine, AMBIENT_BEATS } from './utils/audioSynth';
-import { Search, SlidersHorizontal, BookOpen, BookmarkCheck, Flame, Disc } from 'lucide-react';
+import { 
+  parseCurrentRoute, 
+  navigateToArticle, 
+  navigateToHome, 
+  navigateToTimeline, 
+  updatePageMeta 
+} from './utils/router';
+import { Search, SlidersHorizontal, BookOpen, BookmarkCheck, Flame, Disc, ArrowLeft } from 'lucide-react';
 
 export default function App() {
-  const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(null);
-  const [currentTab, setCurrentTab] = useState<'articles' | 'timeline'>('articles');
+  // Parse initial route directly from URL (supports /blog/:slug, ?blog=:slug, #/blog/:slug)
+  const [initialRoute] = useState(() => parseCurrentRoute(ARTICLES));
+  const [selectedArticle, setSelectedArticle] = useState<BlogArticle | null>(() => initialRoute.selectedArticle);
+  const [currentTab, setCurrentTab] = useState<'articles' | 'timeline'>(() => initialRoute.tab);
+  const [notFoundSlug, setNotFoundSlug] = useState<string | null>(() => initialRoute.notFoundSlug);
   
   // Search & Filter state
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -55,6 +65,53 @@ export default function App() {
       audioSynthEngine.stop();
     };
   }, []);
+
+  // Listen to browser Back/Forward (popstate)
+  useEffect(() => {
+    const handlePopState = () => {
+      const route = parseCurrentRoute(ARTICLES);
+      setSelectedArticle(route.selectedArticle);
+      setCurrentTab(route.tab);
+      setNotFoundSlug(route.notFoundSlug);
+      updatePageMeta(route.selectedArticle);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  // Sync document title & OpenGraph metadata with currently viewed article
+  useEffect(() => {
+    updatePageMeta(selectedArticle);
+  }, [selectedArticle]);
+
+  // URL-synchronized navigation handlers
+  const handleSelectArticle = (article: BlogArticle) => {
+    setSelectedArticle(article);
+    setNotFoundSlug(null);
+    navigateToArticle(article);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToArchive = () => {
+    setSelectedArticle(null);
+    setNotFoundSlug(null);
+    navigateToHome();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSelectTab = (tab: 'articles' | 'timeline') => {
+    setSelectedArticle(null);
+    setNotFoundSlug(null);
+    setCurrentTab(tab);
+    setShowSavedOnly(false);
+    if (tab === 'timeline') {
+      navigateToTimeline();
+    } else {
+      navigateToHome();
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Save to localStorage when bookmarks change
   useEffect(() => {
@@ -161,12 +218,7 @@ export default function App() {
       {/* Strict 3-zone top bar */}
       <Navbar
         currentTab={currentTab}
-        onSelectTab={(tab) => {
-          setSelectedArticle(null);
-          setCurrentTab(tab);
-          setShowSavedOnly(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
+        onSelectTab={handleSelectTab}
         onOpenManifesto={() => setIsManifestoOpen(true)}
         onOpenSubmit={() => setIsSubmitOpen(true)}
         isAudioPlaying={isAudioPlaying}
@@ -174,9 +226,12 @@ export default function App() {
         activeBeatName={activeBeat?.name}
         savedCount={savedArticleIds.length}
         showingSavedOnly={showSavedOnly}
+        selectedArticleTitle={selectedArticle?.title}
         onToggleSavedOnly={() => {
           setSelectedArticle(null);
+          setNotFoundSlug(null);
           setCurrentTab('articles');
+          navigateToHome();
           setShowSavedOnly(!showSavedOnly);
         }}
       />
@@ -192,22 +247,41 @@ export default function App() {
       {/* Main View Area */}
       <div className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
-        {/* VIEW 1: Long-Form Article Reader */}
-        {selectedArticle ? (
+        {/* VIEW 0: 404 Not Found for direct invalid URL */}
+        {notFoundSlug ? (
+          <div className="py-16 px-6 text-center rounded-2xl border border-zinc-800 bg-zinc-950/80 max-w-2xl mx-auto my-8 shadow-xl">
+            <Disc className="w-12 h-12 text-amber-400 mx-auto mb-4 opacity-70" />
+            <div className="text-xs font-mono text-amber-400 uppercase tracking-widest mb-1">
+              Curatorial Archive Lookup
+            </div>
+            <h3 className="font-display font-black text-2xl sm:text-3xl text-zinc-100 mb-2">
+              Dispatch Not Found
+            </h3>
+            <p className="text-sm text-zinc-400 max-w-md mx-auto mb-6 leading-relaxed">
+              We couldn't locate a blog dispatch matching{' '}
+              <code className="text-amber-400 bg-zinc-900 px-2 py-0.5 rounded border border-zinc-800 font-mono text-xs">
+                "{notFoundSlug}"
+              </code>
+              . It may have been relocated, or the link may have a typo.
+            </p>
+            <button
+              onClick={handleBackToArchive}
+              className="px-5 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-zinc-950 font-display font-bold text-xs tracking-wider uppercase transition-colors inline-flex items-center gap-2 shadow-lg hover:shadow-amber-400/20"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>Return to Full Journal Archive</span>
+            </button>
+          </div>
+        ) : selectedArticle ? (
+          /* VIEW 1: Long-Form Individual Article Reader */
           <ArticleDetail
             article={selectedArticle}
-            onBack={() => {
-              setSelectedArticle(null);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+            onBack={handleBackToArchive}
             isSaved={savedArticleIds.includes(selectedArticle.id)}
             onToggleSave={(id) => handleToggleSave(id)}
             onPlayCompanion={handlePlayCompanionForArticle}
             allArticles={ARTICLES}
-            onSelectArticle={(art) => {
-              setSelectedArticle(art);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
+            onSelectArticle={handleSelectArticle}
           />
         ) : (
           <>
@@ -221,10 +295,7 @@ export default function App() {
                 {!searchQuery && selectedCategory === 'All' && !showSavedOnly && (
                   <HeroFeatured
                     article={leadFeaturedArticle}
-                    onSelect={(article) => {
-                      setSelectedArticle(article);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
+                    onSelect={handleSelectArticle}
                     isSaved={savedArticleIds.includes(leadFeaturedArticle.id)}
                     onToggleSave={(id, e) => handleToggleSave(id, e)}
                   />
@@ -317,10 +388,7 @@ export default function App() {
                         key={article.id}
                         article={article}
                         index={index}
-                        onSelect={(art) => {
-                          setSelectedArticle(art);
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }}
+                        onSelect={handleSelectArticle}
                         isSaved={savedArticleIds.includes(article.id)}
                         onToggleSave={(id, e) => handleToggleSave(id, e)}
                       />
@@ -356,12 +424,7 @@ export default function App() {
 
       {/* Publication Footer */}
       <Footer
-        onSelectTab={(tab) => {
-          setSelectedArticle(null);
-          setCurrentTab(tab);
-          setShowSavedOnly(false);
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
+        onSelectTab={handleSelectTab}
         onOpenManifesto={() => setIsManifestoOpen(true)}
         onOpenSubmit={() => setIsSubmitOpen(true)}
       />

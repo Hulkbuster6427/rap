@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BlogArticle } from '../types/blog';
-import { ArrowRight, Bookmark, Sparkles, Disc, Radio, Camera } from 'lucide-react';
+import { ArrowRight, Bookmark, Sparkles, Disc, Radio, Camera, Link, Check } from 'lucide-react';
+import { copyArticleLink } from '../utils/router';
 
 interface HeroFeaturedProps {
   article: BlogArticle;
@@ -15,6 +16,16 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
   isSaved,
   onToggleSave,
 }) => {
+  const [copied, setCopied] = useState<boolean>(false);
+
+  const handleCopyLink = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const success = await copyArticleLink(article);
+    if (success) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
   return (
     <section className="relative rounded-2xl border border-zinc-800/80 bg-gradient-to-br from-zinc-900/90 via-zinc-950 to-[#0b0c10] p-6 sm:p-8 lg:p-10 mb-12 overflow-hidden shadow-2xl">
       {/* Background ambient lighting */}
@@ -101,6 +112,28 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
             >
               <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-amber-400 text-amber-400' : ''}`} />
               <span>{isSaved ? 'Saved in Archive' : 'Save for Later'}</span>
+            </button>
+
+            <button
+              onClick={handleCopyLink}
+              title="Copy unique blog link to clipboard"
+              className={`px-3.5 py-2.5 rounded-lg border text-xs font-mono flex items-center gap-2 transition-all ${
+                copied
+                  ? 'bg-emerald-500/20 border-emerald-500 text-emerald-300 shadow-sm'
+                  : 'border-zinc-800 hover:border-zinc-700 bg-zinc-900/60 hover:bg-zinc-800 text-zinc-300 hover:text-amber-400'
+              }`}
+            >
+              {copied ? (
+                <>
+                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="font-semibold text-emerald-300">Link Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Link className="w-3.5 h-3.5 text-zinc-400" />
+                  <span>Copy Link</span>
+                </>
+              )}
             </button>
 
             <div className="hidden sm:flex items-center gap-2.5 ml-auto text-xs text-zinc-400">

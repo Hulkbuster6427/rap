@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BlogArticle } from '../types/blog';
-import { Bookmark, Clock, ArrowUpRight, Camera } from 'lucide-react';
+import { Bookmark, Clock, ArrowUpRight, Camera, Link, Check } from 'lucide-react';
+import { copyArticleLink } from '../utils/router';
 
 interface ArticleCardProps {
   article: BlogArticle;
@@ -17,8 +18,18 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
   onToggleSave,
   index,
 }) => {
+  const [copied, setCopied] = useState<boolean>(false);
   const leadArtist = article.featuredArtists?.[0];
   const otherArtists = article.featuredArtists?.slice(1) || [];
+
+  const handleCopyLink = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const success = await copyArticleLink(article);
+    if (success) {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
+  };
 
   return (
     <article 
@@ -81,14 +92,32 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
             )}
           </div>
 
-          {/* Bookmark save toggle */}
-          <button
-            onClick={(e) => onToggleSave(article.id, e)}
-            title={isSaved ? 'Remove from saved' : 'Save article'}
-            className="absolute top-3 right-3 p-1.5 rounded-md bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-amber-400 transition-colors border border-zinc-800/80"
-          >
-            <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-amber-400 text-amber-400' : ''}`} />
-          </button>
+          {/* Card Top Actions: Copy Unique Link & Bookmark */}
+          <div className="absolute top-3 right-3 flex items-center gap-1.5 z-10">
+            <button
+              onClick={handleCopyLink}
+              title={copied ? 'Link Copied!' : 'Copy unique blog link'}
+              className={`p-1.5 rounded-md transition-all border ${
+                copied
+                  ? 'bg-emerald-500/30 text-emerald-300 border-emerald-500/50 shadow-sm'
+                  : 'bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-amber-400 border-zinc-800/80'
+              }`}
+            >
+              {copied ? (
+                <Check className="w-3.5 h-3.5 text-emerald-400" />
+              ) : (
+                <Link className="w-3.5 h-3.5" />
+              )}
+            </button>
+
+            <button
+              onClick={(e) => onToggleSave(article.id, e)}
+              title={isSaved ? 'Remove from saved' : 'Save article'}
+              className="p-1.5 rounded-md bg-zinc-900/80 hover:bg-zinc-800 text-zinc-400 hover:text-amber-400 transition-colors border border-zinc-800/80"
+            >
+              <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-amber-400 text-amber-400' : ''}`} />
+            </button>
+          </div>
         </div>
 
         {/* Zero-Pill Compliant Metadata: clean unboxed text with typographic separators */}
