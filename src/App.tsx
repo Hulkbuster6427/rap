@@ -69,11 +69,15 @@ export default function App() {
   // Listen to browser Back/Forward (popstate)
   useEffect(() => {
     const handlePopState = () => {
-      const route = parseCurrentRoute(ARTICLES);
-      setSelectedArticle(route.selectedArticle);
-      setCurrentTab(route.tab);
-      setNotFoundSlug(route.notFoundSlug);
-      updatePageMeta(route.selectedArticle);
+      try {
+        const route = parseCurrentRoute(ARTICLES);
+        setSelectedArticle(route.selectedArticle);
+        setCurrentTab(route.tab);
+        setNotFoundSlug(route.notFoundSlug);
+        updatePageMeta(route.selectedArticle);
+      } catch (err) {
+        console.warn('popstate handling error:', err);
+      }
     };
 
     window.addEventListener('popstate', handlePopState);
