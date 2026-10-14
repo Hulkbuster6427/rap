@@ -51,9 +51,9 @@ export const ArticlePage: React.FC = () => {
 
   useEffect(() => {
     if (article) {
-      document.title = `${article.title} — Subculture // Rec`;
+      document.title = article.title;
     } else {
-      document.title = `Dispatch Not Found — Subculture // Rec`;
+      document.title = 'Dispatch Not Found | Subculture';
     }
     return () => {
       document.title = 'Subculture // The Underground Dispatch';
