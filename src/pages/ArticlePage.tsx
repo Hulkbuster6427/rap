@@ -50,13 +50,22 @@ export const ArticlePage: React.FC = () => {
   }, [id]);
 
   useEffect(() => {
+    const siteDesc = "Explore the evolution of modern underground rap through investigative monographs, sonic blueprints, and audio companions. Read all 10 curated dispatches now.";
+    const metaDesc = document.querySelector('meta[name="description"]');
+
     if (article) {
       document.title = article.title;
+      if (metaDesc) {
+        metaDesc.setAttribute('content', `${article.title}. ${article.subtitle || article.excerpt}`);
+      }
     } else {
       document.title = 'Dispatch Not Found | Subculture';
     }
     return () => {
       document.title = 'Subculture // The Underground Dispatch';
+      if (metaDesc) {
+        metaDesc.setAttribute('content', siteDesc);
+      }
     };
   }, [article]);
 
