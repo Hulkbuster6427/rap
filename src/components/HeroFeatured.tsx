@@ -67,6 +67,21 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
             )}
           </div>
 
+          {/* Main Keyword & Related Topic Tags */}
+          {article.mainKeyword && (
+            <div className="flex flex-wrap items-center gap-2 mb-3">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-400/15 border border-amber-400/40 text-amber-300 font-mono text-xs font-semibold">
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+                {article.mainKeyword}
+              </span>
+              {article.relatedKeywords?.slice(0, 2).map((kw, i) => (
+                <span key={i} className="inline-flex items-center px-2 py-0.5 rounded bg-zinc-800/80 border border-zinc-700/60 text-zinc-300 font-mono text-[11px]">
+                  {kw}
+                </span>
+              ))}
+            </div>
+          )}
+
           {/* Headline with text-balance */}
           <h1 
             onClick={() => onSelect(article)}

@@ -139,6 +139,16 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           {article.title}
         </h3>
 
+        {/* Main Topic Keyword Tag */}
+        {article.mainKeyword && (
+          <div className="mb-2.5">
+            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-amber-400/10 border border-amber-400/30 text-amber-300 font-mono text-[10px] font-semibold">
+              <span className="w-1 h-1 rounded-full bg-amber-400" />
+              {article.mainKeyword}
+            </span>
+          </div>
+        )}
+
         {/* Excerpt */}
         <p className="text-sm text-zinc-400 line-clamp-2 leading-relaxed mb-3">
           {article.excerpt}

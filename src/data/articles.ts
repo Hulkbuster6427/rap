@@ -330,9 +330,11 @@ export const ARTICLES: BlogArticle[] = [
     id: 'len-lancey-foux-jim-legxacy',
     slug: 'uk-underground-british-drill-renaissance',
     aliases: ['len-lancey-foux-jim-legxacy', 'uk-underground-renaissance-len-fimiguerrero-lancey-foux-jim-legxacy', 'art-01'],
+    mainKeyword: 'UK underground British drill renaissance',
+    relatedKeywords: ['Jersey club road rap', 'London alternative basement scene'],
     title: 'The UK Underground Renaissance: How Len, Fimiguerrero, Lancey Foux & Jim Legxacy Redefined British Rap',
     subtitle: 'From South London warehouse raves to transatlantic fashion weeks, a rebellious cohort shattered drill orthodoxy in favor of Jersey bounce, punk grit, and emo indie-chops.',
-    excerpt: 'For nearly a decade, international perception of British rap was monopolized by standard 140 BPM drill and grime tempos. In the underground basements of South and East London, artists like Len, Fimiguerrero, Lancey Foux, and Jim Legxacy built an electric, genre-fluid counter-insurgency.',
+    excerpt: 'For nearly a decade, international perception of British rap was dominated by standard drill tempos. Today, a seismic UK underground British drill renaissance has erupted across London basements, pairing the speed of Jersey club road rap with uncompromised creative autonomy in the emergent London alternative basement scene.',
     category: 'Regional Movements',
     author: {
       name: 'Julian Vance',
@@ -353,7 +355,7 @@ export const ARTICLES: BlogArticle[] = [
       {
         heading: 'Breaking the Drill Monopoly: Len & The Mosh-Pit Bounce',
         paragraphs: [
-          'By 2021, the mainstream British rap landscape was suffocating under the weight of its own commercial success. Major record labels were endlessly signing generic UK drill clones with identical sliding 808s and repetitive lyrical tropes. The excitement had shifted entirely to the underground.',
+          'By 2021, the mainstream British rap landscape was suffocating under the weight of its own commercial success, setting the stage for a seismic UK underground British drill renaissance. Rather than conforming to tired streaming formulas, this new movement cross-pollinated aggressive Jersey club road rap rhythms with the raw energy of the London alternative basement scene, transforming sweatbox warehouse raves into the most influential counter-culture in modern music.',
           'Spearheading this rebellion was South London emcee Len, whose seminal projects "LEHGO VOL 1 & 2" combined fast Jersey club kicks, playful ad-libs, and unbridled punk-rap hostility. At Len’s live shows, audiences were not performing drill gun gestures; they were colliding into each other in ferocious, euphoric circle pits.',
         ],
         artistProfile: lenProfile,
@@ -396,9 +398,11 @@ export const ARTICLES: BlogArticle[] = [
     id: 'lucki-veeze-babyface-ray',
     slug: 'lucki-veeze-detroit-nonchalant-underground-rap',
     aliases: ['lucki-veeze-babyface-ray', 'detached-gospel-lucki-veeze-nonchalant-underground', 'art-02'],
+    mainKeyword: 'Lucki and Veeze nonchalant underground rap',
+    relatedKeywords: ['Detroit dragged cadence', 'nocturnal cloud rap confessions'],
     title: 'The Detached Gospel: Lucki, Veeze, and the Nonchalant Underground Dynasty',
     subtitle: 'Why the quietest, most understated cadences in hip-hop spawned two of the most devoted cult followings in modern music history.',
-    excerpt: 'In an era dominated by screamed vocals, loud theatrics, and desperate social media stunts, Chicago’s Lucki and Detroit’s Veeze mastered an inverse art: whispering behind the beat, dragging the pocket, and letting conversational honesty do all the heavy lifting.',
+    excerpt: 'In an era dominated by screamed vocals and viral theatrics, Lucki and Veeze nonchalant underground rap unlocked modern hip-hop\'s most hypnotic subversion. Blending Veeze\'s effortless Detroit dragged cadence with Lucki\'s hazy nocturnal cloud rap confessions, the duo built an untouchable cult empire by whispering behind the beat.',
     category: 'Autonomous DIY',
     author: {
       name: 'Julian Vance',
@@ -419,7 +423,7 @@ export const ARTICLES: BlogArticle[] = [
       {
         heading: 'Lucki and the Architecture of Emotional Exhaustion',
         paragraphs: [
-          'Lucki Camel Jr. did not become an arena-selling phenomenon overnight. In 2013, as Lucki Eck$, he dropped "Alternative Trap", introducing an introspective, sleepy delivery that stood in stark contrast to Chicago’s drill explosion led by Chief Keef.',
+          'Mainstream rap is built on loudness and hyperactive production, but the rise of Lucki and Veeze nonchalant underground rap proved that true influence operates in the quietest shadows. By refusing to chase commercial radio and anchoring their records in a deliberate Detroit dragged cadence alongside Lucki\'s introspective nocturnal cloud rap confessions, these two midwestern auteurs cultivated two of the most fanatical cult audiences in music history.',
           'Over a decade of independent mixtapes ("Watch My Back", "Freewave 3", "Days B4 III"), Lucki perfected a nocturnal soundscape: murky synth pads, sub-bass that rumbles beneath the floorboards, and lyrics dissecting romantic heartbreak, addiction, and fame fatigue.',
           'Lucki’s fans don’t listen passively; they treat his discography as personal therapy. Unreleased leaks on SoundCloud accumulate tens of millions of plays, and his tours sell out in minutes without a single commercial radio single.',
         ],
@@ -462,9 +466,11 @@ export const ARTICLES: BlogArticle[] = [
     id: 'young-thug-gunna-lil-keed',
     slug: 'young-thug-atlanta-melodic-trap-vocal-evolution',
     aliases: ['young-thug-gunna-lil-keed', 'extraterrestrial-vocal-chord-young-thug-gunna', 'extraterrestrial-vocal-chord-young-thug-gunna-rich-gang', 'art-03'],
+    mainKeyword: 'Young Thug Atlanta melodic trap evolution',
+    relatedKeywords: ['Rich Gang vocal elasticity', 'unhinged melodic cadence'],
     title: 'The Extraterrestrial Vocal Chord: How Young Thug & Rich Gang Rewrote Modern Rap',
     subtitle: 'Tracing the DNA of modern melodic hip-hop back to Atlanta’s mid-2010s basement sessions, where vowels were melted and traditional songcraft was obliterated.',
-    excerpt: 'Before Young Thug, rap vocals were judged on diction, baritone authority, and traditional meter. Between 2014 and 2016, Thugger and his Rich Gang cohorts treated the human voice like an unhinged jazz trumpet, permanently liberating two generations of artists.',
+    excerpt: 'Before the 2014 basement sessions in Atlanta, rap vocals adhered strictly to baritone authority and traditional meter. The explosion of Young Thug Atlanta melodic trap evolution permanently dismantled that paradigm, pioneering peerless Rich Gang vocal elasticity and unleashing an unhinged melodic cadence that fathered modern hip-hop.',
     category: 'Sonic Inventions',
     author: {
       name: 'Kofi Mensah',
@@ -485,7 +491,7 @@ export const ARTICLES: BlogArticle[] = [
       {
         heading: 'The Tha Tour Pt. 1 Revelation & Vocal Mutation',
         paragraphs: [
-          'In September 2014, Birdman released "Rich Gang: Tha Tour Pt. 1", showcasing Young Thug and the late Rich Homie Quan alongside in-house producer London on da Track. It remains one of the most creatively radical mixtapes ever released.',
+          'To understand contemporary melodic rap, one must study the ground zero of Young Thug Atlanta melodic trap evolution. Between 2014 and 2016, through the legendary Rich Gang vocal elasticity showcased on seminal mixtapes, Thugger discarded traditional cadence rules in favor of an unhinged melodic cadence that permanently liberated the voice as an improvisational jazz instrument.',
           'Rather than penning traditional 16-bar verses, Thug punched in line by line, inventing bizarre phonetic inflections on the spot: bird chirps, operatic vibratos, guttural gargles, and high-frequency falsettos. On songs like "Givenchy" and "Lifestyle", the boundary between singing and rapping vanished forever.',
         ],
         artistProfile: youngThugProfile,
@@ -526,9 +532,11 @@ export const ARTICLES: BlogArticle[] = [
     id: 'sahbabii-slayr-t3',
     slug: 'sahbabii-ethereal-underwater-ambient-plugg-trap',
     aliases: ['sahbabii-slayr-t3', 'underwater-enigma-sahbabii-slayr-ethereal-trap', 'art-04'],
+    mainKeyword: 'SahBabii ethereal underwater ambient plugg trap',
+    relatedKeywords: ['squid sound aquatic melodies', 'whisper soft video game synths'],
     title: 'The Underwater Enigma: SahBabii, Slayr, and Ethereal Trap Poetics',
     subtitle: 'How an Atlanta recluse traded conventional trap tropes for marine biology, anime references, and whisper-soft melodic bounce.',
-    excerpt: 'While the rest of Atlanta chased menacing minor-key piano loops and aggressive street anthems, SahBabii locked himself in his bedroom studio, surrounded by aquatic visuals and Nintendo synthesizers, to craft some of the gentlest, most idiosyncratic music in rap history.',
+    excerpt: 'While mainstream producers chased harsh minor-key piano loops and aggressive distortion, SahBabii ethereal underwater ambient plugg trap carved out an entirely private sonic universe. Flooding bedroom recordings with signature squid sound aquatic melodies and whisper soft video game synths, SahBabii crafted rap\'s gentlest, most idiosyncratic catalog.',
     category: 'Sonic Inventions',
     author: {
       name: 'Maya Lin',
@@ -549,7 +557,7 @@ export const ARTICLES: BlogArticle[] = [
       {
         heading: 'The S.A.N.D.A.S. Breakthrough and Squid Nation',
         paragraphs: [
-          'In 2017, SahBabii broke out with "Pull Up Wit Ah Stick", recorded on an inexpensive setup in his Atlanta bedroom with his brother T3. But while labels viewed it as a standard viral trap hit, SahBabii had no intention of following industry formulas.',
+          'While the rest of Atlanta chased menacing trap anthems, the emergence of SahBabii ethereal underwater ambient plugg trap established a serene, idiosyncratic sanctuary. By submerging his vocal delivery in squid sound aquatic melodies and layering dreamlike whisper soft video game synths, SahBabii engineered a meditative sonic realm that rejected street clichés in favor of anime surrealism and pure melody.',
           'His follow-up projects, "Squidrific" and "Barnacles", revealed an artist obsessed with zoological metaphors: octopuses, squid ink, jellyfish, and animal kingdom hierarchies. Over cheerful marimbas, flutes, and airy pads, SahBabii rhymed with an effortless, floating cadence that felt weightless.',
         ],
         artistProfile: sahbabiiProfile,
@@ -586,9 +594,11 @@ export const ARTICLES: BlogArticle[] = [
     id: 'conglomerate-yt-nemzzz',
     slug: 'uk-club-rap-manchester-transatlantic-street-drill',
     aliases: ['conglomerate-yt-nemzzz', 'conglomerate-yt-uk-street-club-hybrid', 'art-05'],
+    mainKeyword: 'UK club rap transatlantic street drill',
+    relatedKeywords: ['Manchester high-BPM rave rap', 'independent London DIY collective'],
     title: 'The Conglomerate & YT: The Next Wave of UK Street-Club Transatlantic Hybridity',
     subtitle: 'How a new generation of British underground disruptors fused road rap lyricism with high-BPM rave rhythms and DIY community power.',
-    excerpt: 'Forget standard radio tempos. Collective power in the UK underground has evolved into a high-octane collision of rave culture, Baltimore and Jersey club kicks, and hyper-local London street storytelling spearheaded by YT and The Conglomerate.',
+    excerpt: 'A kinetic cultural collision is currently sweeping through Northern basements and London warehouses: the rise of UK club rap transatlantic street drill. Fueled by Manchester high-BPM rave rap and powered by an independent London DIY collective, visionary artists like YT and The Conglomerate are welding localized British road slang to rave breakbeats.',
     category: 'Regional Movements',
     author: {
       name: 'Julian Vance',
@@ -609,7 +619,7 @@ export const ARTICLES: BlogArticle[] = [
       {
         heading: 'The Street-Club Synthesis: YT\'s High-BPM Insurrection',
         paragraphs: [
-          'In past eras of British music, grime, UK garage, and road rap existed in distinct lanes. The genius of North London artist YT and collectives like Conglomerate is that they erased those borders entirely.',
+          'The traditional 140 BPM drill monopoly in Britain has officially been dethroned by the unstoppable wave of UK club rap transatlantic street drill. Spearheaded by the relentless energy of Manchester high-BPM rave rap and fostered by an independent London DIY collective, artists like YT and Nemzzz are collision-testing Baltimore breakbeats with London street grit, redefining youth culture in real time.',
           'On anthems like "Arcade", YT delivers witty road lyrics over lightning-fast four-on-the-floor and broken-beat rhythms that belong equally in a sweaty Dalston basement rave or driving down the A10. This was not sanitized commercial dance-pop; it was visceral, DIY underground club music made by and for the youth.',
         ],
         artistProfile: ytProfile,
@@ -646,9 +656,11 @@ export const ARTICLES: BlogArticle[] = [
     id: 'migos-takeoff-quavo',
     slug: 'migos-atlanta-triplet-flow-trap-rhythm-cadence',
     aliases: ['migos-takeoff-quavo', 'triplet-inception-early-migos-mixtapes', 'art-06'],
+    mainKeyword: 'Migos Atlanta triplet flow rhythm cadence',
+    relatedKeywords: ['Quality Control basement tapes', 'staccato rap syntax revolution'],
     title: 'The Triplet Inception: How Early Migos Mixtapes Forged Modern Rap’s Rhythmic Grid',
     subtitle: 'Before the pop stardom and Grammy stages, three relatives in Gwinnett County constructed the staccato cadence that permanently bent American syntax.',
-    excerpt: 'It is impossible to discuss the modern underground without examining the 2012-2014 Quality Control basement sessions, where Quavo, Offset, and the late Takeoff systematically overhauled hip-hop rhythm with the unyielding "Migos Triplet."',
+    excerpt: 'Before stadium tours and Grammy stages, the Migos Atlanta triplet flow rhythm cadence was forged in a claustrophobic suburban basement. Captured across raw Quality Control basement tapes, Quavo, Takeoff, and Offset executed a staccato rap syntax revolution that permanently altered Western musical timekeeping.',
     category: 'Sonic Inventions',
     author: {
       name: 'Kofi Mensah',
@@ -669,7 +681,7 @@ export const ARTICLES: BlogArticle[] = [
       {
         heading: 'The Basement Science of Y.R.N. and Takeoff\'s Precision',
         paragraphs: [
-          'In 2013, Migos were three young men sharing a crowded house in Lawrenceville, Georgia. Working with producer Zaytoven and collaborator Peewee Longway, they recorded "Y.R.N. (Young Rich Niggas)" in a cramped home studio.',
+          'Every era of music has an atomic unit of rhythm, and for contemporary hip-hop, that unit is the Migos Atlanta triplet flow rhythm cadence. Documented on early Quality Control basement tapes like "Y.R.N.", this family trio executed a staccato rap syntax revolution that forced every pop star, trap producer, and underground emcee in the world to synchronize to their internal clock.',
           'While Quavo brought melodic flair, the heartbeat of the flow was always the late Kirshnik Khari Ball (Takeoff). Takeoff possessed an uncanny ability to rap three consecutive 16-bar verses in triplets without ever breathing audibly on the microphone.',
         ],
         artistProfile: takeoffProfile,
@@ -706,9 +718,11 @@ export const ARTICLES: BlogArticle[] = [
     id: 'sinn6r-slayr-nettspend',
     slug: 'soundcloud-underground-dark-ambient-distorted-808s',
     aliases: ['sinn6r-slayr-nettspend', 'dark-ambient-fringe-sinn6r-slayr', 'art-07'],
+    mainKeyword: 'SoundCloud underground dark ambient distorted 808s',
+    relatedKeywords: ['extreme harmonic clipping', 'gothic internet trap underground'],
     title: 'The Dark Ambient Fringe: Sinn6r, Slayr, and the Distorted SoundCloud Outliers',
     subtitle: 'Inside the anonymous, masked internet micro-scenes where extreme harmonic clipping, distorted 808s, and ambient pads collide.',
-    excerpt: 'Away from commercial eyes, on encrypted Discord servers and obscure SoundCloud pages, artists like Sinn6r and Slayr are pushing trap music into its most abrasive, gothic, and ambient extremes.',
+    excerpt: 'Far beyond algorithmic streaming recommendations and industry showcases thrives the SoundCloud underground dark ambient distorted 808s movement. Built on extreme harmonic clipping and forged in a gothic internet trap underground, outliers like Sinn6r and Slayr weaponize abrasive audio degradation into hypnotic, melancholic art.',
     category: 'Internet Collectives',
     author: {
       name: 'Maya Lin',
@@ -729,7 +743,7 @@ export const ARTICLES: BlogArticle[] = [
       {
         heading: 'Sinn6r and the Rejection of Personal Brand Visibility',
         paragraphs: [
-          'In an era where every artist is expected to be a smiling TikTok influencer, anonymous underground icon Sinn6r represents the return of countercultural mystique. Performing in pitch-black shadow with heavy pitch-corrected vocal processing, Sinn6r turns live performances into apocalyptic gothic rituals.',
+          'Tucked away inside private Discord servers and anonymous profiles, the SoundCloud underground dark ambient distorted 808s movement is redefining counter-culture audio. By deliberately inducing extreme harmonic clipping across analog limits, this masked gothic internet trap underground rejects commercial sheen to craft some of the most hauntingly raw recordings of the decade.',
         ],
         artistProfile: sinn6rProfile,
       },
@@ -764,9 +778,11 @@ export const ARTICLES: BlogArticle[] = [
     id: 'danny-brown-jpegmafia-bruiser-wolf',
     slug: 'jpegmafia-danny-brown-industrial-experimental-hip-hop',
     aliases: ['danny-brown-jpegmafia-bruiser-wolf', 'sp404-noise-terrorists-danny-brown-jpegmafia', 'art-08'],
+    mainKeyword: 'JPEGMAFIA and Danny Brown industrial experimental hip-hop',
+    relatedKeywords: ['SP-404 hardware sampling', 'abrasive noise-rap dissonance'],
     title: 'The SP-404 Noise Terrorists: Danny Brown, JPEGMAFIA and the Industrial Avant-Garde',
     subtitle: 'How two uncompromising outsiders rejected commercial quantization to build an unclassifiable empire on abrasive noise and lyrical genius.',
-    excerpt: 'Mainstream hip-hop loves neat grids, predictable hooks, and friendly PR campaigns. Danny Brown and JPEGMAFIA represent the exact opposite: two brilliant, antagonistic auteurs weaponizing cracked software, hardware samplers, and unmatched emcee agility.',
+    excerpt: 'Commercial rap thrives on quantized grids, predictable song structures, and sterile mixdowns; conversely, JPEGMAFIA and Danny Brown industrial experimental hip-hop delivers total sonic warfare. Rooted in tactile SP-404 hardware sampling and abrasive noise-rap dissonance, these two antagonistic auteurs prove that friction remains hip-hop\'s greatest asset.',
     category: 'Abstract & Soul',
     author: {
       name: 'Julian Vance',
@@ -787,7 +803,7 @@ export const ARTICLES: BlogArticle[] = [
       {
         heading: 'Danny Brown: The Fearless Detroit Pioneer',
         paragraphs: [
-          'Danny Brown spent decades being told he was too weird for mainstream rap. From "XXX" to the krautrock-fueled "Atrocity Exhibition", Danny proved that emcee virtuosity could exist alongside Joy Division gloom and free jazz dissonance.',
+          'In an era where major label rap sounds assembled by algorithm, JPEGMAFIA and Danny Brown industrial experimental hip-hop stands as a furious monument to human chaos. Rooted in tactile SP-404 hardware sampling and unapologetic abrasive noise-rap dissonance, their collaborative mastery on "SCARING THE HOES" proved that true emcee agility can dismantle any clean corporate playlist.',
         ],
         artistProfile: dannyBrownProfile,
       },
@@ -824,9 +840,11 @@ export const ARTICLES: BlogArticle[] = [
     id: 'mach-hommy-tha-god-fahim-preservation',
     slug: 'mach-hommy-underground-vinyl-drumless-boom-bap',
     aliases: ['mach-hommy-tha-god-fahim-preservation', 'fine-art-doctrine-mach-hommy-tha-god-fahim', 'art-09'],
+    mainKeyword: 'Mach-Hommy underground vinyl drumless boom-bap',
+    relatedKeywords: ['four-figure physical records', 'Dump Yowies fine art doctrine'],
     title: 'The Fine Art Doctrine: Mach-Hommy, Tha God Fahim, and the Economics of Scarcity',
     subtitle: 'How an elusive Haitian-American wordsmith and the Dump Yowies bypassed streaming algorithms to sell $1,000 physical vinyl to an eager art world.',
-    excerpt: 'While other rappers begged for playlist placement to earn fractions of a cent, Mach-Hommy and Tha God Fahim treated their music like limited-edition Jean-Michel Basquiat paintings. The results proved that true exclusivity out-earns mass algorithmic exposure.',
+    excerpt: 'While the streaming era conditioned musicians to trade their life\'s work for fractions of a penny, Mach-Hommy underground vinyl drumless boom-bap completely dismantled the exploitative digital distribution model. By releasing coveted four-figure physical records under the uncompromising Dump Yowies fine art doctrine, Mach-Hommy restored supreme economic dignity to lyrical craft.',
     category: 'Autonomous DIY',
     author: {
       name: 'Julian Vance',
@@ -847,7 +865,7 @@ export const ARTICLES: BlogArticle[] = [
       {
         heading: 'Mach-Hommy and the $1,000 Vinyl Model',
         paragraphs: [
-          'In 2016, Newark-based lyricist Mach-Hommy made an audacious decision: he removed his core discography from Spotify and Apple Music. Instead, he hosted his albums directly on Bandcamp, pricing digital downloads at $111 to $300 and physical vinyl pressings at $1,000.',
+          'When Spotify normalized the devaluing of recorded music, the emergence of Mach-Hommy underground vinyl drumless boom-bap represented a historic economic rebellion. By pricing limited four-figure physical records directly to art-world collectors and adhering to the Dump Yowies fine art doctrine, Mach-Hommy demonstrated that profound lyrical scholarship out-earns mass algorithmic exposure ten times over.',
           'By cultivating a global audience of high-earning art collectors and dedicated crate-diggers, Mach-Hommy generated hundreds of thousands of dollars on single album drops, maintaining 100% ownership of his masters and publishing.',
         ],
         artistProfile: machHommyProfile,
@@ -884,9 +902,11 @@ export const ARTICLES: BlogArticle[] = [
     id: 'jid-earthgang-kenny-mason',
     slug: 'jid-spillage-village-atlanta-polyrhythmic-rap',
     aliases: ['jid-earthgang-kenny-mason', 'polyrhythmic-vanguard-jid-spillage-village', 'art-10'],
+    mainKeyword: 'JID Spillage Village Atlanta polyrhythmic rap',
+    relatedKeywords: ['Olympic breath control cadence', 'Southern soul lyrical acrobatics'],
     title: 'The Polyrhythmic Vanguard: JID, Spillage Village, and the High-Velocity Renaissance',
     subtitle: 'How an East Atlanta collective preserved Southern musical soul and Olympic breath control during the peak of monotone commercial rap.',
-    excerpt: 'When critics complained that modern rap had abandoned lyricism, technical breath control, and storytelling, East Atlanta’s JID and Spillage Village were quietly assembling the sharpest, most acrobatic polyrhythmic flows of the century.',
+    excerpt: 'When critics complained that contemporary hip-hop had abandoned storytelling, breath control, and rhythmic complexity, JID Spillage Village Atlanta polyrhythmic rap delivered a breathtaking rebuttal. Blending peerless Olympic breath control cadence with rich Southern soul lyrical acrobatics, JID and his East Atlanta cohorts engineered the century\'s most acrobatic verbal mastery.',
     category: 'Regional Movements',
     author: {
       name: 'Kofi Mensah',
@@ -907,7 +927,7 @@ export const ARTICLES: BlogArticle[] = [
       {
         heading: 'The East Atlanta Den and JID\'s Rhythmic Virtuosity',
         paragraphs: [
-          'In the early 2010s, a house in East Atlanta served as the incubation lab for Spillage Village—a collective comprising JID, EarthGang, and producer Hollywood JB. While the rest of Atlanta was making 808-heavy club anthems, Spillage Village was studying jazz chords and OutKast’s boundary-pushing legacy.',
+          'Whenever a cultural purist laments the death of lyricism in modern rap, the staggering brilliance of JID Spillage Village Atlanta polyrhythmic rap stands ready to humiliate the claim. Through an unmatched Olympic breath control cadence and jaw-dropping Southern soul lyrical acrobatics, East Atlanta\'s Spillage Village collective elevated cadence into high-velocity performance art.',
           'When JID dropped "The Never Story" in 2017 and "The Forever Story" in 2022, he cemented his place among the all-time technical greats, effortlessly switching between triple-time cadences and soulful crooning.',
         ],
         artistProfile: jidProfile,

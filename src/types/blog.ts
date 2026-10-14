@@ -47,6 +47,8 @@ export interface BlogArticle {
   id: string;
   slug: string;
   aliases?: string[];
+  mainKeyword: string;
+  relatedKeywords: string[];
   title: string;
   subtitle: string;
   excerpt: string;
