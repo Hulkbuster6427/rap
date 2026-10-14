@@ -45,6 +45,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
             <img
               src={leadArtist.imageUrl}
               alt={leadArtist.name}
+              title={leadArtist.name}
               className="w-full h-full object-cover object-top sm:object-center group-hover:scale-105 transition-transform duration-500"
             />
           ) : (

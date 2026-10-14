@@ -135,6 +135,7 @@ export const SectionArtistPhoto: React.FC<SectionArtistPhotoProps> = ({ artist }
             <img
               src={currentSrc}
               alt={`Archival photograph of ${artist.name}`}
+              title={`${artist.name}`}
               referrerPolicy="no-referrer"
               onError={handleImageError}
               className="w-full h-full object-cover object-top sm:object-center grayscale contrast-115 group-hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-105"

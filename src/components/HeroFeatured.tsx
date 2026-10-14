@@ -184,6 +184,7 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
                   <img
                     src={fa.imageUrl}
                     alt={fa.name}
+                    title={fa.name}
                     className="absolute inset-0 w-full h-full object-cover object-top sm:object-center group-hover/art:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-transparent pointer-events-none" />
