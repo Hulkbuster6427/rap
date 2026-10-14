@@ -64,8 +64,8 @@ export const HomePage: React.FC = () => {
 
   return (
     <div>
-      {/* 1. Executive Summary & 10-Blog Research Findings (The first thing the user sees) */}
-      <ExecutiveFindingsBrief onSelectArticle={(slug) => navigate(`/${slug}`)} />
+      {/* 1. Core Publication Overview & Thesis (First thing user sees) */}
+      <ExecutiveFindingsBrief />
 
       {/* Hero Featured Article (shown when not filtering by search or saved) */}
       {!searchQuery && selectedCategory === 'All' && !showSavedOnly && (
