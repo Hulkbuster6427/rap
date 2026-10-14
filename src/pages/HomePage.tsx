@@ -58,7 +58,7 @@ export const HomePage: React.FC = () => {
   const leadFeaturedArticle = ARTICLES.find((a) => a.featured) || ARTICLES[0];
 
   const handleOpenArticle = (article: BlogArticle) => {
-    navigate(`/article/${article.id}`);
+    navigate(`/${article.slug || article.id}`);
   };
 
   return (

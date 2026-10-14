@@ -7,8 +7,8 @@ export interface RouteState {
 }
 
 export function getArticleUrl(article: BlogArticle): string {
-  if (typeof window === 'undefined') return `?blog=${article.slug}`;
-  return `${window.location.origin}${window.location.pathname}?blog=${article.slug}`;
+  if (typeof window === 'undefined') return `/${article.slug || article.id}`;
+  return `${window.location.origin}/${article.slug || article.id}`;
 }
 
 export function parseCurrentRoute(articles: BlogArticle[]): RouteState {

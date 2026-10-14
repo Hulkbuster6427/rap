@@ -22,21 +22,27 @@ export const ArticlePage: React.FC = () => {
     const caseMatch = ARTICLES.find((a) => a.id.toLowerCase() === lower || a.slug?.toLowerCase() === lower);
     if (caseMatch) return caseMatch;
 
-    // 3. Numeric index match (e.g., /article/1 or /article/0)
+    // 3. Alias match
+    const aliasMatch = ARTICLES.find((a) =>
+      a.aliases?.some((al) => al.toLowerCase() === lower || al.toLowerCase().replace(/-/g, '') === lower.replace(/-/g, ''))
+    );
+    if (aliasMatch) return aliasMatch;
+
+    // 4. Numeric index match (e.g., /article/1 or /article/0)
     const num = parseInt(id, 10);
     if (!isNaN(num)) {
       if (num >= 1 && num <= ARTICLES.length) return ARTICLES[num - 1];
       if (num >= 0 && num < ARTICLES.length) return ARTICLES[num];
     }
 
-    // 4. art-XX format (e.g. /article/art-01)
+    // 5. art-XX format (e.g. /article/art-01)
     const artMatch = id.match(/art-(\d+)/i);
     if (artMatch) {
       const idx = parseInt(artMatch[1], 10) - 1;
       if (idx >= 0 && idx < ARTICLES.length) return ARTICLES[idx];
     }
 
-    // 5. Partial slug match
+    // 6. Partial slug match
     const partial = ARTICLES.find((a) => a.id.includes(lower) || (a.slug && a.slug.includes(lower)));
     if (partial) return partial;
 
@@ -92,7 +98,7 @@ export const ArticlePage: React.FC = () => {
       onPlayCompanion={(overrideBeatId) => playCompanionForArticle(article, overrideBeatId)}
       allArticles={ARTICLES}
       onSelectArticle={(nextArt) => {
-        navigate(`/article/${nextArt.id}`);
+        navigate(`/${nextArt.slug || nextArt.id}`);
       }}
     />
   );

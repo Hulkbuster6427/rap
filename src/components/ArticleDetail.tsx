@@ -111,8 +111,8 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
   };
 
   const articleUrl = typeof window !== 'undefined' 
-    ? `${window.location.origin}${window.location.pathname}?blog=${article.slug}` 
-    : `?blog=${article.slug}`;
+    ? `${window.location.origin}/${article.slug || article.id}` 
+    : `/${article.slug || article.id}`;
 
   const handleCopyLink = async () => {
     try {

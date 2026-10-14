@@ -1,33 +1,79 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { useApp } from '../context/AppContext';
 import { Volume2, VolumeX, Radio, Sparkles } from 'lucide-react';
 
 interface NavbarProps {
-  currentTab: 'articles' | 'timeline';
-  onSelectTab: (tab: 'articles' | 'timeline') => void;
-  onOpenManifesto: () => void;
-  onOpenSubmit: () => void;
-  isAudioPlaying: boolean;
-  onToggleAudio: () => void;
+  currentTab?: 'articles' | 'timeline';
+  onSelectTab?: (tab: 'articles' | 'timeline') => void;
+  onOpenManifesto?: () => void;
+  onOpenSubmit?: () => void;
+  isAudioPlaying?: boolean;
+  onToggleAudio?: () => void;
   activeBeatName?: string;
-  savedCount: number;
+  savedCount?: number;
   onToggleSavedOnly?: () => void;
   showingSavedOnly?: boolean;
   selectedArticleTitle?: string;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
-  currentTab,
-  onSelectTab,
-  onOpenManifesto,
-  onOpenSubmit,
-  isAudioPlaying,
-  onToggleAudio,
-  activeBeatName,
-  savedCount,
-  onToggleSavedOnly,
-  showingSavedOnly,
+  currentTab: propCurrentTab,
+  onSelectTab: propOnSelectTab,
+  onOpenManifesto: propOnOpenManifesto,
+  onOpenSubmit: propOnOpenSubmit,
+  isAudioPlaying: propIsAudioPlaying,
+  onToggleAudio: propOnToggleAudio,
+  activeBeatName: propActiveBeatName,
+  savedCount: propSavedCount,
+  onToggleSavedOnly: propOnToggleSavedOnly,
+  showingSavedOnly: propShowingSavedOnly,
   selectedArticleTitle,
 }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const app = useApp();
+
+  const isTimeline = propCurrentTab ? propCurrentTab === 'timeline' : location.pathname.startsWith('/timeline');
+  const isArticles = propCurrentTab ? propCurrentTab === 'articles' : !isTimeline;
+  const isAudioPlaying = propIsAudioPlaying ?? app.isAudioPlaying;
+  const onToggleAudio = propOnToggleAudio ?? app.toggleAudio;
+  const activeBeatName = propActiveBeatName ?? app.activeBeatName;
+  const savedCount = propSavedCount ?? app.savedArticleIds.length;
+  const showingSavedOnly = propShowingSavedOnly ?? app.showSavedOnly;
+
+  const handleGoArticles = () => {
+    app.setShowSavedOnly(false);
+    if (propOnSelectTab) {
+      propOnSelectTab('articles');
+    } else {
+      navigate('/');
+    }
+  };
+
+  const handleGoTimeline = () => {
+    app.setShowSavedOnly(false);
+    if (propOnSelectTab) {
+      propOnSelectTab('timeline');
+    } else {
+      navigate('/timeline');
+    }
+  };
+
+  const handleToggleSaved = () => {
+    if (propOnToggleSavedOnly) {
+      propOnToggleSavedOnly();
+    } else {
+      app.setShowSavedOnly(!app.showSavedOnly);
+      if (location.pathname !== '/') {
+        navigate('/');
+      }
+    }
+  };
+
+  const handleOpenManifesto = propOnOpenManifesto ?? (() => app.setIsManifestoOpen(true));
+  const handleOpenSubmit = propOnOpenSubmit ?? (() => app.setIsSubmitOpen(true));
+
   return (
     <header className="sticky top-0 z-40 bg-[#0b0c10]/90 backdrop-blur-md border-b border-zinc-800/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -35,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Zone 1: Single text element wordmark */}
         <div className="flex items-center gap-3">
           <button 
-            onClick={() => onSelectTab('articles')}
+            onClick={handleGoArticles}
             className="text-left group focus-visible:outline-none"
             title="Return to home journal archive"
           >
@@ -55,9 +101,9 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Zone 2: Clean text navigation links */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
           <button
-            onClick={() => onSelectTab('articles')}
+            onClick={handleGoArticles}
             className={`transition-colors hover:text-zinc-100 pb-0.5 ${
-              currentTab === 'articles' && !showingSavedOnly
+              isArticles && !showingSavedOnly
                 ? 'text-amber-400 border-b-2 border-amber-400 font-semibold'
                 : ''
             }`}
@@ -66,9 +112,9 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
-            onClick={() => onSelectTab('timeline')}
+            onClick={handleGoTimeline}
             className={`transition-colors hover:text-zinc-100 pb-0.5 ${
-              currentTab === 'timeline'
+              isTimeline
                 ? 'text-amber-400 border-b-2 border-amber-400 font-semibold'
                 : ''
             }`}
@@ -77,30 +123,28 @@ export const Navbar: React.FC<NavbarProps> = ({
           </button>
 
           <button
-            onClick={onOpenManifesto}
+            onClick={handleOpenManifesto}
             className="transition-colors hover:text-zinc-100"
           >
             Manifesto
           </button>
 
-          {onToggleSavedOnly && (
-            <button
-              onClick={onToggleSavedOnly}
-              className={`transition-colors hover:text-zinc-100 flex items-center gap-1.5 ${
-                showingSavedOnly ? 'text-amber-400 font-semibold' : ''
-              }`}
-            >
-              <span>Saved Archive</span>
-              {savedCount > 0 && (
-                <span className="font-mono text-xs text-zinc-400 tabular-nums">
-                  ({savedCount})
-                </span>
-              )}
-            </button>
-          )}
+          <button
+            onClick={handleToggleSaved}
+            className={`transition-colors hover:text-zinc-100 flex items-center gap-1.5 ${
+              showingSavedOnly ? 'text-amber-400 font-semibold' : ''
+            }`}
+          >
+            <span>Saved Archive</span>
+            {savedCount > 0 && (
+              <span className="font-mono text-xs text-zinc-400 tabular-nums">
+                ({savedCount})
+              </span>
+            )}
+          </button>
         </nav>
 
-        {/* Zone 3: 1-2 primary actions */}
+        {/* Zone 3: Primary action + Audio controls */}
         <div className="flex items-center gap-3">
           {/* Audio companion pill button */}
           <button
@@ -118,46 +162,27 @@ export const Navbar: React.FC<NavbarProps> = ({
                 <span className="hidden sm:inline truncate max-w-[110px]">
                   {activeBeatName || 'Audio Active'}
                 </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping ml-1" />
               </>
             ) : (
               <>
-                <VolumeX className="w-3.5 h-3.5 text-zinc-500" />
-                <span className="hidden sm:inline">Play Ambience</span>
+                <VolumeX className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Companion Synth</span>
               </>
             )}
           </button>
 
-          {/* Submit dispatch button */}
+          {/* Submit Field Recording CTA */}
           <button
-            onClick={onOpenSubmit}
-            className="px-3.5 py-1.5 rounded-lg text-xs font-medium text-zinc-950 bg-amber-400 hover:bg-amber-300 transition-colors whitespace-nowrap font-display uppercase tracking-wider"
+            onClick={handleOpenSubmit}
+            className="px-3.5 py-1.5 rounded-lg bg-zinc-900 hover:bg-zinc-800 border border-zinc-700/80 hover:border-amber-400/60 text-zinc-200 hover:text-amber-400 text-xs font-mono flex items-center gap-1.5 transition-all shadow-sm"
           >
-            Submit Tip
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <span className="hidden sm:inline">Submit Track</span>
+            <span className="sm:hidden">Submit</span>
           </button>
         </div>
 
-      </div>
-
-      {/* Mobile nav bar row */}
-      <div className="md:hidden flex items-center justify-around px-4 py-2 border-t border-zinc-800/60 bg-[#0b0c10] text-xs font-medium text-zinc-400">
-        <button
-          onClick={() => onSelectTab('articles')}
-          className={`py-1 ${currentTab === 'articles' && !showingSavedOnly ? 'text-amber-400 font-semibold' : ''}`}
-        >
-          Articles (10)
-        </button>
-        <button
-          onClick={() => onSelectTab('timeline')}
-          className={`py-1 ${currentTab === 'timeline' ? 'text-amber-400 font-semibold' : ''}`}
-        >
-          Detailed Timeline
-        </button>
-        <button
-          onClick={onOpenManifesto}
-          className="py-1 hover:text-zinc-200"
-        >
-          Manifesto
-        </button>
       </div>
     </header>
   );

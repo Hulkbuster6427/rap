@@ -328,8 +328,8 @@ export const ARTICLES: BlogArticle[] = [
   // 1. UK UNDERGROUND SPECIAL
   {
     id: 'len-lancey-foux-jim-legxacy',
-    slug: 'len-lancey-foux-jim-legxacy',
-    aliases: ['uk-underground-renaissance-len-fimiguerrero-lancey-foux-jim-legxacy'],
+    slug: 'uk-underground-british-drill-renaissance',
+    aliases: ['len-lancey-foux-jim-legxacy', 'uk-underground-renaissance-len-fimiguerrero-lancey-foux-jim-legxacy', 'art-01'],
     title: 'The UK Underground Renaissance: How Len, Fimiguerrero, Lancey Foux & Jim Legxacy Redefined British Rap',
     subtitle: 'From South London warehouse raves to transatlantic fashion weeks, a rebellious cohort shattered drill orthodoxy in favor of Jersey bounce, punk grit, and emo indie-chops.',
     excerpt: 'For nearly a decade, international perception of British rap was monopolized by standard 140 BPM drill and grime tempos. In the underground basements of South and East London, artists like Len, Fimiguerrero, Lancey Foux, and Jim Legxacy built an electric, genre-fluid counter-insurgency.',
@@ -394,8 +394,8 @@ export const ARTICLES: BlogArticle[] = [
   // 2. LUCKI & VEEZE
   {
     id: 'lucki-veeze-babyface-ray',
-    slug: 'lucki-veeze-babyface-ray',
-    aliases: ['detached-gospel-lucki-veeze-nonchalant-underground'],
+    slug: 'lucki-veeze-detroit-nonchalant-underground-rap',
+    aliases: ['lucki-veeze-babyface-ray', 'detached-gospel-lucki-veeze-nonchalant-underground', 'art-02'],
     title: 'The Detached Gospel: Lucki, Veeze, and the Nonchalant Underground Dynasty',
     subtitle: 'Why the quietest, most understated cadences in hip-hop spawned two of the most devoted cult followings in modern music history.',
     excerpt: 'In an era dominated by screamed vocals, loud theatrics, and desperate social media stunts, Chicago’s Lucki and Detroit’s Veeze mastered an inverse art: whispering behind the beat, dragging the pocket, and letting conversational honesty do all the heavy lifting.',
@@ -460,8 +460,8 @@ export const ARTICLES: BlogArticle[] = [
   // 3. YOUNG THUG & RICH GANG
   {
     id: 'young-thug-gunna-lil-keed',
-    slug: 'young-thug-gunna-lil-keed',
-    aliases: ['extraterrestrial-vocal-chord-young-thug-gunna', 'extraterrestrial-vocal-chord-young-thug-gunna-rich-gang'],
+    slug: 'young-thug-atlanta-melodic-trap-vocal-evolution',
+    aliases: ['young-thug-gunna-lil-keed', 'extraterrestrial-vocal-chord-young-thug-gunna', 'extraterrestrial-vocal-chord-young-thug-gunna-rich-gang', 'art-03'],
     title: 'The Extraterrestrial Vocal Chord: How Young Thug & Rich Gang Rewrote Modern Rap',
     subtitle: 'Tracing the DNA of modern melodic hip-hop back to Atlanta’s mid-2010s basement sessions, where vowels were melted and traditional songcraft was obliterated.',
     excerpt: 'Before Young Thug, rap vocals were judged on diction, baritone authority, and traditional meter. Between 2014 and 2016, Thugger and his Rich Gang cohorts treated the human voice like an unhinged jazz trumpet, permanently liberating two generations of artists.',
@@ -524,8 +524,8 @@ export const ARTICLES: BlogArticle[] = [
   // 4. SAHBABII & SLAYR
   {
     id: 'sahbabii-slayr-t3',
-    slug: 'sahbabii-slayr-t3',
-    aliases: ['underwater-enigma-sahbabii-slayr-ethereal-trap'],
+    slug: 'sahbabii-ethereal-underwater-ambient-plugg-trap',
+    aliases: ['sahbabii-slayr-t3', 'underwater-enigma-sahbabii-slayr-ethereal-trap', 'art-04'],
     title: 'The Underwater Enigma: SahBabii, Slayr, and Ethereal Trap Poetics',
     subtitle: 'How an Atlanta recluse traded conventional trap tropes for marine biology, anime references, and whisper-soft melodic bounce.',
     excerpt: 'While the rest of Atlanta chased menacing minor-key piano loops and aggressive street anthems, SahBabii locked himself in his bedroom studio, surrounded by aquatic visuals and Nintendo synthesizers, to craft some of the gentlest, most idiosyncratic music in rap history.',
@@ -584,8 +584,8 @@ export const ARTICLES: BlogArticle[] = [
   // 5. THE CONGLOMERATE & YT
   {
     id: 'conglomerate-yt-nemzzz',
-    slug: 'conglomerate-yt-nemzzz',
-    aliases: ['conglomerate-yt-uk-street-club-hybrid', 'conglomerate-yt-uk-street-club-transatlantic-hybrid'],
+    slug: 'uk-club-rap-manchester-transatlantic-street-drill',
+    aliases: ['conglomerate-yt-nemzzz', 'conglomerate-yt-uk-street-club-hybrid', 'art-05'],
     title: 'The Conglomerate & YT: The Next Wave of UK Street-Club Transatlantic Hybridity',
     subtitle: 'How a new generation of British underground disruptors fused road rap lyricism with high-BPM rave rhythms and DIY community power.',
     excerpt: 'Forget standard radio tempos. Collective power in the UK underground has evolved into a high-octane collision of rave culture, Baltimore and Jersey club kicks, and hyper-local London street storytelling spearheaded by YT and The Conglomerate.',
@@ -644,8 +644,8 @@ export const ARTICLES: BlogArticle[] = [
   // 6. MIGOS & THE TRIPLET GRID
   {
     id: 'migos-takeoff-quavo',
-    slug: 'migos-takeoff-quavo',
-    aliases: ['triplet-inception-early-migos-mixtapes', 'triplet-inception-early-migos-mixtapes-rhythmic-grid'],
+    slug: 'migos-atlanta-triplet-flow-trap-rhythm-cadence',
+    aliases: ['migos-takeoff-quavo', 'triplet-inception-early-migos-mixtapes', 'art-06'],
     title: 'The Triplet Inception: How Early Migos Mixtapes Forged Modern Rap’s Rhythmic Grid',
     subtitle: 'Before the pop stardom and Grammy stages, three relatives in Gwinnett County constructed the staccato cadence that permanently bent American syntax.',
     excerpt: 'It is impossible to discuss the modern underground without examining the 2012-2014 Quality Control basement sessions, where Quavo, Offset, and the late Takeoff systematically overhauled hip-hop rhythm with the unyielding "Migos Triplet."',
@@ -704,8 +704,8 @@ export const ARTICLES: BlogArticle[] = [
   // 7. SINN6R & SLAYR
   {
     id: 'sinn6r-slayr-nettspend',
-    slug: 'sinn6r-slayr-nettspend',
-    aliases: ['dark-ambient-fringe-sinn6r-slayr', 'dark-ambient-fringe-sinn6r-slayr-distorted-outliers'],
+    slug: 'soundcloud-underground-dark-ambient-distorted-808s',
+    aliases: ['sinn6r-slayr-nettspend', 'dark-ambient-fringe-sinn6r-slayr', 'art-07'],
     title: 'The Dark Ambient Fringe: Sinn6r, Slayr, and the Distorted SoundCloud Outliers',
     subtitle: 'Inside the anonymous, masked internet micro-scenes where extreme harmonic clipping, distorted 808s, and ambient pads collide.',
     excerpt: 'Away from commercial eyes, on encrypted Discord servers and obscure SoundCloud pages, artists like Sinn6r and Slayr are pushing trap music into its most abrasive, gothic, and ambient extremes.',
@@ -762,8 +762,8 @@ export const ARTICLES: BlogArticle[] = [
   // 8. DANNY BROWN & JPEGMAFIA
   {
     id: 'danny-brown-jpegmafia-bruiser-wolf',
-    slug: 'danny-brown-jpegmafia-bruiser-wolf',
-    aliases: ['sp404-noise-terrorists-danny-brown-jpegmafia'],
+    slug: 'jpegmafia-danny-brown-industrial-experimental-hip-hop',
+    aliases: ['danny-brown-jpegmafia-bruiser-wolf', 'sp404-noise-terrorists-danny-brown-jpegmafia', 'art-08'],
     title: 'The SP-404 Noise Terrorists: Danny Brown, JPEGMAFIA and the Industrial Avant-Garde',
     subtitle: 'How two uncompromising outsiders rejected commercial quantization to build an unclassifiable empire on abrasive noise and lyrical genius.',
     excerpt: 'Mainstream hip-hop loves neat grids, predictable hooks, and friendly PR campaigns. Danny Brown and JPEGMAFIA represent the exact opposite: two brilliant, antagonistic auteurs weaponizing cracked software, hardware samplers, and unmatched emcee agility.',
@@ -822,8 +822,8 @@ export const ARTICLES: BlogArticle[] = [
   // 9. MACH-HOMMY & THA GOD FAHIM
   {
     id: 'mach-hommy-tha-god-fahim-preservation',
-    slug: 'mach-hommy-tha-god-fahim-preservation',
-    aliases: ['fine-art-doctrine-mach-hommy-tha-god-fahim', 'fine-art-doctrine-mach-hommy-tha-god-fahim-scarcity'],
+    slug: 'mach-hommy-underground-vinyl-drumless-boom-bap',
+    aliases: ['mach-hommy-tha-god-fahim-preservation', 'fine-art-doctrine-mach-hommy-tha-god-fahim', 'art-09'],
     title: 'The Fine Art Doctrine: Mach-Hommy, Tha God Fahim, and the Economics of Scarcity',
     subtitle: 'How an elusive Haitian-American wordsmith and the Dump Yowies bypassed streaming algorithms to sell $1,000 physical vinyl to an eager art world.',
     excerpt: 'While other rappers begged for playlist placement to earn fractions of a cent, Mach-Hommy and Tha God Fahim treated their music like limited-edition Jean-Michel Basquiat paintings. The results proved that true exclusivity out-earns mass algorithmic exposure.',
@@ -882,8 +882,8 @@ export const ARTICLES: BlogArticle[] = [
   // 10. JID & SPILLAGE VILLAGE
   {
     id: 'jid-earthgang-kenny-mason',
-    slug: 'jid-earthgang-kenny-mason',
-    aliases: ['polyrhythmic-vanguard-jid-spillage-village', 'polyrhythmic-vanguard-jid-spillage-village-technical-renaissance'],
+    slug: 'jid-spillage-village-atlanta-polyrhythmic-rap',
+    aliases: ['jid-earthgang-kenny-mason', 'polyrhythmic-vanguard-jid-spillage-village', 'art-10'],
     title: 'The Polyrhythmic Vanguard: JID, Spillage Village, and the High-Velocity Renaissance',
     subtitle: 'How an East Atlanta collective preserved Southern musical soul and Olympic breath control during the peak of monotone commercial rap.',
     excerpt: 'When critics complained that modern rap had abandoned lyricism, technical breath control, and storytelling, East Atlanta’s JID and Spillage Village were quietly assembling the sharpest, most acrobatic polyrhythmic flows of the century.',
