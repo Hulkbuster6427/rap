@@ -7,8 +7,11 @@ export interface RouteState {
 }
 
 export function getArticleUrl(article: BlogArticle): string {
-  if (typeof window === 'undefined') return `/${article.slug || article.id}`;
-  return `${window.location.origin}/${article.slug || article.id}`;
+  if (typeof window === 'undefined') return `https://underground-rap.vercel.app/${article.slug || article.id}`;
+  const origin = window.location.hostname.includes('vercel.app') || window.location.hostname === 'localhost'
+    ? window.location.origin
+    : 'https://underground-rap.vercel.app';
+  return `${origin}/${article.slug || article.id}`;
 }
 
 export function parseCurrentRoute(articles: BlogArticle[]): RouteState {

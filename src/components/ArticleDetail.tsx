@@ -198,10 +198,9 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
     }
   };
 
-  const siteBaseUrl = typeof window !== 'undefined' && window.location.hostname === 'localhost'
-    ? window.location.origin
-    : 'https://undergroundrap.vercel.app';
-  const articleUrl = `${siteBaseUrl}/${article.slug || article.id}`;
+  const articleUrl = typeof window !== 'undefined' 
+    ? `${(window.location.hostname.includes('vercel.app') || window.location.hostname === 'localhost') ? window.location.origin : 'https://underground-rap.vercel.app'}/${article.slug || article.id}` 
+    : `https://underground-rap.vercel.app/${article.slug || article.id}`;
 
   const handleCopyLink = async () => {
     try {

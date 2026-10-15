@@ -53,24 +53,32 @@ export const ArticlePage: React.FC = () => {
     const siteDesc = "Explore the evolution of modern underground rap through investigative monographs, sonic blueprints, and audio companions. Read all 10 curated dispatches now.";
     const metaDesc = document.querySelector('meta[name="description"]');
     const canonicalLink = document.querySelector('link[rel="canonical"]');
-    const ogUrl = document.querySelector('meta[property="og:url"]');
-    const twitterUrl = document.querySelector('meta[name="twitter:url"]');
-    const baseUrl = 'https://underground-rap.vercel.app';
+    const ogUrlMeta = document.querySelector('meta[property="og:url"]');
+    const twitterUrlMeta = document.querySelector('meta[name="twitter:url"]');
+    const ogTitleMeta = document.querySelector('meta[property="og:title"]');
+    const twitterTitleMeta = document.querySelector('meta[name="twitter:title"]');
 
     if (article) {
       document.title = article.title;
-      const articleUrl = `${baseUrl}/${article.slug || article.id}`;
+      const articleUrl = `https://underground-rap.vercel.app/${article.slug || article.id}`;
+
       if (metaDesc) {
         metaDesc.setAttribute('content', `${article.title}. ${article.subtitle || article.excerpt}`);
       }
       if (canonicalLink) {
         canonicalLink.setAttribute('href', articleUrl);
       }
-      if (ogUrl) {
-        ogUrl.setAttribute('content', articleUrl);
+      if (ogUrlMeta) {
+        ogUrlMeta.setAttribute('content', articleUrl);
       }
-      if (twitterUrl) {
-        twitterUrl.setAttribute('content', articleUrl);
+      if (twitterUrlMeta) {
+        twitterUrlMeta.setAttribute('content', articleUrl);
+      }
+      if (ogTitleMeta) {
+        ogTitleMeta.setAttribute('content', article.title);
+      }
+      if (twitterTitleMeta) {
+        twitterTitleMeta.setAttribute('content', article.title);
       }
 
       // Inject Schema.org FAQPage structured data for AEO (Answer Engine Optimization)
@@ -105,13 +113,19 @@ export const ArticlePage: React.FC = () => {
         metaDesc.setAttribute('content', siteDesc);
       }
       if (canonicalLink) {
-        canonicalLink.setAttribute('href', `${baseUrl}/`);
+        canonicalLink.setAttribute('href', 'https://underground-rap.vercel.app/');
       }
-      if (ogUrl) {
-        ogUrl.setAttribute('content', `${baseUrl}/`);
+      if (ogUrlMeta) {
+        ogUrlMeta.setAttribute('content', 'https://underground-rap.vercel.app/');
       }
-      if (twitterUrl) {
-        twitterUrl.setAttribute('content', `${baseUrl}/`);
+      if (twitterUrlMeta) {
+        twitterUrlMeta.setAttribute('content', 'https://underground-rap.vercel.app/');
+      }
+      if (ogTitleMeta) {
+        ogTitleMeta.setAttribute('content', 'Subculture // The Underground Dispatch');
+      }
+      if (twitterTitleMeta) {
+        twitterTitleMeta.setAttribute('content', 'Subculture // The Underground Dispatch');
       }
       const existingScript = document.getElementById('article-faq-jsonld');
       if (existingScript) existingScript.remove();
