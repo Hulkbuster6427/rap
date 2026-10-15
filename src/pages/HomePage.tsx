@@ -4,7 +4,6 @@ import { ARTICLES } from '../data/articles';
 import { BlogArticle } from '../types/blog';
 import { HeroFeatured } from '../components/HeroFeatured';
 import { ArticleCard } from '../components/ArticleCard';
-import { ExecutiveFindingsBrief } from '../components/ExecutiveFindingsBrief';
 import { useApp } from '../context/AppContext';
 import { Search, BookOpen, BookmarkCheck, Disc } from 'lucide-react';
 
@@ -64,9 +63,6 @@ export const HomePage: React.FC = () => {
 
   return (
     <div>
-      {/* 1. Core Publication Overview & Thesis (First thing user sees) */}
-      <ExecutiveFindingsBrief />
-
       {/* Hero Featured Article (shown when not filtering by search or saved) */}
       {!searchQuery && selectedCategory === 'All' && !showSavedOnly && (
         <HeroFeatured
