@@ -1,10 +1,8 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ArrowLeft, Compass } from 'lucide-react';
 
 export const NotFoundPage: React.FC = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="py-24 text-center max-w-lg mx-auto">
       <div className="w-16 h-16 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center mx-auto mb-6 text-zinc-500">
@@ -19,13 +17,14 @@ export const NotFoundPage: React.FC = () => {
       <p className="text-sm text-zinc-400 mb-8 leading-relaxed">
         The archive coordinate you entered does not point to an active essay, monograph, or timeline index.
       </p>
-      <button
-        onClick={() => navigate('/')}
+      <Link
+        to="/"
         className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-zinc-950 font-display font-bold text-xs uppercase tracking-wider transition-colors"
+        title="Browse All 10 Underground Hip-Hop Dispatches"
       >
         <ArrowLeft className="w-4 h-4" />
-        <span>Return to Home Archive</span>
-      </button>
+        <span>Browse All 10 Underground Hip-Hop Dispatches</span>
+      </Link>
     </div>
   );
 };

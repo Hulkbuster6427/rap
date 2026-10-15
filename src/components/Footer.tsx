@@ -1,6 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
+import { ARTICLES } from '../data/articles';
 
 interface FooterProps {
   onSelectTab?: (tab: 'articles' | 'timeline') => void;
@@ -13,22 +14,7 @@ export const Footer: React.FC<FooterProps> = ({
   onOpenManifesto,
   onOpenSubmit,
 }) => {
-  const navigate = useNavigate();
   const app = useApp();
-
-  const handleGoArticles = () => {
-    app.setShowSavedOnly(false);
-    if (onSelectTab) onSelectTab('articles');
-    navigate('/');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleGoTimeline = () => {
-    app.setShowSavedOnly(false);
-    if (onSelectTab) onSelectTab('timeline');
-    navigate('/timeline');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   const handleOpenManifesto = () => {
     if (onOpenManifesto) onOpenManifesto();
@@ -46,13 +32,18 @@ export const Footer: React.FC<FooterProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start justify-between">
           
           {/* Brand & Editorial Column */}
-          <div className="md:col-span-6 space-y-3">
-            <button
-              onClick={handleGoArticles}
-              className="font-display font-extrabold text-lg tracking-wider text-zinc-100 hover:text-amber-400 transition-colors uppercase text-left"
+          <div className="md:col-span-4 space-y-3">
+            <Link
+              to="/"
+              onClick={() => {
+                app.setShowSavedOnly(false);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="font-display font-extrabold text-lg tracking-wider text-zinc-100 hover:text-amber-400 transition-colors uppercase block"
+              title="Return to Subculture Underground Rap Dispatches"
             >
               SUBCULTURE // REC
-            </button>
+            </Link>
             <p className="text-xs text-zinc-400 max-w-sm leading-relaxed">
               An independent archive and music publication documenting the artistic autonomy, sonic inventions, and cultural hegemony of modern underground rap.
             </p>
@@ -64,50 +55,85 @@ export const Footer: React.FC<FooterProps> = ({
           {/* Quick Nav Links */}
           <div className="md:col-span-3 space-y-2 text-xs font-mono">
             <div className="text-zinc-200 font-bold uppercase tracking-wider mb-2 font-display">
-              Curatorial Index
+              Curatorial Navigation
             </div>
             <div>
-              <button 
-                onClick={handleGoArticles}
-                className="hover:text-amber-400 transition-colors text-left"
+              <Link 
+                to="/"
+                onClick={() => {
+                  app.setShowSavedOnly(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="hover:text-amber-400 transition-colors block py-0.5"
+                title="Browse All 10 Underground Hip-Hop Dispatches"
               >
-                All 10 Research Dispatches
-              </button>
+                Browse All 10 Underground Hip-Hop Dispatches
+              </Link>
             </div>
             <div>
-              <button 
-                onClick={handleGoTimeline}
-                className="hover:text-amber-400 transition-colors text-left"
+              <Link 
+                to="/timeline"
+                onClick={() => {
+                  app.setShowSavedOnly(false);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="hover:text-amber-400 transition-colors block py-0.5"
+                title="Explore Underground Rap Evolution Timeline 2008–2026"
               >
-                Underground Evolution Timeline
-              </button>
+                Explore Underground Rap Timeline 2008–2026
+              </Link>
             </div>
             <div>
               <button 
                 onClick={handleOpenManifesto}
-                className="hover:text-amber-400 transition-colors text-left"
+                className="hover:text-amber-400 transition-colors text-left py-0.5 block"
               >
-                Editorial Manifesto
+                Read Subculture Editorial Manifesto
               </button>
             </div>
           </div>
 
-          {/* Dispatches & Tips */}
-          <div className="md:col-span-3 space-y-2 text-xs">
+          {/* Field Submissions */}
+          <div className="md:col-span-5 space-y-2 text-xs">
             <div className="text-zinc-200 font-bold uppercase tracking-wider mb-2 font-display">
-              Field Submissions
+              Field Submissions & Audio Audits
             </div>
-            <p className="text-zinc-400 leading-relaxed">
-              Submissions audited continuously by independent music journalists.
+            <p className="text-zinc-400 leading-relaxed max-w-sm">
+              Independent underground tapes, leaked stems, and archival recordings audited continuously by independent music journalists.
             </p>
             <button
               onClick={handleOpenSubmit}
               className="mt-2 inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 font-mono transition-colors font-medium"
             >
-              <span>Send Field Dispatch Tip →</span>
+              <span>Submit Underground Field Dispatch Tip →</span>
             </button>
           </div>
 
+        </div>
+
+        {/* Complete Curatorial Dispatches Directory with Strong Anchor Text */}
+        <div className="mt-10 pt-8 border-t border-zinc-900">
+          <div className="text-xs font-mono text-zinc-300 uppercase tracking-wider mb-4 font-bold flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+            <span>Complete Internal Dispatches Index · Direct Curatorial Links</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs font-mono">
+            {ARTICLES.map((article) => (
+              <div key={article.id} className="p-2.5 rounded-lg bg-zinc-900/40 border border-zinc-800/60 hover:border-zinc-700 transition-all">
+                <span className="text-[10px] text-zinc-500 uppercase block mb-1">
+                  {article.category}
+                </span>
+                <Link
+                  to={`/${article.slug || article.id}`}
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="text-zinc-300 hover:text-amber-400 font-medium transition-colors line-clamp-2 leading-snug"
+                  title={`Read ${article.title}`}
+                >
+                  Read {article.mainKeyword || article.title}
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Bottom copyright row */}

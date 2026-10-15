@@ -1,7 +1,43 @@
 import React, { useState, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { TIMELINE_MILESTONES } from '../data/timeline';
 import { TimelineMilestone } from '../types/blog';
-import { Calendar, Compass, Disc3, Sparkles, MapPin, Tag, Search, Filter } from 'lucide-react';
+import { Calendar, Compass, Disc3, Sparkles, MapPin, Tag, Search, Filter, ArrowRight, BookOpen } from 'lucide-react';
+
+function getDispatchForMilestone(m: TimelineMilestone): { slug: string; label: string } | null {
+  const text = `${m.title} ${m.artistOrMovement} ${m.artists.join(' ')}`.toLowerCase();
+  if (text.includes('len') || text.includes('lancey') || text.includes('drill') || text.includes('uk')) {
+    return { slug: 'uk-underground-british-drill-renaissance', label: 'Read UK underground British drill renaissance dispatch' };
+  }
+  if (text.includes('lucki') || text.includes('veeze')) {
+    return { slug: 'lucki-veeze-detroit-nonchalant-underground-rap', label: 'Explore Lucki and Veeze nonchalant underground rap dispatch' };
+  }
+  if (text.includes('young thug') || text.includes('gunna') || text.includes('keed')) {
+    return { slug: 'young-thug-atlanta-melodic-trap-vocal-evolution', label: 'Study Young Thug Atlanta melodic trap evolution dispatch' };
+  }
+  if (text.includes('sahbabii')) {
+    return { slug: 'sahbabii-ethereal-underwater-ambient-plugg-trap', label: 'Discover SahBabii ethereal underwater ambient plugg trap dispatch' };
+  }
+  if (text.includes('nemzzz') || text.includes('yt') || text.includes('club rap')) {
+    return { slug: 'uk-club-rap-manchester-transatlantic-street-drill', label: 'Examine UK club rap transatlantic street drill dispatch' };
+  }
+  if (text.includes('migos') || text.includes('triplet')) {
+    return { slug: 'migos-atlanta-triplet-flow-trap-rhythm-cadence', label: 'Analyze Migos Atlanta triplet flow rhythm cadence dispatch' };
+  }
+  if (text.includes('sinn6r') || text.includes('slayr') || text.includes('distorted') || text.includes('808')) {
+    return { slug: 'soundcloud-underground-dark-ambient-distorted-808s', label: 'Investigate SoundCloud underground dark ambient distorted 808s dispatch' };
+  }
+  if (text.includes('danny brown') || text.includes('jpegmafia')) {
+    return { slug: 'jpegmafia-danny-brown-industrial-experimental-hip-hop', label: 'Read JPEGMAFIA and Danny Brown industrial experimental hip-hop dispatch' };
+  }
+  if (text.includes('mach-hommy') || text.includes('fahim') || text.includes('preservation')) {
+    return { slug: 'mach-hommy-underground-vinyl-drumless-boom-bap', label: 'Explore Mach-Hommy underground vinyl drumless boom-bap dispatch' };
+  }
+  if (text.includes('jid') || text.includes('earthgang') || text.includes('spillage')) {
+    return { slug: 'jid-spillage-village-atlanta-polyrhythmic-rap', label: 'Study JID Spillage Village Atlanta polyrhythmic rap dispatch' };
+  }
+  return null;
+}
 
 export const TimelineView: React.FC = () => {
   const [selectedEra, setSelectedEra] = useState<string>('All');
@@ -232,6 +268,24 @@ export const TimelineView: React.FC = () => {
                   </span>
                 ))}
               </div>
+
+              {/* Connected Curatorial Dispatch Link with Strong Keyword Anchor Text */}
+              {(() => {
+                const dispatch = getDispatchForMilestone(m);
+                if (!dispatch) return null;
+                return (
+                  <div className="mt-4 pt-3 border-t border-zinc-800/60 flex items-center justify-between">
+                    <Link
+                      to={`/${dispatch.slug}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-400 hover:text-amber-300 font-mono transition-colors"
+                      title={dispatch.label}
+                    >
+                      <BookOpen className="w-3.5 h-3.5" />
+                      <span>{dispatch.label} →</span>
+                    </Link>
+                  </div>
+                );
+              })()}
             </article>
           ))}
         </div>
@@ -257,14 +311,21 @@ export const TimelineView: React.FC = () => {
         </div>
       )}
 
-      {/* Bottom Historical Note */}
-      <div className="mt-16 p-6 rounded-2xl border border-zinc-800/80 bg-zinc-950/60 text-center">
-        <h4 className="font-display font-bold text-base text-zinc-200 mb-2">
+      {/* Bottom Historical Note & Internal Anchor CTA */}
+      <div className="mt-16 p-8 rounded-2xl border border-zinc-800/80 bg-zinc-950/60 text-center">
+        <h4 className="font-display font-bold text-lg text-zinc-100 mb-2">
           The Living Underground Archive
         </h4>
-        <p className="text-xs text-zinc-400 max-w-xl mx-auto leading-relaxed">
+        <p className="text-xs text-zinc-400 max-w-xl mx-auto leading-relaxed mb-6">
           Historical entries are compiled through direct primary source audio documents, independent tape releases, and concert archives. Timeline updated continuously as new countercultural movements emerge.
         </p>
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-zinc-950 font-display font-bold text-xs uppercase tracking-wider transition-all shadow-md"
+          title="Browse All 10 Underground Hip-Hop Dispatches"
+        >
+          <span>Browse All 10 Underground Hip-Hop Dispatches →</span>
+        </Link>
       </div>
     </div>
   );

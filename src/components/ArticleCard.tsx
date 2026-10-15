@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { BlogArticle } from '../types/blog';
-import { Bookmark, Clock, ArrowUpRight, Camera, Link, Check } from 'lucide-react';
+import { Bookmark, Clock, ArrowUpRight, Camera, Link as LinkIcon, Check } from 'lucide-react';
 
 interface ArticleCardProps {
   article: BlogArticle;
@@ -24,7 +25,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
   const handleCopyLink = async (e: React.MouseEvent) => {
     e.stopPropagation();
     try {
-      const url = `${window.location.origin}/article/${article.slug || article.id}`;
+      const url = `${window.location.origin}/${article.slug || article.id}`;
       await navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -109,7 +110,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
               {copied ? (
                 <Check className="w-3.5 h-3.5 text-emerald-400" />
               ) : (
-                <Link className="w-3.5 h-3.5" />
+                <LinkIcon className="w-3.5 h-3.5" />
               )}
             </button>
 
@@ -137,7 +138,13 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
 
         {/* Article Title */}
         <h3 className="font-display font-bold text-lg text-zinc-100 group-hover:text-amber-400 transition-colors leading-snug mb-2 text-balance">
-          {article.title}
+          <Link
+            to={`/${article.slug || article.id}`}
+            className="hover:underline"
+            title={`Read ${article.title}`}
+          >
+            {article.title}
+          </Link>
         </h3>
 
         {/* Main Topic Keyword Tag */}
@@ -170,10 +177,14 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
           <span className="text-zinc-300 font-medium">{article.author.name}</span>
         </div>
 
-        <span className="inline-flex items-center gap-1 text-zinc-400 group-hover:text-amber-400 font-medium transition-colors">
-          <span>Read Dispatch</span>
+        <Link
+          to={`/${article.slug || article.id}`}
+          className="inline-flex items-center gap-1 text-zinc-400 group-hover:text-amber-400 font-medium transition-colors hover:underline"
+          title={`Read ${article.title}`}
+        >
+          <span>Read {article.mainKeyword || article.title} dispatch</span>
           <ArrowUpRight className="w-3.5 h-3.5" />
-        </span>
+        </Link>
       </div>
     </article>
   );

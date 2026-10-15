@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ARTICLES } from '../data/articles';
 import { ArticleDetail } from '../components/ArticleDetail';
 import { useApp } from '../context/AppContext';
@@ -84,13 +84,14 @@ export const ArticlePage: React.FC = () => {
         <p className="text-sm text-zinc-400 mb-8 leading-relaxed">
           The requested underground research dispatch or monograph could not be retrieved from the catalog.
         </p>
-        <button
-          onClick={() => navigate('/')}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-zinc-950 font-display font-bold text-xs uppercase tracking-wider transition-colors"
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-zinc-950 font-display font-bold text-xs uppercase tracking-wider transition-colors shadow-md"
+          title="Browse All 10 Underground Hip-Hop Dispatches"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Return to Journal Archive</span>
-        </button>
+          <span>Browse All 10 Underground Hip-Hop Dispatches</span>
+        </Link>
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { BlogArticle } from '../types/blog';
-import { ArrowRight, Bookmark, Sparkles, Disc, Radio, Camera, Link, Check } from 'lucide-react';
+import { ArrowRight, Bookmark, Sparkles, Disc, Radio, Camera, Link as LinkIcon, Check } from 'lucide-react';
 
 interface HeroFeaturedProps {
   article: BlogArticle;
@@ -83,11 +84,14 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
           )}
 
           {/* Headline with text-balance */}
-          <h1 
-            onClick={() => onSelect(article)}
-            className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-zinc-100 hover:text-amber-400 cursor-pointer transition-colors leading-[1.15] mb-4 text-balance"
-          >
-            {article.title}
+          <h1 className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-zinc-100 leading-[1.15] mb-4 text-balance">
+            <Link
+              to={`/${article.slug || article.id}`}
+              className="hover:text-amber-400 transition-colors"
+              title={`Read ${article.title}`}
+            >
+              {article.title}
+            </Link>
           </h1>
 
           <p className="text-base sm:text-lg text-zinc-300 font-normal leading-relaxed mb-6">
@@ -115,13 +119,14 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
 
           {/* Actions & Byline */}
           <div className="flex flex-wrap items-center gap-4">
-            <button
-              onClick={() => onSelect(article)}
+            <Link
+              to={`/${article.slug || article.id}`}
               className="px-5 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-zinc-950 font-display font-bold text-sm tracking-wider uppercase flex items-center gap-2 transition-all shadow-lg hover:shadow-amber-400/20"
+              title={`Read ${article.title}`}
             >
-              <span>Read Full Essay</span>
+              <span>Read {article.mainKeyword || article.title} dispatch</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
 
             <button
               onClick={(e) => onToggleSave(article.id, e)}
@@ -147,7 +152,7 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
                 </>
               ) : (
                 <>
-                  <Link className="w-3.5 h-3.5 text-zinc-400" />
+                  <LinkIcon className="w-3.5 h-3.5 text-zinc-400" />
                   <span>Copy Link</span>
                 </>
               )}

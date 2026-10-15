@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { BlogArticle, ArticleComment } from '../types/blog';
 import { SectionArtistPhoto } from './SectionArtistPhoto';
 import { 
   ArrowLeft, Bookmark, Volume2, Clock, Calendar, 
   MessageSquare, ThumbsUp, Send, Check, Music2, Disc3, 
-  ChevronRight, Sparkles, Camera, Link, Copy, ExternalLink, Tag
+  ChevronRight, Sparkles, Camera, Link as LinkIcon, Copy, ExternalLink, Tag, BookOpen
 } from 'lucide-react';
 
 interface ArticleDetailProps {
@@ -45,6 +46,63 @@ function highlightKeywords(text: string, keywords: string[]): React.ReactNode {
     }
     return part;
   });
+}
+
+function renderParagraphContent(text: string, keywords: string[]): React.ReactNode {
+  if (!text) return null;
+
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const elements: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = linkRegex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      const beforeText = text.substring(lastIndex, match.index);
+      elements.push(highlightKeywords(beforeText, keywords));
+    }
+
+    const label = match[1];
+    const href = match[2];
+    const isExternal = href.startsWith('http://') || href.startsWith('https://');
+
+    if (isExternal) {
+      elements.push(
+        <a
+          key={`outbound-link-${match.index}`}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-amber-400 font-semibold underline underline-offset-2 decoration-amber-400/60 hover:text-amber-300 transition-colors inline-flex items-baseline gap-1"
+          title={`${label} (opens external trusted source)`}
+        >
+          <span>{label}</span>
+          <ExternalLink className="w-3 h-3 inline-block shrink-0 text-amber-400/80 translate-y-0.5" />
+        </a>
+      );
+    } else {
+      elements.push(
+        <Link
+          key={`link-${match.index}`}
+          to={href}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="text-amber-400 font-semibold underline underline-offset-2 decoration-amber-400/60 hover:text-amber-300 transition-colors"
+          title={label}
+        >
+          {label}
+        </Link>
+      );
+    }
+
+    lastIndex = linkRegex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    const afterText = text.substring(lastIndex);
+    elements.push(highlightKeywords(afterText, keywords));
+  }
+
+  return elements.length > 0 ? elements : highlightKeywords(text, keywords);
 }
 
 export const ArticleDetail: React.FC<ArticleDetailProps> = ({
@@ -172,13 +230,14 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
 
       {/* Top Utility & Return Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 py-6 border-b border-zinc-800/80 mb-8">
-        <button
-          onClick={onBack}
+        <Link
+          to="/"
           className="inline-flex items-center gap-2 text-sm font-medium text-zinc-400 hover:text-amber-400 transition-colors group"
+          title="Browse All 10 Underground Hip-Hop Dispatches"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          <span>Return to All Dispatches</span>
-        </button>
+          <span>Browse All 10 Underground Hip-Hop Dispatches</span>
+        </Link>
 
         <div className="flex items-center gap-2 sm:gap-3">
           {/* Audio companion trigger tailored to article */}
@@ -234,7 +293,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
               </>
             ) : (
               <>
-                <Link className="w-3.5 h-3.5 text-amber-400" />
+                <LinkIcon className="w-3.5 h-3.5 text-amber-400" />
                 <span>Copy Link</span>
               </>
             )}
@@ -339,7 +398,7 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
           >
             {/* Opening Lead Paragraph with Drop Cap & Highlighted Keywords */}
             <p className="first-letter:text-5xl first-letter:font-editorial-serif first-letter:font-bold first-letter:text-amber-400 first-letter:float-left first-letter:mr-3 first-letter:mt-1 font-editorial-serif text-lg sm:text-xl text-zinc-200 leading-relaxed mb-8">
-              {highlightKeywords(article.excerpt, [article.mainKeyword, ...(article.relatedKeywords || [])])}
+              {renderParagraphContent(article.excerpt, [article.mainKeyword, ...(article.relatedKeywords || [])])}
             </p>
 
             {/* Content Sections with Artist Photos placed beside / at end of each section */}
@@ -353,9 +412,10 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
 
                 {section.paragraphs.map((p, pIdx) => (
                   <p key={pIdx} className="mb-5 text-zinc-300 font-sans font-normal leading-[1.85]">
-                    {idx === 0 && pIdx === 0
-                      ? highlightKeywords(p, [article.mainKeyword, ...(article.relatedKeywords || [])])
-                      : p}
+                    {renderParagraphContent(
+                      p,
+                      idx === 0 && pIdx === 0 ? [article.mainKeyword, ...(article.relatedKeywords || [])] : []
+                    )}
                   </p>
                 ))}
 
@@ -469,24 +529,75 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
           <div className="mt-12 p-6 rounded-xl border border-zinc-800/80 bg-zinc-900/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
             <div>
               <div className="text-xs font-mono text-amber-400 uppercase tracking-wider mb-1">
-                Next In Archive
+                Next In Curatorial Archive
               </div>
-              <div className="font-display font-bold text-lg text-zinc-100">
+              <Link
+                to={`/${nextArticle.slug || nextArticle.id}`}
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="font-display font-bold text-lg text-zinc-100 hover:text-amber-400 transition-colors block"
+                title={`Read ${nextArticle.title}`}
+              >
                 {nextArticle.title}
-              </div>
+              </Link>
             </div>
 
-            <button
-              onClick={() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-                onSelectArticle(nextArticle);
-              }}
-              className="px-4 py-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-200 text-xs font-display uppercase tracking-wider font-bold flex items-center gap-2 transition-colors shrink-0"
+            <Link
+              to={`/${nextArticle.slug || nextArticle.id}`}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="px-4 py-2.5 rounded-lg bg-amber-400 hover:bg-amber-300 text-zinc-950 text-xs font-display uppercase tracking-wider font-bold flex items-center gap-2 transition-all shadow-md shrink-0"
+              title={`Read ${nextArticle.title}`}
             >
-              <span>Read Next</span>
+              <span>Read {nextArticle.mainKeyword || nextArticle.title} dispatch</span>
               <ChevronRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
+
+          {/* Related Curatorial Dispatches with Strong Anchor Text */}
+          <section aria-label="Related Underground Dispatches" className="mt-12 pt-8 border-t border-zinc-800/80">
+            <div className="flex items-center gap-2 text-xs font-mono text-amber-400 uppercase tracking-widest mb-2 font-bold">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Related Curatorial Dispatches</span>
+            </div>
+            <h3 className="font-display font-bold text-xl text-zinc-100 mb-5">
+              Explore Connected Sound Movements & Blueprints
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {allArticles
+                .filter((a) => a.id !== article.id && a.id !== nextArticle.id)
+                .slice(0, 2)
+                .map((relArt) => (
+                  <div key={relArt.id} className="p-4 rounded-xl border border-zinc-800/80 bg-zinc-900/50 hover:border-amber-400/50 transition-all flex flex-col justify-between">
+                    <div>
+                      <span className="text-[10px] font-mono text-amber-400 uppercase tracking-wider block mb-1">
+                        {relArt.category} · {relArt.themeTag}
+                      </span>
+                      <h4 className="font-display font-bold text-base text-zinc-200 mb-2">
+                        <Link 
+                          to={`/${relArt.slug || relArt.id}`}
+                          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                          className="hover:text-amber-400 transition-colors"
+                          title={`Read ${relArt.title}`}
+                        >
+                          {relArt.title}
+                        </Link>
+                      </h4>
+                      <p className="text-xs text-zinc-400 line-clamp-2 leading-relaxed">
+                        {relArt.excerpt}
+                      </p>
+                    </div>
+                    <Link
+                      to={`/${relArt.slug || relArt.id}`}
+                      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                      className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-amber-400 hover:text-amber-300 font-mono"
+                      title={`Explore ${relArt.title}`}
+                    >
+                      <span>Explore {relArt.mainKeyword || relArt.title} dispatch</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </Link>
+                  </div>
+                ))}
+            </div>
+          </section>
         </main>
 
         {/* Right Margin Rail: Curatorial Breakdown */}
@@ -569,6 +680,39 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Internal Movement Directory with Strong Anchor Text */}
+          <div className="p-6 rounded-xl bg-zinc-900/60 border border-zinc-800/80">
+            <h4 className="font-display font-bold text-sm text-zinc-200 uppercase tracking-wider mb-4 pb-2 border-b border-zinc-800 flex items-center justify-between">
+              <span>Underground Archive Index</span>
+              <span className="text-xs font-mono text-zinc-500 tabular-nums">05</span>
+            </h4>
+            <div className="space-y-2.5">
+              {allArticles.map((item) => {
+                const isCurrent = item.id === article.id;
+                return (
+                  <div key={item.id} className="text-xs font-mono">
+                    {isCurrent ? (
+                      <span className="text-amber-400 font-bold flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                        <span className="line-clamp-1">Current: {item.mainKeyword}</span>
+                      </span>
+                    ) : (
+                      <Link
+                        to={`/${item.slug || item.id}`}
+                        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                        className="text-zinc-400 hover:text-amber-400 transition-colors flex items-center gap-1.5 group"
+                        title={`Read ${item.title}`}
+                      >
+                        <span className="w-1 h-1 rounded-full bg-zinc-600 group-hover:bg-amber-400 transition-colors" />
+                        <span className="line-clamp-1">See {item.mainKeyword} dispatch</span>
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
 

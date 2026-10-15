@@ -78,7 +78,7 @@ export const HomePage: React.FC = () => {
       )}
 
       {/* Section Header & Search / Filter Controls */}
-      <div className="mb-8 space-y-4">
+      <div id="dispatches" className="mb-8 space-y-4 scroll-mt-20">
         
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-zinc-800/80">
           <div>

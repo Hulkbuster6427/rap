@@ -12,7 +12,7 @@ export const ExecutiveFindingsBrief: React.FC = () => {
         <span>Publication Overview · Core Thesis</span>
       </div>
       <p className="text-sm sm:text-base text-zinc-200 leading-relaxed font-sans">
-        For over a decade, commercial streaming algorithms and radio gatekeepers promoted sterilized, risk-averse formulas. In response, an uncoordinated worldwide counter-insurgency erupted from South London basements, Detroit living rooms, Atlanta home studios, and encrypted Discord channels. This website investigates <span className="text-amber-300 font-semibold">10 historical dispatches</span> that prove true artistic innovation, community devotion, and financial sovereignty always stem from the underground.
+        For over a decade, commercial streaming algorithms and radio gatekeepers promoted sterilized, risk-averse formulas. In response, an uncoordinated worldwide counter-insurgency erupted from South London basements, Detroit living rooms, Atlanta home studios, and encrypted Discord channels. Explore this research archive to <a href="#dispatches" className="text-amber-400 hover:text-amber-300 font-semibold underline underline-offset-4 decoration-amber-400/60" title="See all 10 curated underground rap dispatches">see all 10 curated underground rap dispatches</a> that prove true artistic innovation, community devotion, and financial sovereignty always stem from the underground.
       </p>
     </section>
   );

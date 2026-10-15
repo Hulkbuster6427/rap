@@ -74,6 +74,14 @@ export interface BlogArticle {
     metric: string;
     label: string;
   }[];
+  outboundSources?: OutboundSourceLink[];
+}
+
+export interface OutboundSourceLink {
+  sourceName: string;
+  url: string;
+  anchorText: string;
+  description: string;
 }
 
 export interface TimelineMilestone {

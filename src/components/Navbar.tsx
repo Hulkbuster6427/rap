@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useApp } from '../context/AppContext';
 import { Volume2, VolumeX, Radio, Sparkles } from 'lucide-react';
 
@@ -80,15 +80,17 @@ export const Navbar: React.FC<NavbarProps> = ({
         
         {/* Zone 1: Single text element wordmark */}
         <div className="flex items-center gap-3">
-          <button 
-            onClick={handleGoArticles}
+          <Link 
+            to="/"
+            onClick={() => app.setShowSavedOnly(false)}
             className="text-left group focus-visible:outline-none"
-            title="Return to home journal archive"
+            title="Return to Subculture Underground Rap Dispatches"
+            aria-label="Subculture Underground Rap Dispatches Home"
           >
             <span className="font-display font-extrabold text-xl tracking-wider text-zinc-100 group-hover:text-amber-400 transition-colors uppercase">
               SUBCULTURE // REC
             </span>
-          </button>
+          </Link>
 
           {selectedArticleTitle && (
             <div className="hidden lg:flex items-center gap-2 text-xs font-mono text-zinc-500 pl-3 border-l border-zinc-800">
@@ -100,27 +102,31 @@ export const Navbar: React.FC<NavbarProps> = ({
 
         {/* Zone 2: Clean text navigation links */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-          <button
-            onClick={handleGoArticles}
+          <Link
+            to="/"
+            onClick={() => app.setShowSavedOnly(false)}
             className={`transition-colors hover:text-zinc-100 pb-0.5 ${
               isArticles && !showingSavedOnly
                 ? 'text-amber-400 border-b-2 border-amber-400 font-semibold'
                 : ''
             }`}
+            title="Browse All 10 Underground Hip-Hop Dispatches"
           >
-            Essays & Dispatches
-          </button>
+            All 10 Research Dispatches
+          </Link>
 
-          <button
-            onClick={handleGoTimeline}
+          <Link
+            to="/timeline"
+            onClick={() => app.setShowSavedOnly(false)}
             className={`transition-colors hover:text-zinc-100 pb-0.5 ${
               isTimeline
                 ? 'text-amber-400 border-b-2 border-amber-400 font-semibold'
                 : ''
             }`}
+            title="Explore Underground Rap Timeline 2008–2026"
           >
-            Underground Timeline
-          </button>
+            Underground Evolution Timeline
+          </Link>
 
           <button
             onClick={handleOpenManifesto}
