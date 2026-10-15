@@ -5,7 +5,7 @@ import { SectionArtistPhoto } from './SectionArtistPhoto';
 import { 
   ArrowLeft, Bookmark, Volume2, Clock, Calendar, 
   MessageSquare, ThumbsUp, Send, Check, Music2, Disc3, 
-  ChevronRight, Sparkles, Camera, Link as LinkIcon, Copy, ExternalLink, Tag, BookOpen
+  ChevronRight, Sparkles, Camera, Link as LinkIcon, Copy, ExternalLink, Tag, BookOpen, HelpCircle
 } from 'lucide-react';
 
 interface ArticleDetailProps {
@@ -405,9 +405,17 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
             {article.contentSections.map((section, idx) => (
               <div key={idx} className="mb-12">
                 {section.heading && (
-                  <h2 className="font-display font-bold text-2xl text-zinc-100 tracking-tight mt-10 mb-4 pb-2 border-b border-zinc-800/60">
-                    {section.heading}
-                  </h2>
+                  <div className="mt-10 mb-4 pb-2 border-b border-zinc-800/60">
+                    {section.heading.trim().endsWith('?') && (
+                      <div className="flex items-center gap-1.5 text-[11px] font-mono text-amber-400 font-semibold mb-1 uppercase tracking-wider">
+                        <HelpCircle className="w-3.5 h-3.5 text-amber-400" />
+                        <span>AEO Direct Answer Topic</span>
+                      </div>
+                    )}
+                    <h2 className="font-display font-bold text-2xl text-zinc-100 tracking-tight">
+                      {section.heading}
+                    </h2>
+                  </div>
                 )}
 
                 {section.paragraphs.map((p, pIdx) => (
@@ -598,6 +606,33 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
                 ))}
             </div>
           </section>
+
+          {/* Fan FAQ Quick Reference Banner */}
+          {article.faqs && article.faqs.length > 0 && (
+            <div className="mt-10 p-5 rounded-2xl bg-amber-500/5 border border-amber-500/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-amber-400/10 border border-amber-400/30 flex items-center justify-center shrink-0">
+                  <HelpCircle className="w-4 h-4 text-amber-400" />
+                </div>
+                <div>
+                  <h4 className="font-display font-bold text-sm text-zinc-100">
+                    Frequently Asked Questions · Favorite Movement Rappers
+                  </h4>
+                  <p className="text-xs text-zinc-400 mt-0.5">
+                    Direct AEO answers covering {article.keyArtists.slice(0, 3).join(', ')} are detailed on the right-hand curatorial rail.
+                  </p>
+                </div>
+              </div>
+              <a 
+                href="#fan-faqs"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-zinc-900 border border-amber-400/30 text-xs font-mono text-amber-400 hover:text-amber-300 font-bold transition-colors shrink-0"
+                title="Jump to Favorite Rappers FAQ on the right rail"
+              >
+                <span>Read Direct Answers</span>
+                <span>↓</span>
+              </a>
+            </div>
+          )}
         </main>
 
         {/* Right Margin Rail: Curatorial Breakdown */}
@@ -715,6 +750,61 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
               })}
             </div>
           </div>
+
+          {/* 06. Fan FAQs: Favorite Rappers Q&A (AEO Answer Engine Optimized) */}
+          {article.faqs && article.faqs.length > 0 && (
+            <section 
+              id="fan-faqs"
+              aria-label="Frequently Asked Questions About Featured Underground Rappers" 
+              className="p-6 rounded-2xl bg-gradient-to-b from-zinc-900/95 via-zinc-900/70 to-zinc-950 border border-amber-500/40 shadow-[0_4px_30px_rgba(245,158,11,0.08)] scroll-mt-24"
+            >
+              <div className="flex items-center justify-between pb-3 mb-4 border-b border-zinc-800">
+                <div>
+                  <div className="flex items-center gap-1.5 text-[10px] font-mono text-amber-400 uppercase tracking-widest font-bold mb-1">
+                    <HelpCircle className="w-3.5 h-3.5 text-amber-400" />
+                    <span>AEO Direct Answers</span>
+                  </div>
+                  <h4 className="font-display font-bold text-sm text-zinc-100 uppercase tracking-wider">
+                    Favorite Rappers FAQ
+                  </h4>
+                </div>
+                <span className="text-xs font-mono text-amber-400 font-bold bg-amber-400/10 border border-amber-400/30 px-2 py-0.5 rounded tabular-nums">
+                  06
+                </span>
+              </div>
+
+              <p className="text-xs text-zinc-400 leading-relaxed mb-4">
+                Direct answers to what fans and crate-diggers ask most about their favorite artists in this movement.
+              </p>
+
+              <div className="space-y-4">
+                {article.faqs.map((faq, idx) => (
+                  <div 
+                    key={idx}
+                    className="p-4 rounded-xl bg-zinc-950/90 border border-zinc-800/80 hover:border-amber-400/40 transition-colors"
+                  >
+                    {faq.featuredArtist && (
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-amber-400/10 border border-amber-400/30 text-[10px] font-mono text-amber-400 font-bold mb-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                        <span>{faq.featuredArtist}</span>
+                      </div>
+                    )}
+                    <h5 className="font-display font-bold text-xs sm:text-sm text-zinc-100 leading-snug mb-2.5">
+                      {faq.question}
+                    </h5>
+                    <div className="p-3 rounded-lg bg-zinc-900/80 border-l-2 border-amber-400">
+                      <span className="text-[9px] font-mono text-amber-400/90 uppercase tracking-widest block font-bold mb-1">
+                        Direct Answer
+                      </span>
+                      <p className="text-xs text-zinc-300 leading-relaxed font-sans">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
 
         </aside>
 

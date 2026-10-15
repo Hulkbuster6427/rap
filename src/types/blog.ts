@@ -75,6 +75,13 @@ export interface BlogArticle {
     label: string;
   }[];
   outboundSources?: OutboundSourceLink[];
+  faqs?: FAQItem[];
+}
+
+export interface FAQItem {
+  question: string;
+  answer: string;
+  featuredArtist?: string;
 }
 
 export interface OutboundSourceLink {

@@ -58,14 +58,40 @@ export const ArticlePage: React.FC = () => {
       if (metaDesc) {
         metaDesc.setAttribute('content', `${article.title}. ${article.subtitle || article.excerpt}`);
       }
+
+      // Inject Schema.org FAQPage structured data for AEO (Answer Engine Optimization)
+      if (article.faqs && article.faqs.length > 0) {
+        const existingScript = document.getElementById('article-faq-jsonld');
+        if (existingScript) existingScript.remove();
+
+        const script = document.createElement('script');
+        script.id = 'article-faq-jsonld';
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          'mainEntity': article.faqs.map((faq) => ({
+            '@type': 'Question',
+            'name': faq.question,
+            'acceptedAnswer': {
+              '@type': 'Answer',
+              'text': faq.answer,
+            },
+          })),
+        });
+        document.head.appendChild(script);
+      }
     } else {
       document.title = 'Dispatch Not Found | Subculture';
     }
+
     return () => {
       document.title = 'Subculture // The Underground Dispatch';
       if (metaDesc) {
         metaDesc.setAttribute('content', siteDesc);
       }
+      const existingScript = document.getElementById('article-faq-jsonld');
+      if (existingScript) existingScript.remove();
     };
   }, [article]);
 
