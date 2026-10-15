@@ -53,10 +53,21 @@ export const ArticlePage: React.FC = () => {
     const siteDesc = "Explore the evolution of modern underground rap through investigative monographs, sonic blueprints, and audio companions. Read all 10 curated dispatches now.";
     const metaDesc = document.querySelector('meta[name="description"]');
 
+    const siteUrl = "https://undergroundrap.vercel.app";
+    const canonicalLink = document.querySelector('link[rel="canonical"]');
+    const ogUrlMeta = document.querySelector('meta[property="og:url"]');
+
     if (article) {
       document.title = article.title;
       if (metaDesc) {
         metaDesc.setAttribute('content', `${article.title}. ${article.subtitle || article.excerpt}`);
+      }
+      const pageUrl = `${siteUrl}/${article.slug || article.id}`;
+      if (canonicalLink) {
+        canonicalLink.setAttribute('href', pageUrl);
+      }
+      if (ogUrlMeta) {
+        ogUrlMeta.setAttribute('content', pageUrl);
       }
 
       // Inject Schema.org FAQPage structured data for AEO (Answer Engine Optimization)
@@ -89,6 +100,12 @@ export const ArticlePage: React.FC = () => {
       document.title = 'Subculture // The Underground Dispatch';
       if (metaDesc) {
         metaDesc.setAttribute('content', siteDesc);
+      }
+      if (canonicalLink) {
+        canonicalLink.setAttribute('href', `${siteUrl}/`);
+      }
+      if (ogUrlMeta) {
+        ogUrlMeta.setAttribute('content', `${siteUrl}/`);
       }
       const existingScript = document.getElementById('article-faq-jsonld');
       if (existingScript) existingScript.remove();

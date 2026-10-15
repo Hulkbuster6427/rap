@@ -139,9 +139,11 @@ export const Footer: React.FC<FooterProps> = ({
         {/* Bottom copyright row */}
         <div className="mt-12 pt-6 border-t border-zinc-900 flex flex-col sm:flex-row items-center justify-between text-[11px] font-mono text-zinc-500 gap-4">
           <div>
-            © {new Date().getFullYear()} SUBCULTURE SOUND ARCHIVE. All commentary and curatorial essays independently produced.
+            © {new Date().getFullYear()} SUBCULTURE SOUND ARCHIVE · <span className="text-zinc-400">undergroundrap.vercel.app</span>
           </div>
           <div className="flex items-center gap-4">
+            <span className="text-amber-400/80">undergroundrap.vercel.app</span>
+            <span className="hidden sm:inline text-zinc-700">|</span>
             <span>UNCOMPROMISED ARTISTIC SOVEREIGNTY</span>
           </div>
         </div>

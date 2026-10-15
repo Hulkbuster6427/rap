@@ -198,9 +198,10 @@ export const ArticleDetail: React.FC<ArticleDetailProps> = ({
     }
   };
 
-  const articleUrl = typeof window !== 'undefined' 
-    ? `${window.location.origin}/${article.slug || article.id}` 
-    : `/${article.slug || article.id}`;
+  const siteBaseUrl = typeof window !== 'undefined' && window.location.hostname === 'localhost'
+    ? window.location.origin
+    : 'https://undergroundrap.vercel.app';
+  const articleUrl = `${siteBaseUrl}/${article.slug || article.id}`;
 
   const handleCopyLink = async () => {
     try {
