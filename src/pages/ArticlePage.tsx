@@ -52,22 +52,25 @@ export const ArticlePage: React.FC = () => {
   useEffect(() => {
     const siteDesc = "Explore the evolution of modern underground rap through investigative monographs, sonic blueprints, and audio companions. Read all 10 curated dispatches now.";
     const metaDesc = document.querySelector('meta[name="description"]');
-
-    const siteUrl = "https://undergroundrap.vercel.app";
     const canonicalLink = document.querySelector('link[rel="canonical"]');
-    const ogUrlMeta = document.querySelector('meta[property="og:url"]');
+    const ogUrl = document.querySelector('meta[property="og:url"]');
+    const twitterUrl = document.querySelector('meta[name="twitter:url"]');
+    const baseUrl = 'https://underground-rap.vercel.app';
 
     if (article) {
       document.title = article.title;
+      const articleUrl = `${baseUrl}/${article.slug || article.id}`;
       if (metaDesc) {
         metaDesc.setAttribute('content', `${article.title}. ${article.subtitle || article.excerpt}`);
       }
-      const pageUrl = `${siteUrl}/${article.slug || article.id}`;
       if (canonicalLink) {
-        canonicalLink.setAttribute('href', pageUrl);
+        canonicalLink.setAttribute('href', articleUrl);
       }
-      if (ogUrlMeta) {
-        ogUrlMeta.setAttribute('content', pageUrl);
+      if (ogUrl) {
+        ogUrl.setAttribute('content', articleUrl);
+      }
+      if (twitterUrl) {
+        twitterUrl.setAttribute('content', articleUrl);
       }
 
       // Inject Schema.org FAQPage structured data for AEO (Answer Engine Optimization)
@@ -102,10 +105,13 @@ export const ArticlePage: React.FC = () => {
         metaDesc.setAttribute('content', siteDesc);
       }
       if (canonicalLink) {
-        canonicalLink.setAttribute('href', `${siteUrl}/`);
+        canonicalLink.setAttribute('href', `${baseUrl}/`);
       }
-      if (ogUrlMeta) {
-        ogUrlMeta.setAttribute('content', `${siteUrl}/`);
+      if (ogUrl) {
+        ogUrl.setAttribute('content', `${baseUrl}/`);
+      }
+      if (twitterUrl) {
+        twitterUrl.setAttribute('content', `${baseUrl}/`);
       }
       const existingScript = document.getElementById('article-faq-jsonld');
       if (existingScript) existingScript.remove();

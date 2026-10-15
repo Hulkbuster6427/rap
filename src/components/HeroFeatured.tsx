@@ -21,8 +21,7 @@ export const HeroFeatured: React.FC<HeroFeaturedProps> = ({
   const handleCopyLink = async (e: React.MouseEvent) => {
     e.stopPropagation();
     try {
-      const baseUrl = window.location.hostname === 'localhost' ? window.location.origin : 'https://undergroundrap.vercel.app';
-      const url = `${baseUrl}/${article.slug || article.id}`;
+      const url = `${window.location.origin}/${article.slug || article.id}`;
       await navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
