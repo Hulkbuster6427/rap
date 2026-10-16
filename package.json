@@ -1,8 +1,7 @@
 {
-  "name": "underground-rap",
-  "homepage": "https://underground-rap.vercel.app",
+  "name": "react-example",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.0",
   "type": "module",
   "engines": {
     "node": ">=22.12.0"

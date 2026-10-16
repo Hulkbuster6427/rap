@@ -25,10 +25,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
   const handleCopyLink = async (e: React.MouseEvent) => {
     e.stopPropagation();
     try {
-      const baseUrl = typeof window !== 'undefined' && (window.location.hostname.includes('vercel.app') || window.location.hostname === 'localhost')
-        ? window.location.origin
-        : 'https://underground-rap.vercel.app';
-      const url = `${baseUrl}/${article.slug || article.id}`;
+      const url = `${window.location.origin}/${article.slug || article.id}`;
       await navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);

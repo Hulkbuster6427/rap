@@ -91,9 +91,6 @@ export const Navbar: React.FC<NavbarProps> = ({
               SUBCULTURE // REC
             </span>
           </Link>
-          <span className="hidden sm:inline-block text-[10px] font-mono text-zinc-500 border border-zinc-800/80 px-2 py-0.5 rounded bg-zinc-900/60 tracking-wider">
-            undergroundrap.vercel.app
-          </span>
 
           {selectedArticleTitle && (
             <div className="hidden lg:flex items-center gap-2 text-xs font-mono text-zinc-500 pl-3 border-l border-zinc-800">
